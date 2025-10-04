@@ -1,0 +1,76 @@
+@import "tailwindcss";
+
+:root {
+   --background: #ffffff;
+   --foreground: #171717;
+}
+
+@media (prefers-color-scheme: dark) {
+   :root {
+      --background: #0a0a0a;
+      --foreground: #ededed;
+   }
+}
+
+body {
+   font-family: "Roboto Mono", "Space Grotesk", system-ui, sans-serif;
+   background: #000;
+   color: #fff;
+   margin: 0;
+   padding: 0;
+   -webkit-font-smoothing: antialiased;
+}
+
+html {
+   line-height: 0;
+}
+
+/* Utility classes used by the original Next project */
+.font-roboto {
+   font-family: "Roboto Mono", monospace;
+}
+.font-grotesk {
+   font-family: "Space Grotesk", "Helvetica Neue", Arial, sans-serif;
+}
+
+@keyframes grain {
+   0%,
+   100% {
+      transform: translate(0, 0);
+   }
+   20% {
+      transform: translate(-5%, -10%);
+   }
+   40% {
+      transform: translate(-10%, 5%);
+   }
+   60% {
+      transform: translate(5%, 10%);
+   }
+   80% {
+      transform: translate(10%, -5%);
+   }
+}
+.animate-grain {
+   animation: grain 1s steps(6) infinite;
+}
+
+::-webkit-scrollbar {
+   width: 4px;
+   height: 4px;
+}
+
+html,
+body,
+#root {
+   height: 100%;
+}
+
+/* ScrollSmoother specific styles */
+#smooth-wrapper {
+   overflow: hidden;
+}
+
+#smooth-content {
+   overflow: visible;
+}
