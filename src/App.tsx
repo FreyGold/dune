@@ -59,8 +59,8 @@ export default function App() {
    );
    return (
       <div id="smooth-wrapper" ref={main}>
+         <Header />
          <div id="smooth-content" className="relative box-border">
-            <Header />
             <Hero />
             <div className="parallax">
                <ImageSection />

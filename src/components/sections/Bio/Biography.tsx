@@ -1,25 +1,28 @@
-import React from "react";
+import Button from "../../ui/Button";
+import Intro from "./Intro";
+import SVG from "./SVG";
 
 function Biography() {
    return (
-      <div className="w-screen h-screen bg-black relative z-20 biography">
-         <div className="w-full relative -top-8">
-            <svg
-               width="1443"
-               height="66px"
-               viewBox="-1 -1 1443 66"
-               fill="none"
-               id="svg841260942_1634"
-               className="w-full">
-               <path
-                  d="M0.5 36.5H175.061V23.5H176.561V36.5H178.562V23.5H180.062V36.5H185.564V23.5H186.565V36.5H187.565V23.5H189.566V36.5H191.566V23.5H195.068V36.5H197.068V23.5H198.569V36.5H201.57V23.5H203.07V36.5H205.071V23.5H206.572V36.5H209.072V23.5H250.087L260.09 12H285.599L287.6 14L289.6 12H293.102L300.604 19.5L314.609 5.5H323.612L330.615 12.5H579.201L581.202 10L578.201 7H584.703L582.202 10L588.704 15L593.206 12H743.758L745.259 13.5L746.759 12H750.761L758.263 19.5L777.77 0L787.773 10H927.322L928.822 8.5L925.321 5H932.824L929.823 8L936.825 15L941.827 10H1003.35L1009.85 16.5H1037.86L1048.36 6H1078.87L1083.88 1L1095.38 12.5H1163.4L1165.9 15L1168.41 12.5H1440.5V63.5H0.5V36.5Z"
-                  fill="black"
-               />
-               <path
-                  d="M287.6 14L285.599 12H260.09L250.087 23.5H209.072V36.5H206.572V23.5H205.071V36.5H203.07V23.5H201.57V36.5H198.569V23.5H197.068V36.5H195.068V23.5H191.566V36.5H189.566V23.5H187.565V36.5H186.565V23.5H185.564V36.5H180.062V23.5H178.562V36.5H176.561V23.5H175.061V36.5H0.5V63.5H1440.5V12.5H1168.41L1165.9 15M287.6 14L284.599 17H290.601L287.6 14ZM287.6 14L289.6 12H293.102L300.604 19.5L314.609 5.5H323.612L330.615 12.5H579.201L581.202 10L578.201 7H584.703L582.202 10L588.704 15L593.206 12H743.758L745.259 13.5M745.259 13.5L742.758 16.5H747.759L745.259 13.5ZM745.259 13.5L746.759 12H750.761L758.263 19.5L777.77 0L787.773 10H927.322L928.822 8.5L925.321 5H932.824L929.823 8L936.825 15L941.827 10H1003.35L1009.85 16.5H1037.86L1048.36 6H1078.87L1083.88 1L1095.38 12.5H1163.4L1165.9 15M1165.9 15L1161.4 19.5H1170.41L1165.9 15Z"
-                  stroke="black"
-               />
-            </svg>
+      <div className="w-screen h-[130dvh] bg-black relative z-20 biography font-roboto">
+         <SVG />
+
+         <div className="px-10 pt-35 [word-spacing:0.5rem] font-grotesk ">
+            <div className="flex relative items-center justify-between">
+               <h1 className="text-[5.5rem] font-bold uppercase [word-spacing:-0.1rem]">
+                  I AM A TOP NOTCH
+               </h1>
+               <img src="/bio1.png" alt="" className="h-15 w-25" />
+            </div>
+            <h1 className="text-[5.5rem] font-bold uppercase [word-spacing:-0.1rem]">
+               Software Engineer
+            </h1>
+            <div className="pt-10">
+               <Button textSize="text-lg">
+                  <span className="font-medium">My Work</span>
+               </Button>
+            </div>
+            <Intro />
          </div>
       </div>
    );

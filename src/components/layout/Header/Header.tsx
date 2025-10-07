@@ -1,8 +1,8 @@
 import Time from "../Header/Time";
-import ButtonFillAnimation from "../../ui/ButtonFillAnimation";
-import { MagnifyingGlass, Phone } from "@phosphor-icons/react";
+import { MagnifyingGlassIcon, PhoneIcon } from "@phosphor-icons/react";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
+import Button from "../../ui/Button";
 
 function Header() {
    useGSAP(() => {
@@ -22,18 +22,19 @@ function Header() {
             </p>
             <Time />
             <div className="bg-[#141414] rounded-full size-7 sm:size-8 md:size-9 flex justify-center items-center ms-3 sm:ms-4 md:ms-5 hover:border border-[#B3B3B3]/20 cursor-pointer">
-               <Phone size={14} color="#ffffff" weight="fill" />
+               <PhoneIcon size={14} color="#ffffff" weight="fill" />
             </div>
          </div>
          <div className="flex items-center gap-3 sm:gap-4 md:gap-5">
-            <MagnifyingGlass size={20} color="#ffffff" weight="bold" className="sm:w-6 sm:h-6" />
-            <ButtonFillAnimation>
-               <button className="relative font-bold font-grotesk uppercase text-black leading-none overflow-hidden cursor-pointer px-2 sm:px-2.5 py-1.5 sm:py-2 text-xs sm:text-sm">
-                  MENU
-                  <span className="absolute top-0 right-0 w-[8px] h-[8px] sm:w-[10px] sm:h-[10px] bg-black [clip-path:polygon(100%_0,0_0,100%_100%)]"></span>
-                  <span className="absolute bottom-0 left-0 w-[8px] h-[8px] sm:w-[10px] sm:h-[10px] bg-black [clip-path:polygon(0_100%,0_0,100%_100%)]"></span>
-               </button>
-            </ButtonFillAnimation>
+            <MagnifyingGlassIcon
+               size={20}
+               color="#ffffff"
+               weight="bold"
+               className="sm:w-6 sm:h-6"
+            />
+            <Button textSize="text-sm" className="px-3 py-2">
+               Menu
+            </Button>
          </div>
       </div>
    );
