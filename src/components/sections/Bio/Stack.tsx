@@ -14,29 +14,54 @@ import {
 
 export default function TechStack() {
    const icons = [
-      { key: "react", icon: SiReact, color: "#61DAFB" },
-      { key: "next", icon: SiNextdotjs, color: "#ffffff" },
-      { key: "tailwind", icon: SiTailwindcss, color: "#06B6D4" },
-      { key: "supabase", icon: SiSupabase, color: "#3ECF8E" },
-      { key: "json-server", icon: SiJsonwebtokens, color: "#FFCA28" }, // stand-in
-      { key: "express", icon: SiExpress, color: "#47A248" },
-      { key: "nest", icon: SiNestjs, color: "#E0234E" },
-      { key: "mongodb", icon: SiMongodb, color: "#47A248" },
-      { key: "typescript", icon: SiTypescript, color: "#3178C6" },
-      { key: "javascript", icon: SiJavascript, color: "#F7DF1E" },
+      { key: "react", icon: SiReact, color: "#494949" },
+      { key: "next", icon: SiNextdotjs, color: "#494949" },
+      { key: "tailwind", icon: SiTailwindcss, color: "#494949" },
+      { key: "supabase", icon: SiSupabase, color: "#494949" },
+      { key: "json-server", icon: SiJsonwebtokens, color: "#494949" }, // stand-in
+      { key: "express", icon: SiExpress, color: "#494949" },
+      { key: "nest", icon: SiNestjs, color: "#494949" },
+      { key: "mongodb", icon: SiMongodb, color: "#494949" },
+      { key: "typescript", icon: SiTypescript, color: "#494949" },
+      { key: "javascript", icon: SiJavascript, color: "#494949" },
    ];
 
+   // Shuffle function to randomize icon order
+   const shuffleArray = function <T>(array: T[]): T[] {
+      const shuffled = [...array];
+      for (let i = shuffled.length - 1; i > 0; i--) {
+         const j = Math.floor(Math.random() * (i + 1));
+         [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+      }
+      return shuffled;
+   };
+
+   const shuffledIcons = shuffleArray(icons);
+   const duplicatedIcons = [
+      ...shuffledIcons,
+      ...shuffledIcons,
+      ...shuffledIcons,
+      ...shuffledIcons,
+   ];
    return (
-      <div className="w-full flex bottom-10 relative justify-center items-center">
-         <div className=" w-[50%] overflow-hidden border border-white/10 h-[70px] flex items-center">
-            {/* Scrolling container */}
+      <div className="w-full flex justify-center items-center my-20 md:my-35">
+         <div className="w-full overflow-hidden h-[60px] sm:h-[70px] md:h-[90px] flex items-center relative">
             <div className="flex animate-marquee whitespace-nowrap">
-               {icons.concat(icons).map(({ key, icon: Icon, color }, i) => (
-                  <div key={key + i} className="mx-6 flex-shrink-0">
-                     <Icon size={60} color={color} />
+               {/* Render icons twice for seamless loop */}
+               {duplicatedIcons.map(({ key, icon: Icon, color }, i) => (
+                  <div
+                     key={`${key}-${i}`}
+                     className="mx-8 sm:mx-12 md:mx-14 flex-shrink-0">
+                     <Icon
+                        size={48}
+                        className="w-12 h-12 sm:w-12 sm:h-12 md:w-16 md:h-16 lg:w-20 lg:h-20"
+                        color={color}
+                     />
                   </div>
                ))}
             </div>
+            <div className="absolute left-0 top-0 h-full w-32 bg-gradient-to-r from-[#000] to-transparent pointer-events-none z-10" />
+            <div className="absolute right-0 top-0 h-full w-32 bg-gradient-to-l from-[#000] to-transparent pointer-events-none z-10" />
          </div>
       </div>
    );

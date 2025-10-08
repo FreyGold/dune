@@ -7,6 +7,8 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { ScrollSmoother } from "gsap/ScrollSmoother";
 import { useRef } from "react";
 import Biography from "./components/sections/Bio/Biography";
+import CursorEffect from "./components/ui/Cursor";
+import Featured from "./components/sections/FeaturedCases/Featured";
 
 gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
 export default function App() {
@@ -65,8 +67,10 @@ export default function App() {
             <div className="parallax">
                <ImageSection />
                <Biography />
+               <Featured />
             </div>
          </div>
+         <CursorEffect />
       </div>
    );
 }

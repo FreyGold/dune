@@ -2,13 +2,14 @@ import React, { useState, cloneElement } from "react";
 import { motion } from "framer-motion";
 
 type HoverFillProps = {
-   children: React.ReactElement<any>;
+   children: React.ReactElement;
    fillColor?: string;
    baseColor?: string;
    duration?: number;
    fillHeight?: string;
    invertTextOnFill?: boolean;
    className?: string;
+   clipPath?: string;
 };
 
 export default function ButtonFillAnimation({
@@ -19,6 +20,7 @@ export default function ButtonFillAnimation({
    fillHeight = "100%",
    invertTextOnFill = false,
    className = "",
+   clipPath,
 }: HoverFillProps) {
    const [hovered, setHovered] = useState(false);
    const childProps = (children.props || {}) as any;
@@ -29,6 +31,7 @@ export default function ButtonFillAnimation({
          background: "transparent",
          color:
             hovered && invertTextOnFill ? "#ffffff" : childProps.style?.color,
+         clipPath: undefined, // Remove clipPath from button
       },
       className: `${childProps.className ?? ""} relative z-20`,
    });
@@ -36,6 +39,7 @@ export default function ButtonFillAnimation({
    return (
       <div
          className={`relative inline-block overflow-hidden ${className}`}
+         style={{ clipPath }}
          onMouseEnter={() => setHovered(true)}
          onMouseLeave={() => setHovered(false)}>
          <div

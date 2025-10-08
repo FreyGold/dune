@@ -1,20 +1,25 @@
 import Button from "../../ui/Button";
 import Intro from "./Intro";
+import TechStack from "./Stack";
 import SVG from "./SVG";
 
 function Biography() {
    return (
-      <div className="w-screen h-[130dvh] bg-black relative z-20 biography font-roboto">
+      <div className="w-full min-h-screen h-auto bg-black relative z-20 biography font-roboto">
          <SVG />
 
-         <div className="px-10 pt-35 [word-spacing:0.5rem] font-grotesk ">
-            <div className="flex relative items-center justify-between">
-               <h1 className="text-[5.5rem] font-bold uppercase [word-spacing:-0.1rem]">
+         <div className="px-4 sm:px-8 md:px-10 pt-20 md:pt-35 [word-spacing:0.5rem] font-grotesk ">
+            <div className="lg:flex flex-col md:flex-row relative items-center lg:justify-between gap-4 md:gap-8">
+               <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-[5.5rem] font-bold uppercase [word-spacing:-0.1rem]">
                   I AM A TOP NOTCH
                </h1>
-               <img src="/bio1.png" alt="" className="h-15 w-25" />
+               <img
+                  src="/bio1.png"
+                  alt=""
+                  className="hidden lg:block sm:h-15 sm:w-15 md:h-15 md:w-25"
+               />
             </div>
-            <h1 className="text-[5.5rem] font-bold uppercase [word-spacing:-0.1rem]">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-[5.5rem] font-bold uppercase [word-spacing:-0.1rem]">
                Software Engineer
             </h1>
             <div className="pt-10">
@@ -24,6 +29,7 @@ function Biography() {
             </div>
             <Intro />
          </div>
+         <TechStack />
       </div>
    );
 }

@@ -11,34 +11,42 @@ function Button({
    textSize = "text-xs sm:text-sm",
    className = "px-5 py-2.5",
 }: ButtonProps) {
-   // Corner size based on text size
    const getCornerSize = (textSizeClass: string) => {
       switch (textSizeClass) {
          case "text-xs":
-            return "w-[6px] h-[6px] sm:w-[8px] sm:h-[8px]";
+            return 6;
          case "text-sm":
-            return "w-[8px] h-[8px] sm:w-[10px] sm:h-[10px]";
+            return 8;
          case "text-base":
-            return "w-[10px] h-[10px] sm:w-[12px] sm:h-[12px]";
+            return 10;
          case "text-lg":
-            return "w-[12px] h-[12px] sm:w-[14px] sm:h-[14px]";
+            return 12;
          default:
-            return "w-[8px] h-[8px] sm:w-[10px] sm:h-[10px]";
+            return 8;
       }
    };
 
-   const cornerSizeClass = getCornerSize(textSize);
+   const cornerSize = getCornerSize(textSize);
+
+   const clipPathValue = `polygon(
+      0 0,
+      calc(100% - ${cornerSize}px) 0,
+      100% ${cornerSize}px,
+      100% 100%,
+      ${cornerSize}px 100%,
+      0 calc(100% - ${cornerSize}px)
+   )`;
+
+   const button = (
+      <button
+         className={`relative font-bold font-grotesk uppercase text-black leading-none cursor-pointer ${textSize} ${className}`}>
+         {children}
+      </button>
+   );
 
    return (
-      <ButtonFillAnimation>
-         <button
-            className={`relative font-bold font-grotesk uppercase text-black leading-none overflow-hidden cursor-pointer  ${textSize} ${className}`}>
-            {children}
-            <span
-               className={`absolute top-0 right-0 bg-black [clip-path:polygon(100%_0,0_0,100%_100%)] ${cornerSizeClass}`}></span>
-            <span
-               className={`absolute bottom-0 left-0 bg-black [clip-path:polygon(0_100%,0_0,100%_100%)] ${cornerSizeClass}`}></span>
-         </button>
+      <ButtonFillAnimation clipPath={clipPathValue}>
+         {button}
       </ButtonFillAnimation>
    );
 }

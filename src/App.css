@@ -54,16 +54,28 @@ body {
    -webkit-font-smoothing: antialiased;
 }
 
-html {
-   line-height: 1;
+@media (max-width: 640px) {
+  .biography {
+    padding-bottom: 2rem;
+  }
+  
+  /* Ensure smooth scrolling works on mobile */
+  #smooth-content {
+    overflow-x: hidden;
+  }
 }
 
-/* Utility classes used by the original Next project */
-.font-roboto {
-   font-family: "Roboto Mono", monospace;
+@media (max-width: 768px) {
+  /* Reduce motion on smaller screens for better performance */
+  .animate-marquee {
+    animation-duration: 30s;
+  }
 }
-.font-grotesk {
-   font-family: "Space Grotesk", "Helvetica Neue", Arial, sans-serif;
+
+@media (min-width: 1024px) {
+  .animate-marquee {
+    animation-duration: 20s;
+  }
 }
 
 @keyframes grain {
@@ -99,6 +111,14 @@ body,
    height: 100%;
 }
 
+/* Utility classes used by the original Next project */
+.font-roboto {
+   font-family: "Roboto Mono", monospace;
+}
+.font-grotesk {
+   font-family: "Space Grotesk", "Helvetica Neue", Arial, sans-serif;
+}
+
 /* ScrollSmoother specific styles */
 #smooth-wrapper {
    overflow: hidden;
@@ -113,13 +133,15 @@ body,
       transform: translateX(0%);
    }
    100% {
-      transform: translateX(-50%);
+      transform: translateX(
+         -25%
+      ); /* Changed from -50% to -25% since we have 4 copies */
    }
 }
 
 .animate-marquee {
-   display: flex;
    animation: marquee 20s linear infinite;
+   display: flex;
 }
 
 @theme inline {
@@ -195,10 +217,10 @@ body,
 }
 
 @layer base {
-  * {
-    @apply border-border outline-ring/50;
+   * {
+      @apply border-border outline-ring/50;
    }
-  body {
-    @apply bg-background text-foreground;
+   body {
+      @apply bg-background text-foreground;
    }
 }
