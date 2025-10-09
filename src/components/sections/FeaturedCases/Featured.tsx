@@ -3,7 +3,7 @@ import WorkCollection from "./card/WorkCollection";
 function Featured() {
    return (
       <div className="h-full px-10 relative bg-black">
-         <div className="flex justify-end">
+         <div className="flex lg:justify-end">
             <h1 className="font-grotesk text-3xl sm:text-4xl md:text-5xl lg:text-[6.25rem] font-bold uppercase [word-spacing:-0.1rem] tracking-tight">
                Featured Cases
             </h1>
