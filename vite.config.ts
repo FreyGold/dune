@@ -10,7 +10,7 @@ export default defineConfig({
         manualChunks: {
           // Separate vendor chunks for better caching
           'react-vendor': ['react', 'react-dom'],
-          'animation-vendor': ['framer-motion', 'gsap'],
+          'animation-vendor': ['gsap'],
           'ui-vendor': ['react-icons'],
         },
       },
@@ -22,6 +22,6 @@ export default defineConfig({
   },
   // Optimize dependencies
   optimizeDeps: {
-    include: ['react', 'react-dom', 'framer-motion', 'gsap'],
+    include: ['react', 'react-dom', 'gsap'],
   },
 });
