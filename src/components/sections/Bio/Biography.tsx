@@ -30,6 +30,7 @@ function Biography() {
             <Intro />
          </div>
          <TechStack />
+         <div className="h-2 w-full bg-black relative top-1 z-1000"></div>
       </div>
    );
 }

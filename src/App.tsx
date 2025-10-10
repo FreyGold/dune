@@ -9,6 +9,8 @@ import { useRef } from "react";
 import Biography from "./components/sections/Bio/Biography";
 import CursorEffect from "./components/ui/Cursor";
 import Featured from "./components/sections/FeaturedCases/Featured";
+import Process from "./components/sections/WorkProcess/Process";
+import TechStack from "./components/sections/TechStack/TechStack";
 
 gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
 export default function App() {
@@ -62,13 +64,15 @@ export default function App() {
    return (
       <div id="smooth-wrapper" ref={main}>
          <Header />
-         <div id="smooth-content" className="relative box-border">
+         <div id="smooth-content" className="relative box-border ">
             <Hero />
-            <div className="parallax">
+            <div className="parallax bg-black">
                <ImageSection />
                <Biography />
             </div>
             <Featured />
+            <Process />
+            <TechStack />
          </div>
          <CursorEffect />
       </div>
