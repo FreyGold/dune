@@ -15,7 +15,7 @@ function Header() {
       });
    });
    return (
-      <div className="flex px-4 sm:px-6 md:px-8 lg:px-10 fixed top-4 sm:top-6 md:top-8 lg:top-9 z-10 justify-between items-center w-screen py-1 from-above">
+      <div className="flex px-4 sm:px-6 md:px-8 lg:px-10 fixed top-4 sm:top-6 md:top-8 lg:top-9 z-10 justify-between items-center w-screen py-1 from-above mix-blend-difference">
          <div className="flex items-center">
             <p className="text-[#B3B3B3] text-sm sm:text-base md:text-lg">
                LOCAL<span className="">/</span>

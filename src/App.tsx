@@ -67,8 +67,8 @@ export default function App() {
             <div className="parallax">
                <ImageSection />
                <Biography />
-               <Featured />
             </div>
+            <Featured />
          </div>
          <CursorEffect />
       </div>

@@ -52,7 +52,7 @@ export default function CursorEffect() {
             transform: `translate(${pos.x}px, ${pos.y}px)`,
          }}>
          <div
-            className="relative bg-white rounded-full shadow-lg border border-gray-200 transition-all duration-500 ease-out transform-gpu"
+            className="relative bg-white rounded-full shadow-lg transition-all duration-500 ease-out transform-gpu"
             style={{
                width: projectCardHovered ? "92px" : "18px",
                height: projectCardHovered ? "46px" : "18px",
