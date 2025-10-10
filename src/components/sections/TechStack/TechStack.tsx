@@ -23,6 +23,9 @@ function TechStack() {
                <img
                   src="/bio1.png"
                   alt=""
+                  width="200"
+                  height="60"
+                  loading="eager"
                   className="hidden lg:block sm:h-15 sm:w-15 md:h-15 md:w-25"
                />
             </div>
