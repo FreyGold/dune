@@ -23,18 +23,30 @@ export default function ButtonFillAnimation({
    clipPath,
 }: HoverFillProps) {
    const [hovered, setHovered] = useState(false);
-   const childProps = (children.props || {}) as any;
-   const cloned = cloneElement(children, {
-      ...childProps,
+
+   // Check if mobile (screens < 640px)
+   const isMobile = typeof window !== 'undefined' && window.innerWidth < 640;
+
+   const childElement = children as React.ReactElement<React.HTMLAttributes<HTMLElement>>;
+   const cloned = cloneElement(childElement, {
       style: {
-         ...(childProps.style || {}),
+         ...childElement.props?.style,
          background: "transparent",
          color:
-            hovered && invertTextOnFill ? "#ffffff" : childProps.style?.color,
+            hovered && invertTextOnFill ? "#ffffff" : childElement.props?.style?.color,
          clipPath: undefined, // Remove clipPath from button
       },
-      className: `${childProps.className ?? ""} relative z-20`,
+      className: `${childElement.props?.className ?? ""} relative z-20`,
    });
+
+   // On mobile, just return the children without animation
+   if (isMobile) {
+      return (
+         <div className={`relative inline-block ${className}`} style={{ clipPath }}>
+            {cloned}
+         </div>
+      );
+   }
 
    return (
       <div
