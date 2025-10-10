@@ -24,9 +24,6 @@ export default function ButtonFillAnimation({
 }: HoverFillProps) {
    const [hovered, setHovered] = useState(false);
 
-   // Check if mobile (screens < 640px)
-   const isMobile = typeof window !== 'undefined' && window.innerWidth < 640;
-
    const childElement = children as React.ReactElement<React.HTMLAttributes<HTMLElement>>;
    const cloned = cloneElement(childElement, {
       style: {
@@ -38,15 +35,6 @@ export default function ButtonFillAnimation({
       },
       className: `${childElement.props?.className ?? ""} relative z-20`,
    });
-
-   // On mobile, just return the children without animation
-   if (isMobile) {
-      return (
-         <div className={`relative inline-block ${className}`} style={{ clipPath }}>
-            {cloned}
-         </div>
-      );
-   }
 
    return (
       <div
@@ -62,6 +50,7 @@ export default function ButtonFillAnimation({
             initial={{ width: 0 }}
             animate={{ width: hovered ? "100%" : 0 }}
             transition={{ duration, ease: "easeInOut" }}
+            className="sm:block hidden" // Hide animation on mobile, show on desktop
             style={{
                position: "absolute",
                left: 0,
