@@ -1,5 +1,5 @@
+import { BiSearch, BiPhone } from "react-icons/bi";
 import Time from "../Header/Time";
-import { MagnifyingGlassIcon, PhoneIcon } from "@phosphor-icons/react";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import Button from "../../ui/Button";
@@ -22,14 +22,13 @@ function Header() {
             </p>
             <Time />
             <div className="bg-[#141414] rounded-full size-7 sm:size-8 md:size-9 flex justify-center items-center ms-3 sm:ms-4 md:ms-5 hover:border border-[#B3B3B3]/20 cursor-pointer">
-               <PhoneIcon size={14} color="#ffffff" weight="fill" />
+               <BiPhone size={14} color="#ffffff" />
             </div>
          </div>
          <div className="flex items-center gap-3 sm:gap-4 md:gap-5">
-            <MagnifyingGlassIcon
+            <BiSearch
                size={20}
                color="#ffffff"
-               weight="bold"
                className="sm:w-6 sm:h-6"
             />
             <Button textSize="text-sm" className="px-3 py-2">

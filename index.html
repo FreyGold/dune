@@ -4,12 +4,23 @@
       <meta charset="UTF-8" />
       <link rel="icon" type="image/svg+xml" href="/vite.svg" />
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-      <link rel="preload" as="image" href="/city-sundown.png" />
       <link rel="preconnect" href="https://fonts.googleapis.com" />
       <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
       <link
          href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap"
-         rel="stylesheet" />
+         rel="stylesheet"
+         media="print"
+         onload="this.media='all'; this.onload=null;" />
+      <noscript>
+         <link
+            href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap"
+            rel="stylesheet" />
+      </noscript>
+      <!-- Preload critical resources -->
+      <link rel="preload" href="/src/main.tsx" as="script" />
+      <link rel="preload" href="/src/App.tsx" as="script" />
+      <!-- DNS prefetch for external resources -->
+      <link rel="dns-prefetch" href="//framerusercontent.com" />
       <title>dune</title>
    </head>
    <body>
