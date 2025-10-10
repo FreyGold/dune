@@ -1,130 +1,138 @@
-import React, { useEffect } from "react";
-import {
-   motion,
-   useAnimation,
-   useMotionValue,
-   MotionValue,
-   type Transition,
-} from "motion/react";
+import React, { useEffect, useRef } from "react";
+import { gsap } from "gsap";
+
 interface CircularTextProps {
-   text: string;
-   spinDuration?: number;
-   onHover?: "slowDown" | "speedUp" | "pause" | "goBonkers";
-   className?: string;
+  text: string;
+  spinDuration?: number;
+  onHover?: "slowDown" | "speedUp" | "pause" | "goBonkers";
+  className?: string;
 }
 
-const getRotationTransition = (
-   duration: number,
-   from: number,
-   loop: boolean = true
-) => ({
-   from,
-   to: from + 360,
-   ease: "linear" as const,
-   duration,
-   type: "tween" as const,
-   repeat: loop ? Infinity : 0,
-});
-
-const getTransition = (duration: number, from: number) => ({
-   rotate: getRotationTransition(duration, from),
-   scale: {
-      type: "spring" as const,
-      damping: 20,
-      stiffness: 300,
-   },
-});
-
 const CircularText: React.FC<CircularTextProps> = ({
-   text,
-   spinDuration = 20,
-   onHover = "speedUp",
-   className = "",
+  text,
+  spinDuration = 20,
+  onHover = "speedUp",
+  className = "",
 }) => {
-   const letters = Array.from(text);
-   const controls = useAnimation();
-   const rotation: MotionValue<number> = useMotionValue(0);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const rotationRef = useRef({ value: 0 });
+  const animationRef = useRef<ReturnType<typeof gsap.timeline> | null>(null);
 
-   useEffect(() => {
-      const start = rotation.get();
-      controls.start({
-         rotate: start + 360,
-         scale: 1,
-         transition: getTransition(spinDuration, start),
-      });
-   }, [spinDuration, text, onHover, controls]);
+  useEffect(() => {
+    if (!containerRef.current) return;
 
-   const handleHoverStart = () => {
-      const start = rotation.get();
-
-      if (!onHover) return;
-
-      let transitionConfig: ReturnType<typeof getTransition> | Transition;
-      let scaleVal = 1;
-
-      switch (onHover) {
-         case "slowDown":
-            transitionConfig = getTransition(spinDuration * 2, start);
-            break;
-         case "speedUp":
-            transitionConfig = getTransition(spinDuration / 4, start);
-            break;
-         case "pause":
-            transitionConfig = {
-               rotate: { type: "spring", damping: 20, stiffness: 300 },
-               scale: { type: "spring", damping: 20, stiffness: 300 },
-            };
-            break;
-         case "goBonkers":
-            transitionConfig = getTransition(spinDuration / 20, start);
-            scaleVal = 0.8;
-            break;
-         default:
-            transitionConfig = getTransition(spinDuration, start);
+    // Start the rotation animation
+    const startRotation = () => {
+      if (animationRef.current) {
+        animationRef.current.kill();
       }
 
-      controls.start({
-         rotate: start + 360,
-         scale: scaleVal,
-         transition: transitionConfig,
+      animationRef.current = gsap.timeline({ repeat: -1 });
+
+      animationRef.current.to(rotationRef.current, {
+        value: 360,
+        duration: spinDuration,
+        ease: "none",
+        onUpdate: () => {
+          if (containerRef.current) {
+            gsap.set(containerRef.current, { rotation: rotationRef.current.value });
+          }
+        },
       });
-   };
+    };
 
-   const handleHoverEnd = () => {
-      const start = rotation.get();
-      controls.start({
-         rotate: start + 360,
-         scale: 1,
-         transition: getTransition(spinDuration, start),
-      });
-   };
+    startRotation();
 
-   return (
-      <motion.div
-         className={`m-0 mx-auto rounded-full w-[120px] h-[120px] sm:w-[160px] sm:h-[160px] md:w-[200px] md:h-[200px] relative font-black text-white text-center cursor-pointer origin-center ${className}`}
-         style={{ rotate: rotation }}
-         initial={{ rotate: 0 }}
-         animate={controls}
-         onMouseEnter={handleHoverStart}
-         onMouseLeave={handleHoverEnd}>
-         {letters.map((letter, i) => {
-            const rotationDeg = (360 / letters.length) * i;
-            const factor = Math.PI / letters.length;
-            const x = factor * i;
-            const y = factor * i;
-            const transform = `rotateZ(${rotationDeg}deg) translate3d(${x}px, ${y}px, 0)`;
+    return () => {
+      if (animationRef.current) {
+        animationRef.current.kill();
+      }
+    };
+  }, [spinDuration, text]);
 
-            return (
-               <span
-                  key={i}
-                  className="absolute inline-block inset-0 text-lg sm:text-xl md:text-2xl transition-all duration-500 ease-[cubic-bezier(0,0,0,1)]"
-                  style={{ transform, WebkitTransform: transform }}>
-                  {letter}
-               </span>
-            );
-         })}
-      </motion.div>
-   );
+  const handleHoverStart = () => {
+    if (!animationRef.current || !containerRef.current) return;
+
+    let newDuration = spinDuration;
+    let scaleVal = 1;
+
+    switch (onHover) {
+      case "slowDown":
+        newDuration = spinDuration * 2;
+        break;
+      case "speedUp":
+        newDuration = spinDuration / 4;
+        break;
+      case "pause":
+        // Pause the rotation
+        animationRef.current.pause();
+        gsap.to(containerRef.current, {
+          scale: 1,
+          duration: 0.3,
+          ease: "power2.out",
+        });
+        return;
+      case "goBonkers":
+        newDuration = spinDuration / 20;
+        scaleVal = 0.8;
+        break;
+    }
+
+    // Update animation duration
+    animationRef.current.duration(newDuration);
+
+    // Animate scale
+    gsap.to(containerRef.current, {
+      scale: scaleVal,
+      duration: 0.3,
+      ease: "power2.out",
+    });
+  };
+
+  const handleHoverEnd = () => {
+    if (!animationRef.current || !containerRef.current) return;
+
+    if (onHover === "pause") {
+      // Resume the rotation
+      animationRef.current.resume();
+    } else {
+      // Reset to normal speed and scale
+      animationRef.current.duration(spinDuration);
+    }
+
+    gsap.to(containerRef.current, {
+      scale: 1,
+      duration: 0.3,
+      ease: "power2.out",
+    });
+  };
+
+  const letters = Array.from(text);
+
+  return (
+    <div
+      ref={containerRef}
+      className={`m-0 mx-auto rounded-full w-[120px] h-[120px] sm:w-[160px] sm:h-[160px] md:w-[200px] md:h-[200px] relative font-black text-white text-center cursor-pointer origin-center ${className}`}
+      onMouseEnter={handleHoverStart}
+      onMouseLeave={handleHoverEnd}>
+      {letters.map((letter, i) => {
+        const rotationDeg = (360 / letters.length) * i;
+        const factor = Math.PI / letters.length;
+        const x = factor * i;
+        const y = factor * i;
+        const transform = `rotateZ(${rotationDeg}deg) translate3d(${x}px, ${y}px, 0)`;
+
+        return (
+          <span
+            key={i}
+            className="absolute inline-block inset-0 text-lg sm:text-xl md:text-2xl transition-all duration-500 ease-[cubic-bezier(0,0,0,1)]"
+            style={{ transform, WebkitTransform: transform }}>
+            {letter}
+          </span>
+        );
+      })}
+    </div>
+  );
 };
 
 export default CircularText;

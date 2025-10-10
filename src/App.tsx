@@ -23,17 +23,6 @@ export default function App() {
 
    useGSAP(
       () => {
-         // Only enable GSAP animations on desktop (screens >= 640px)
-         const isMobile = window.innerWidth < 640;
-
-         if (isMobile) {
-            // On mobile, just refresh ScrollTrigger to avoid errors
-            setTimeout(() => {
-               ScrollTrigger.refresh();
-            }, 100);
-            return;
-         }
-
          // create the smooth scroller FIRST!
          const smootherInstance = ScrollSmoother.create({
             wrapper: "#smooth-wrapper",
