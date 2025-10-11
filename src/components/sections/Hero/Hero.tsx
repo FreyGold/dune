@@ -2,9 +2,9 @@ import Name from "./units/Name";
 import Dot from "../../ui/Dot";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
-import { useRef } from "react";
+import { useRef, memo } from "react";
 
-function Hero() {
+const Hero = memo(function Hero() {
    const crossedRef = useRef<HTMLSpanElement | null>(null);
    const lineRef = useRef<HTMLSpanElement | null>(null);
 
@@ -83,6 +83,6 @@ function Hero() {
          </div>
       </div>
    );
-}
+});
 
 export default Hero;

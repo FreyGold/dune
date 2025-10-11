@@ -1,6 +1,7 @@
 import WorkCollection from "./card/WorkCollection";
+import { memo } from "react";
 
-function Featured() {
+const Featured = memo(function Featured() {
    return (
       <div className="h-full px-6 sm:px-8 md:px-10 lg:px-12 xl:px-16 relative bg-black">
          <div className="flex lg:justify-end">
@@ -18,6 +19,6 @@ function Featured() {
          <WorkCollection />
       </div>
    );
-}
+});
 
 export default Featured;

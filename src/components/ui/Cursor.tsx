@@ -1,14 +1,30 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef, memo } from "react";
 
-export default function CursorEffect() {
+function CursorEffect() {
    const [pos, setPos] = useState({ x: 0, y: 0 });
    const [hovered, setHovered] = useState(false);
    const [projectCardHovered, setProjectCardHovered] = useState(false);
+   const rafRef = useRef<number | null>(null);
 
+   // Use RAF for smooth, performant cursor tracking
    useEffect(() => {
-      const move = (e: MouseEvent) => setPos({ x: e.clientX, y: e.clientY });
-      window.addEventListener("mousemove", move);
-      return () => window.removeEventListener("mousemove", move);
+      const move = (e: MouseEvent) => {
+         if (rafRef.current) {
+            cancelAnimationFrame(rafRef.current);
+         }
+         
+         rafRef.current = requestAnimationFrame(() => {
+            setPos({ x: e.clientX, y: e.clientY });
+         });
+      };
+      
+      window.addEventListener("mousemove", move, { passive: true });
+      return () => {
+         window.removeEventListener("mousemove", move);
+         if (rafRef.current) {
+            cancelAnimationFrame(rafRef.current);
+         }
+      };
    }, []);
 
    useEffect(() => {
@@ -79,3 +95,5 @@ export default function CursorEffect() {
       </div>
    );
 }
+
+export default memo(CursorEffect);

@@ -2,11 +2,18 @@ import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import NoiseOverlay from "../../ui/NoiseOverlay";
+import { memo } from "react";
 
 gsap.registerPlugin(ScrollTrigger);
 ScrollTrigger.defaults({ horizontal: false });
 
-function ImageSection() {
+const ImageSection = memo(function ImageSection() {
+   // Preload the background image for better performance
+   useGSAP(() => {
+      const img = new Image();
+      img.src = '/city-sundown.jpg';
+   }, []);
+
    useGSAP(() => {
       const setupAnimations = () => {
          const tl = gsap.timeline({
@@ -37,6 +44,6 @@ function ImageSection() {
          <div className="dark-overlay absolute inset-0 bg-black opacity-0 z-10"></div>
       </section>
    );
-}
+});
 
 export default ImageSection;

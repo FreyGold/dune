@@ -2,8 +2,9 @@ import Button from "../../ui/Button";
 import Intro from "./Intro";
 import TechStack from "./Stack";
 import SVG from "./SVG";
+import { memo } from "react";
 
-function Biography() {
+const Biography = memo(function Biography() {
    return (
       <div className="w-full min-h-screen h-auto bg-black relative z-20 biography font-roboto">
          <SVG />
@@ -15,8 +16,10 @@ function Biography() {
                </h1>
                <img
                   src="/bio1.png"
-                  alt=""
+                  alt="Biography decoration"
                   className="hidden lg:block w-12 h-12 sm:w-15 sm:h-15 md:w-20 md:h-20 lg:w-25 lg:h-25"
+                  loading="lazy"
+                  decoding="async"
                />
             </div>
             <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-[5.5rem] font-bold uppercase [word-spacing:-0.1rem]">
@@ -35,6 +38,6 @@ function Biography() {
          <div className="h-3 w-full bg-black relative top-1.5 z-1000"></div>
       </div>
    );
-}
+});
 
 export default Biography;

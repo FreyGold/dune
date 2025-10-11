@@ -1,16 +1,18 @@
 import Header from "./components/layout/Header/Header";
 import Hero from "./components/sections/Hero/Hero";
 import ImageSection from "./components/sections/ImageSection/ImageSection";
+import Biography from "./components/sections/Bio/Biography";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { ScrollSmoother } from "gsap/ScrollSmoother";
-import { useRef } from "react";
-import Biography from "./components/sections/Bio/Biography";
-import CursorEffect from "./components/ui/Cursor";
-import Featured from "./components/sections/FeaturedCases/Featured";
-import Process from "./components/sections/WorkProcess/Process";
-import TechStack from "./components/sections/TechStack/TechStack";
+import { useRef, lazy, Suspense } from "react";
+
+// Lazy load below-the-fold components for better initial performance
+const CursorEffect = lazy(() => import("./components/ui/Cursor"));
+const Featured = lazy(() => import("./components/sections/FeaturedCases/Featured"));
+const Process = lazy(() => import("./components/sections/WorkProcess/Process"));
+const TechStack = lazy(() => import("./components/sections/TechStack/TechStack"));
 
 gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
 export default function App() {
@@ -70,11 +72,15 @@ export default function App() {
                <ImageSection />
                <Biography />
             </div>
-            <Featured />
-            <Process />
-            <TechStack />
+            <Suspense fallback={<div className="h-screen bg-black" />}>
+               <Featured />
+               <Process />
+               <TechStack />
+            </Suspense>
          </div>
-         <CursorEffect />
+         <Suspense fallback={null}>
+            <CursorEffect />
+         </Suspense>
       </div>
    );
 }
