@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {
    getAllTechnologies,
    getTechnologiesByCategory,
@@ -80,6 +80,17 @@ interface TechGridProps {
 
 function TechGrid({ activeCategory }: TechGridProps) {
    const [hoveredTech, setHoveredTech] = useState<string | null>(null);
+   const [isMobile, setIsMobile] = useState(false);
+
+   useEffect(() => {
+      const checkMobile = () => {
+         setIsMobile(window.innerWidth < 768);
+      };
+
+      checkMobile();
+      window.addEventListener('resize', checkMobile);
+      return () => window.removeEventListener('resize', checkMobile);
+   }, []);
 
    const getTechnologies = (): Technology[] => {
       if (activeCategory === "all") {
@@ -100,9 +111,13 @@ function TechGrid({ activeCategory }: TechGridProps) {
                <div
                   key={`${tech.name}-${index}`}
                   className="group relative"
-                  onMouseEnter={() => setHoveredTech(tech.name)}
-                  onMouseLeave={() => setHoveredTech(null)}>
-                  <div className="relative p-2 sm:p-4 md:p-6 bg-white/5 backdrop-blur-sm border border-white/10 rounded-lg hover:border-white/30 transition-all duration-300 hover:scale-105 hover:shadow-lg">
+                  onMouseEnter={() => !isMobile && setHoveredTech(tech.name)}
+                  onMouseLeave={() => !isMobile && setHoveredTech(null)}>
+                  <div className={`relative p-2 sm:p-4 md:p-6 bg-white/5 backdrop-blur-sm border border-white/10 rounded-lg transition-all duration-300 ${
+                     isMobile
+                        ? 'hover:border-white/20'
+                        : 'hover:border-white/30 hover:scale-105 hover:shadow-lg'
+                  }`}>
                      <div className="flex flex-col items-center text-center space-y-2 sm:space-y-3">
                         <div className="relative">
                            <IconComponent
@@ -119,8 +134,8 @@ function TechGrid({ activeCategory }: TechGridProps) {
                         </div>
                      </div>
 
-                     {/* Hover overlay - only show for currently hovered card */}
-                     {hoveredTech === tech.name && (
+                     {/* Hover overlay - only show for desktop and currently hovered card */}
+                     {!isMobile && hoveredTech === tech.name && (
                         <div className="absolute inset-0 bg-gradient-to-br from-white/10 to-transparent rounded-lg pointer-events-none" />
                      )}
                   </div>

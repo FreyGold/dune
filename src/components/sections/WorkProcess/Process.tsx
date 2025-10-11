@@ -2,26 +2,42 @@ import { processSteps } from "../../../data/process";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { useRef } from "react";
+import { useRef, useState, useEffect } from "react";
 import Button from "../../ui/Button";
 
 gsap.registerPlugin(ScrollTrigger);
 
 function Process() {
    const processRef = useRef(null);
+   const [isMobile, setIsMobile] = useState(() => {
+      // Initialize mobile state on first render
+      if (typeof window !== 'undefined') {
+         return window.innerWidth < 768;
+      }
+      return false;
+   });
+
+   useEffect(() => {
+      const checkIsMobile = () => {
+         setIsMobile(window.innerWidth < 768); // md breakpoint
+      };
+
+      checkIsMobile();
+      window.addEventListener('resize', checkIsMobile);
+
+      return () => window.removeEventListener('resize', checkIsMobile);
+   }, []);
 
    useGSAP(
       () => {
+         if (isMobile) return; // Skip animations on mobile
+
          // Animate section title on scroll
-         gsap.fromTo(
+         gsap.from(
             ".process-title",
             {
                y: 100,
                opacity: 0,
-            },
-            {
-               y: 0,
-               opacity: 1,
                duration: 1.2,
                ease: "power3.out",
                scrollTrigger: {
@@ -34,15 +50,11 @@ function Process() {
          );
 
          // Animate section description
-         gsap.fromTo(
+         gsap.from(
             ".process-description",
             {
                y: 50,
                opacity: 0,
-            },
-            {
-               y: 0,
-               opacity: 1,
                duration: 1,
                delay: 0.3,
                ease: "power3.out",
@@ -56,15 +68,11 @@ function Process() {
          );
 
          // Animate process steps with stagger effect
-         gsap.fromTo(
+         gsap.from(
             ".process-step",
             {
                y: 80,
                opacity: 0,
-            },
-            {
-               y: 0,
-               opacity: 1,
                duration: 1,
                ease: "power3.out",
                stagger: 0.2,
@@ -78,17 +86,12 @@ function Process() {
          );
 
          // Animate step numbers
-         gsap.fromTo(
+         gsap.from(
             ".step-number",
             {
                scale: 0.8,
                rotation: -10,
                opacity: 0,
-            },
-            {
-               scale: 1,
-               rotation: 0,
-               opacity: 1,
                duration: 0.8,
                ease: "back.out(1.7)",
                stagger: 0.2,
@@ -103,24 +106,23 @@ function Process() {
          );
 
          // Animate call to action section
-         gsap.to(
+         gsap.from(
             ".process-cta",
-
             {
-               y: 0,
-               opacity: 1,
+               y: 30,
+               opacity: 0,
                duration: 1,
                ease: "power3.out",
                scrollTrigger: {
                   trigger: ".process-cta",
-                  start: "top top",
+                  start: "top 90%",
                   end: "bottom 20%",
                   once: true,
                },
             }
          );
       },
-      { scope: processRef }
+      { scope: processRef, dependencies: [isMobile] }
    );
 
    return (
@@ -218,8 +220,7 @@ function Process() {
                <div className="flex justify-center lg:justify-start">
                   <Button
                      variant="default"
-                     textSize="text-lg"
-                     className="font-semibold">
+                     className="font-semibold text-sm sm:text-lg">
                      Contact
                   </Button>
                </div>

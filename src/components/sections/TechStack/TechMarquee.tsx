@@ -85,9 +85,8 @@ export default function TechMarquee() {
    };
 
    const shuffledTechnologies = shuffleArray(technologies);
+   // Reduced duplication from 4x to 2x for better performance
    const duplicatedTechnologies = [
-      ...shuffledTechnologies,
-      ...shuffledTechnologies,
       ...shuffledTechnologies,
       ...shuffledTechnologies,
    ];
@@ -95,8 +94,8 @@ export default function TechMarquee() {
    return (
       <div className="w-full flex justify-center items-center my-12 md:my-16">
          <div className="w-full overflow-hidden h-[50px] xs:h-[55px] sm:h-[70px] md:h-[90px] lg:h-[100px] flex items-center relative">
-            <div className="flex animate-marquee-slow whitespace-nowrap">
-               {/* Render icons twice for seamless loop */}
+            <div className={`flex animate-marquee-slow whitespace-nowrap`}>
+               {/* Render icons twice for seamless loop - reduced from 4x for performance */}
                {duplicatedTechnologies.map((tech, i) => {
                   const IconComponent = iconMap[tech.icon];
                   if (!IconComponent) return null;

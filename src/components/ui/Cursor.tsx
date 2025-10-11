@@ -43,6 +43,8 @@ export default function CursorEffect() {
       };
    }, []);
 
+   if (window.innerWidth < 768) return null;
+
    return (
       <div
          className={`pointer-events-none fixed top-0 left-0 z-100 transition-all duration-300 ease-out hidden sm:block ${

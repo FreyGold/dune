@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import Button from "../../ui/Button";
 import TechGrid from "./TechGrid";
 import TechMarquee from "./TechMarquee";
@@ -6,6 +6,43 @@ import { techCategories } from "../../../data/techStack";
 
 function TechStack() {
    const [activeCategory, setActiveCategory] = useState<string>("all");
+   const [isMobile, setIsMobile] = useState(false);
+   const [isVisible, setIsVisible] = useState(true);
+   const sectionRef = useRef<HTMLDivElement>(null);
+
+   useEffect(() => {
+      const checkMobile = () => {
+         setIsMobile(window.innerWidth < 768);
+      };
+
+      checkMobile();
+      window.addEventListener("resize", checkMobile);
+      return () => window.removeEventListener("resize", checkMobile);
+   }, []);
+
+   // Intersection Observer for performance optimization
+   useEffect(() => {
+      const observer = new IntersectionObserver(
+         ([entry]) => {
+            setIsVisible(entry.isIntersecting);
+         },
+         {
+            threshold: 0.1,
+            rootMargin: "50px",
+         }
+      );
+
+      if (sectionRef.current) {
+         observer.observe(sectionRef.current);
+      }
+
+      return () => {
+         const currentRef = sectionRef.current;
+         if (currentRef) {
+            observer.unobserve(currentRef);
+         }
+      };
+   }, []);
 
    const categories = [
       { id: "all", name: "All Technologies" },
@@ -13,7 +50,9 @@ function TechStack() {
    ];
 
    return (
-      <div className="w-full min-h-screen h-auto bg-black relative z-20 tech-stack font-roboto">
+      <div
+         ref={sectionRef}
+         className="w-full min-h-screen h-auto bg-black relative z-20 tech-stack font-roboto">
          {/* Hero Section */}
          <div className="px-4 sm:px-8 md:px-10 pt-8 md:pt-18 [word-spacing:0.5rem] font-grotesk">
             <div className="lg:flex flex-col md:flex-row relative items-center lg:justify-between gap-4 md:gap-8">
@@ -36,12 +75,12 @@ function TechStack() {
             </div>
          </div>
 
-         {/* Animated Marquee Section */}
-         <TechMarquee />
+         {/* Animated Marquee Section - Hidden on mobile for performance and only when visible */}
+         {!isMobile && isVisible && <TechMarquee />}
 
          {/* Category Filter */}
          <div className="px-4 sm:px-8 md:px-10 py-8 md:py-16">
-            <div className="flex flex-wrap gap-2 sm:gap-3 mb-8 sm:mb-12">
+            <div className={`flex flex-wrap gap-2 sm:gap-3 mb-8 sm:mb-12 `}>
                {categories.map((category) => (
                   <button
                      key={category.id}
