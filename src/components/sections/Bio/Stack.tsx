@@ -11,40 +11,35 @@ import {
    SiJavascript,
    SiJsonwebtokens,
 } from "react-icons/si";
+const icons = [
+   { key: "react", icon: SiReact, color: "#494949" },
+   { key: "next", icon: SiNextdotjs, color: "#494949" },
+   { key: "tailwind", icon: SiTailwindcss, color: "#494949" },
+   { key: "supabase", icon: SiSupabase, color: "#494949" },
+   { key: "json-server", icon: SiJsonwebtokens, color: "#494949" }, // stand-in
+   { key: "express", icon: SiExpress, color: "#494949" },
+   { key: "nest", icon: SiNestjs, color: "#494949" },
+   { key: "mongodb", icon: SiMongodb, color: "#494949" },
+   { key: "typescript", icon: SiTypescript, color: "#494949" },
+   { key: "javascript", icon: SiJavascript, color: "#494949" },
+];
+
+// Shuffle function to randomize icon order
+const shuffleArray = function <T>(array: T[]): T[] {
+   const shuffled = [...array];
+   for (let i = shuffled.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+   }
+   return shuffled;
+};
+
+const shuffledIcons = shuffleArray(icons);
+const duplicatedIcons = [...shuffledIcons, ...shuffledIcons, ...shuffledIcons];
 
 export default function TechStack() {
-   const icons = [
-      { key: "react", icon: SiReact, color: "#494949" },
-      { key: "next", icon: SiNextdotjs, color: "#494949" },
-      { key: "tailwind", icon: SiTailwindcss, color: "#494949" },
-      { key: "supabase", icon: SiSupabase, color: "#494949" },
-      { key: "json-server", icon: SiJsonwebtokens, color: "#494949" }, // stand-in
-      { key: "express", icon: SiExpress, color: "#494949" },
-      { key: "nest", icon: SiNestjs, color: "#494949" },
-      { key: "mongodb", icon: SiMongodb, color: "#494949" },
-      { key: "typescript", icon: SiTypescript, color: "#494949" },
-      { key: "javascript", icon: SiJavascript, color: "#494949" },
-   ];
-
-   // Shuffle function to randomize icon order
-   const shuffleArray = function <T>(array: T[]): T[] {
-      const shuffled = [...array];
-      for (let i = shuffled.length - 1; i > 0; i--) {
-         const j = Math.floor(Math.random() * (i + 1));
-         [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
-      }
-      return shuffled;
-   };
-
-   const shuffledIcons = shuffleArray(icons);
-   const duplicatedIcons = [
-      ...shuffledIcons,
-      ...shuffledIcons,
-      ...shuffledIcons,
-      ...shuffledIcons,
-   ];
    return (
-      <div className="w-full flex justify-center items-center my-20 md:my-35">
+      <div className="w-full flex justify-center items-center my-8 mt-15 md:my-35">
          <div className="w-full overflow-hidden h-[50px] xs:h-[55px] sm:h-[70px] md:h-[90px] lg:h-[100px] flex items-center relative">
             <div className="flex animate-marquee whitespace-nowrap">
                {/* Render icons twice for seamless loop */}

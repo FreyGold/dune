@@ -1,9 +1,9 @@
 function Exprience() {
    return (
-      <div className="p-6 border-white/10">
-         <h2 className="text-3xl font-bold mb-4">Experience</h2>
+      <div className="p-4 sm:p-6 lg:p-8 border-white/10">
+         <h2 className="text-2xl sm:text-3xl font-bold mb-3 sm:mb-4">Experience</h2>
 
-         <p className="text-lg text-muted-foreground mb-3">
+         <p className="text-base sm:text-lg text-muted-foreground mb-3 sm:mb-4 leading-relaxed">
             On the frontend, I specialize in{" "}
             <span className="font-semibold">React</span>,{" "}
             <span className="font-semibold">Next.js</span>, and{" "}
@@ -11,7 +11,7 @@ function Exprience() {
             designs into pixel-perfect, responsive, and production-ready code.
          </p>
 
-         <p className="text-lg text-muted-foreground mb-3">
+         <p className="text-base sm:text-lg text-muted-foreground mb-3 sm:mb-4 leading-relaxed">
             On the backend, I have hands-on experience with{" "}
             <span className="font-semibold">Express</span>,{" "}
             <span className="font-semibold">NestJs</span>,{" "}
@@ -21,12 +21,12 @@ function Exprience() {
             <span className="font-semibold">JavaScript</span>.
          </p>
 
-         <p className="text-lg text-muted-foreground mb-3">
+         <p className="text-base sm:text-lg text-muted-foreground mb-3 sm:mb-4 leading-relaxed">
             I took various courses covering both frontend and backend topics,
             following a project-based learning approach to strengthen my skills.
          </p>
 
-         <p className="text-lg text-muted-foreground">
+         <p className="text-base sm:text-lg text-muted-foreground leading-relaxed">
             I also completed a{" "}
             <span className="font-semibold">
                three-month internship at Buguard
