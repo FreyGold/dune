@@ -10,25 +10,25 @@ export const processSteps: ProcessStep[] = [
    {
       id: "step-1",
       step: "01",
-      title: "Discovery & Strategy",
-      description: "I dive deep into understanding your vision, goals, and target audience. Through collaborative discussions and research, we establish a clear roadmap that aligns with your objectives."
+      title: "Requirements & Planning",
+      description: "Clarify scope, user stories, and acceptance criteria. Define success metrics and milestones to align expectations and timelines."
    },
    {
       id: "step-2",
       step: "02",
-      title: "Design & Prototyping",
-      description: "With insights in hand, I craft intuitive user experiences and visual designs. I create prototypes that bring ideas to life, ensuring every interaction feels natural and purposeful."
+      title: "UI Implementation",
+      description: "Build accessible, responsive components from the design system. Ensure visual fidelity, micro-interactions, and smooth animations."
    },
    {
       id: "step-3",
       step: "03",
-      title: "Development & Implementation",
-      description: "I transform designs into pixel-perfect, responsive code. Using modern technologies and best practices, I build robust solutions that perform seamlessly across all devices."
+      title: "Data & State Integration",
+      description: "Integrate APIs, manage state and caching, and handle loading, errors, and optimistic updates for a seamless UX."
    },
    {
       id: "step-4",
       step: "04",
-      title: "Testing & Launch",
-      description: "Rigorous testing ensures quality and reliability. I fine-tune every detail before launch, then provide ongoing support to keep your digital presence evolving and thriving."
+      title: "Performance & Accessibility",
+      description: "Profile and optimize with code-splitting, lazy loading, and bundle analysis. Audit a11y (WCAG), keyboard navigation, and semantics."
    }
 ];

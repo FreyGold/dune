@@ -31,7 +31,7 @@ function Header() {
                color="#ffffff"
                className="sm:w-6 sm:h-6"
             />
-            <Button textSize="text-sm" className="px-3 py-2">
+            <Button textSize="text-xs sm:text-sm" variant="small" className="px-3 py-2">
                Menu
             </Button>
          </div>

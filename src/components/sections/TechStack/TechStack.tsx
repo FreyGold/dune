@@ -15,7 +15,7 @@ function TechStack() {
    return (
       <div className="w-full min-h-screen h-auto bg-black relative z-20 tech-stack font-roboto">
          {/* Hero Section */}
-         <div className="px-4 sm:px-8 md:px-10 pt-20 md:pt-35 [word-spacing:0.5rem] font-grotesk">
+         <div className="px-4 sm:px-8 md:px-10 pt-8 md:pt-18 [word-spacing:0.5rem] font-grotesk">
             <div className="lg:flex flex-col md:flex-row relative items-center lg:justify-between gap-4 md:gap-8">
                <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-[5.5rem] font-bold uppercase [word-spacing:-0.1rem]">
                   TECH STACK
@@ -29,8 +29,8 @@ function TechStack() {
                   className="hidden lg:block sm:h-15 sm:w-15 md:h-15 md:w-25"
                />
             </div>
-            <div className="pt-10">
-               <Button textSize="text-lg">
+            <div className="pt-6 md:pt-12">
+               <Button textSize="text-sm sm:text-lg" variant="default">
                   <span className="font-medium">View Projects</span>
                </Button>
             </div>
@@ -40,13 +40,13 @@ function TechStack() {
          <TechMarquee />
 
          {/* Category Filter */}
-         <div className="px-4 sm:px-8 md:px-10 py-20">
-            <div className="flex flex-wrap gap-4 mb-12">
+         <div className="px-4 sm:px-8 md:px-10 py-8 md:py-16">
+            <div className="flex flex-wrap gap-2 sm:gap-3 mb-8 sm:mb-12">
                {categories.map((category) => (
                   <button
                      key={category.id}
                      onClick={() => setActiveCategory(category.id)}
-                     className={`px-6 py-3 font-grotesk font-semibold uppercase text-sm transition-all duration-300 ${
+                     className={`px-3 py-2 sm:px-4 sm:py-2 md:px-6 md:py-3 font-grotesk font-semibold uppercase text-xs sm:text-sm transition-all duration-300 ${
                         activeCategory === category.id
                            ? "text-black bg-white"
                            : "text-white bg-transparent border border-white/20 hover:border-white/60"

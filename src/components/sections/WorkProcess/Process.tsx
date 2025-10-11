@@ -126,17 +126,17 @@ function Process() {
    return (
       <div
          ref={processRef}
-         className="min-h-screen px-8 py-16 bg-black text-white">
+         className="min-h-screen px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-20 bg-black text-white">
          <div className="max-w-7xl mx-auto">
             {/* Section Header */}
-            <div className="mb-16">
+            <div className="mb-10 sm:mb-12 lg:mb-16">
                <div className="flex justify-center lg:justify-start">
-                  <h1 className="process-title font-grotesk text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-[7rem] font-bold uppercase [word-spacing:-0.1rem] tracking-tight text-center lg:text-left">
+                  <h1 className="process-title font-grotesk text-3xl sm:text-4xl md:text-5xl lg:text-5xl xl:text-6xl font-bold uppercase [word-spacing:-0.1rem] tracking-tight text-center lg:text-left">
                      My Process
                   </h1>
                </div>
-               <div className="mt-8 max-w-3xl">
-                  <p className="process-description text-lg sm:text-xl md:text-2xl font-roboto text-[#A3A3A3] leading-relaxed">
+               <div className="mt-4 sm:mt-6 lg:mt-8 max-w-3xl">
+                  <p className="process-description text-base sm:text-lg md:text-xl font-roboto text-[#A3A3A3] leading-normal md:leading-relaxed">
                      Every great digital experience starts with a thoughtful
                      approach. Here's how I transform ideas into exceptional
                      digital solutions.
@@ -145,12 +145,12 @@ function Process() {
             </div>
 
             {/* Process Steps */}
-            <div className="process-steps-container space-y-14 lg:space-y-20">
+            <div className="process-steps-container space-y-8 sm:space-y-10 lg:space-y-12">
                {processSteps.map((step, index) => (
                   <div key={step.id}>
                      {/* Process Step */}
                      <div
-                        className={`process-step flex flex-row items-start justify-start gap-8 lg:gap-14 group relative ${
+                        className={`process-step flex flex-row items-start justify-start gap-4 sm:gap-6 lg:gap-8 group relative ${
                            index % 2 === 1 ? "flex-row-reverse" : ""
                         }`}>
                         {/* Vertical Outline Line - Left side for odd steps, Right side for even steps */}
@@ -166,8 +166,8 @@ function Process() {
 
                         {/* Step Number */}
                         <div className="flex-shrink-0 relative z-10">
-                           <div className="step-number w-16 h-16 lg:w-22 lg:h-22 rounded-full bg-white/10 flex items-center justify-center transition-all duration-300 group-hover:bg-white/20 group-hover:scale-110">
-                              <span className="font-grotesk text-lg lg:text-2xl font-bold text-white">
+                           <div className="step-number w-14 h-14 sm:w-16 sm:h-16 lg:w-20 lg:h-20 rounded-full bg-white/10 flex items-center justify-center transition-all duration-300 group-hover:bg-white/20 group-hover:scale-110">
+                              <span className="font-grotesk text-base sm:text-lg lg:text-2xl font-bold text-white">
                                  {step.step}
                               </span>
                            </div>
@@ -176,7 +176,7 @@ function Process() {
                         {/* Step Content */}
                         <div className="flex-1 max-w-2xl relative z-10">
                            <div className="w-full">
-                              <h3 className="font-grotesk text-xl sm:text-2xl lg:text-3xl xl:text-4xl font-semibold uppercase mb-4 text-white transition-colors duration-300 group-hover:text-white/90">
+                              <h3 className="font-grotesk text-xl sm:text-2xl lg:text-3xl xl:text-4xl font-semibold uppercase mb-2 sm:mb-3 lg:mb-4 text-white transition-colors duration-300 group-hover:text-white/90">
                                  {step.title}
                               </h3>
                               <p className="text-sm sm:text-base lg:text-lg font-roboto text-[#A3A3A3] leading-relaxed transition-colors duration-300 group-hover:text-[#B3B3B3]">
@@ -188,7 +188,7 @@ function Process() {
 
                      {/* Decorative Dashed Line */}
                      {index < processSteps.length - 1 && (
-                        <div className="flex justify-center my-12 lg:my-16">
+                        <div className="flex justify-center my-6 sm:my-8 lg:my-10">
                            <div className="w-full max-w-4xl">
                               <div className="h-px bg-gradient-to-r from-transparent via-white/20 to-transparent relative">
                                  {/* Dashed line overlay */}
@@ -208,7 +208,7 @@ function Process() {
             </div>
 
             {/* Call to Action */}
-            <div className="process-cta mt-16 text-center lg:text-left">
+            <div className="process-cta mt-10 sm:mt-12 lg:mt-16 text-center lg:text-left">
                <p className="font-grotesk text-lg sm:text-xl lg:text-2xl font-medium text-white mb-2">
                   Ready to start your project?
                </p>
@@ -216,7 +216,12 @@ function Process() {
                   Let's discuss how we can bring your vision to life.
                </p>
                <div className="flex justify-center lg:justify-start">
-                  <Button className="px-8 py-3">Contact</Button>
+                  <Button
+                     variant="default"
+                     textSize="text-lg"
+                     className="font-semibold">
+                     Contact
+                  </Button>
                </div>
             </div>
          </div>

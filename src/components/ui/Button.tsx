@@ -1,16 +1,28 @@
 import ButtonFillAnimation from "./ButtonFillAnimation";
 
-interface ButtonProps {
+interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement>  {
    children: React.ReactNode;
    textSize?: string;
    className?: string;
+   variant?: 'default' | 'small' | 'large';
 }
 
 function Button({
    children,
    textSize = "text-xs sm:text-sm",
-   className = "px-5 py-2.5",
+   className = "",
+   variant = 'default',
+   ...props
 }: ButtonProps) {
+   const getResponsiveClasses = () => {
+      const baseClasses = "relative font-bold font-grotesk uppercase text-black leading-none cursor-pointer";
+      const variantClasses = {
+         default: "px-4 py-2 sm:px-5 sm:py-2.5",
+         small: "px-3 py-1.5 sm:px-4 sm:py-2",
+         large: "px-6 py-3 sm:px-8 sm:py-4"
+      };
+      return `${baseClasses} ${textSize} ${variantClasses[variant]} ${className}`;
+   };
    const getCornerSize = (textSizeClass: string) => {
       switch (textSizeClass) {
          case "text-xs":
@@ -39,7 +51,8 @@ function Button({
 
    const button = (
       <button
-         className={`relative font-bold font-grotesk uppercase text-black leading-none cursor-pointer ${textSize} ${className}`}>
+         className={getResponsiveClasses()}
+         {...props}>
          {children}
       </button>
    );

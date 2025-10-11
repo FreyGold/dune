@@ -93,8 +93,8 @@ export default function TechMarquee() {
    ];
 
    return (
-      <div className="w-full flex justify-center items-center my-20 md:my-35">
-         <div className="w-full overflow-hidden h-[60px] sm:h-[70px] md:h-[90px] flex items-center relative">
+      <div className="w-full flex justify-center items-center my-12 md:my-16">
+         <div className="w-full overflow-hidden h-[50px] xs:h-[55px] sm:h-[70px] md:h-[90px] lg:h-[100px] flex items-center relative">
             <div className="flex animate-marquee-slow whitespace-nowrap">
                {/* Render icons twice for seamless loop */}
                {duplicatedTechnologies.map((tech, i) => {
@@ -104,7 +104,7 @@ export default function TechMarquee() {
                   return (
                      <div
                         key={`${tech.name}-${i}`}
-                        className="mx-8 sm:mx-12 md:mx-14 flex-shrink-0 group">
+                        className="mx-4 xs:mx-6 sm:mx-8 md:mx-12 lg:mx-14 flex-shrink-0 group">
                         <IconComponent
                            size={48}
                            color={
@@ -114,14 +114,14 @@ export default function TechMarquee() {
                                  ? "#ffffffaa"
                                  : tech.color
                            }
-                           className="w-12 h-12 sm:w-12 sm:h-12 md:w-16 md:h-16 lg:w-20 lg:h-20 opacity-70 group-hover:opacity-100 transition-opacity duration-300"
+                           className="w-8 h-8 xs:w-10 xs:h-10 sm:w-12 sm:h-12 md:w-16 md:h-16 lg:w-20 lg:h-20 opacity-70 group-hover:opacity-100 transition-opacity duration-300"
                         />
                      </div>
                   );
                })}
             </div>
-            <div className="absolute left-0 top-0 h-full w-32 bg-gradient-to-r from-[#000] to-transparent pointer-events-none z-10" />
-            <div className="absolute right-0 top-0 h-full w-32 bg-gradient-to-l from-[#000] to-transparent pointer-events-none z-10" />
+            <div className="absolute left-0 top-0 h-full w-20 xs:w-24 sm:w-32 bg-gradient-to-r from-[#000] to-transparent pointer-events-none z-10" />
+            <div className="absolute right-0 top-0 h-full w-20 xs:w-24 sm:w-32 bg-gradient-to-l from-[#000] to-transparent pointer-events-none z-10" />
          </div>
       </div>
    );

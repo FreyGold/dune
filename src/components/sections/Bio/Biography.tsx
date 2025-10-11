@@ -23,14 +23,14 @@ function Biography() {
                Software Engineer
             </h1>
             <div className="pt-10">
-               <Button textSize="text-lg">
+               <Button textSize="text-sm sm:text-lg" variant="default">
                   <span className="font-medium">My Work</span>
                </Button>
             </div>
             <Intro />
          </div>
          <TechStack />
-         <div className="h-2 w-full bg-black relative top-1 z-1000"></div>
+         <div className="h-3 w-full bg-black relative top-1.5 z-1000"></div>
       </div>
    );
 }

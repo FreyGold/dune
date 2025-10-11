@@ -91,7 +91,7 @@ function TechGrid({ activeCategory }: TechGridProps) {
    const technologies = getTechnologies();
 
    return (
-      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-6 animate-fade-in">
+      <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 xl:grid-cols-7 gap-3 sm:gap-4">
          {technologies.map((tech, index) => {
             const IconComponent = iconMap[tech.icon];
             if (!IconComponent) return null;
@@ -99,22 +99,21 @@ function TechGrid({ activeCategory }: TechGridProps) {
             return (
                <div
                   key={`${tech.name}-${index}`}
-                  className="group relative animate-slide-up"
-                  style={{ animationDelay: `${index * 0.1}s` }}
+                  className="group relative"
                   onMouseEnter={() => setHoveredTech(tech.name)}
                   onMouseLeave={() => setHoveredTech(null)}>
-                  <div className="relative p-6 bg-white/5 backdrop-blur-sm border border-white/10 rounded-lg hover:border-white/30 transition-all duration-300 hover:scale-105 hover:shadow-lg">
-                     <div className="flex flex-col items-center text-center space-y-4">
+                  <div className="relative p-2 sm:p-4 md:p-6 bg-white/5 backdrop-blur-sm border border-white/10 rounded-lg hover:border-white/30 transition-all duration-300 hover:scale-105 hover:shadow-lg">
+                     <div className="flex flex-col items-center text-center space-y-2 sm:space-y-3">
                         <div className="relative">
                            <IconComponent
-                              size={48}
+                              size={32}
                               color={tech.color}
-                              className="transition-all duration-300"
+                              className="sm:w-10 sm:h-10 md:w-12 md:h-12 w-8 h-8 transition-all duration-300"
                            />
                         </div>
 
                         <div className="space-y-2">
-                           <h3 className="font-grotesk font-semibold text-white text-sm uppercase tracking-wide">
+                           <h3 className="font-grotesk font-semibold text-white text-xs sm:text-sm uppercase tracking-wide">
                               {tech.name}
                            </h3>
                         </div>
@@ -122,7 +121,7 @@ function TechGrid({ activeCategory }: TechGridProps) {
 
                      {/* Hover overlay - only show for currently hovered card */}
                      {hoveredTech === tech.name && (
-                        <div className="absolute inset-0 bg-gradient-to-br from-white/10 to-transparent rounded-lg pointer-events-none animate-fade-in" />
+                        <div className="absolute inset-0 bg-gradient-to-br from-white/10 to-transparent rounded-lg pointer-events-none" />
                      )}
                   </div>
                </div>
