@@ -16,7 +16,7 @@ function ProjectCard({ project, textColor = "text-white" }: ProjectCardProps) {
 
    return (
       <div
-         className="bg-red-400 h-full relative project-card w-full aspect-[16/9] sm:aspect-[16/10] overflow-hidden hover:scale-105 sm:hover:scale-103 transition-transform duration-300 ease-out cursor-pointer"
+         className="h-full relative project-card w-full aspect-[16/9] sm:aspect-[16/10] overflow-hidden hover:scale-105 sm:hover:scale-103 transition-transform duration-300 ease-out cursor-pointer"
          style={
             {
                clipPath:

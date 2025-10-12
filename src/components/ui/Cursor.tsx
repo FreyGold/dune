@@ -3,6 +3,7 @@ import { useState, useEffect, useRef, memo } from "react";
 function CursorEffect() {
    const [pos, setPos] = useState({ x: 0, y: 0 });
    const [hovered, setHovered] = useState(false);
+   const [clickmed, setClickmed] = useState(false);
    const [projectCardHovered, setProjectCardHovered] = useState(false);
    const rafRef = useRef<number | null>(null);
 
@@ -12,12 +13,12 @@ function CursorEffect() {
          if (rafRef.current) {
             cancelAnimationFrame(rafRef.current);
          }
-         
+
          rafRef.current = requestAnimationFrame(() => {
             setPos({ x: e.clientX, y: e.clientY });
          });
       };
-      
+
       window.addEventListener("mousemove", move, { passive: true });
       return () => {
          window.removeEventListener("mousemove", move);
@@ -38,15 +39,35 @@ function CursorEffect() {
          if (target.closest(".project-card")) {
             setProjectCardHovered(true);
          }
+         if (target.closest(".click-me")) {
+            setClickmed(true);
+            console.log("here");
+         }
       };
 
-      const onOut = (e: Event) => {
+      const onOut = (e: MouseEvent) => {
          const target = e.target as Element;
-         if (target.closest(selector)) {
+         const relatedTarget = e.relatedTarget as Element;
+
+         // Only set hovered to false if we're not moving to another link/button
+         if (target.closest(selector) && !relatedTarget?.closest(selector)) {
             setHovered(false);
          }
-         if (target.closest(".project-card")) {
+
+         // Only set projectCardHovered to false if we're not moving to another project card
+         if (
+            target.closest(".project-card") &&
+            !relatedTarget?.closest(".project-card")
+         ) {
             setProjectCardHovered(false);
+         }
+
+         // Only set clickmed to false if we're not moving to another click-me element
+         if (
+            target.closest(".click-me") &&
+            !relatedTarget?.closest(".click-me")
+         ) {
+            setClickmed(false);
          }
       };
 
@@ -71,11 +92,11 @@ function CursorEffect() {
    }, []);
 
    if (window.innerWidth < 768) return null;
-
+   const cursor = projectCardHovered || clickmed;
    return (
       <div
          className={`pointer-events-none fixed top-0 left-0 z-100 transition-all duration-300 ease-out hidden sm:block ${
-            projectCardHovered ? "mix-blend-normal" : "mix-blend-difference"
+            cursor ? "mix-blend-normal" : "mix-blend-difference"
          }`}
          style={{
             transform: `translate(${pos.x}px, ${pos.y}px)`,
@@ -83,25 +104,36 @@ function CursorEffect() {
          <div
             className="relative bg-white rounded-full shadow-lg transition-all duration-500 ease-out transform-gpu"
             style={{
-               width: projectCardHovered ? "92px" : "18px",
-               height: projectCardHovered ? "46px" : "18px",
+               width: cursor ? "92px" : "18px",
+               height: cursor ? "46px" : "18px",
                display: "flex",
                alignItems: "center",
                justifyContent: "center",
                transform: `scale(${
-                  hovered && !projectCardHovered ? 1.6 : 1
+                  hovered && !cursor ? 1.6 : 1
                }) translate(-50%, -50%)`,
                transformOrigin: "center",
             }}>
-            <span
-               className={`text-black text-2xl font-roboto font-bold uppercase transition-all duration-300 ease-out ${
-                  projectCardHovered ? "opacity-100" : "opacity-0"
-               }`}
-               style={{
-                  padding: projectCardHovered ? "8px 16px" : "0px",
-               }}>
-               View
-            </span>
+            {projectCardHovered && (
+               <span
+                  className={`text-black text-2xl font-roboto font-bold uppercase transition-all duration-300 ease-out ${
+                     projectCardHovered ? "opacity-100" : "opacity-0"
+                  }`}
+                  style={{
+                     padding: projectCardHovered ? "8px 16px" : "0px",
+                  }}>
+                  View
+               </span>
+            )}
+            {clickmed && (
+               <span
+                  className={`text-black font-roboto font-bold uppercase transition-all duration-300 ease-out text-center`}
+                  style={{
+                     padding: clickmed ? "8px 16px" : "0px",
+                  }}>
+                  Click!
+               </span>
+            )}
          </div>
       </div>
    );

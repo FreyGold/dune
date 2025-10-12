@@ -80,7 +80,9 @@ function ProjectDetail() {
             </div>
 
             {/* Back Button */}
-            <Link to="/projects" className="absolute top-4 left-4 sm:top-6 sm:left-6 md:top-8 md:left-8">
+            <Link
+               to="/projects"
+               className="absolute top-4 left-4 sm:top-6 sm:left-6 md:top-8 md:left-8">
                <Button
                   textSize="text-sm"
                   variant="small"

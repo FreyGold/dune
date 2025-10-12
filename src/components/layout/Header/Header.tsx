@@ -19,9 +19,11 @@ function Header() {
    });
 
    return (
-      <div className="flex px-4 sm:px-6 md:px-8 lg:px-10 fixed top-4 sm:top-6 md:top-8 lg:top-9 z-10 justify-between items-center w-screen py-1 from-above mix-blend-difference">
+      <div className="flex px-4 sm:px-6 md:px-8 lg:px-10 fixed top-4 sm:top-6 md:top-8 lg:top-9 z-10 justify-between items-center w-screen py-1 from-above mix-blend-difference font-roboto ">
          <div className="flex items-center">
-            <Link to="/" className="text-[#B3B3B3] text-sm sm:text-base md:text-lg hover:text-white transition-colors">
+            <Link
+               to="/"
+               className="text-[#B3B3B3] text-sm sm:text-base md:text-lg hover:text-white transition-colors">
                LOCAL<span className="">/</span>
             </Link>
             <Time />
@@ -30,17 +32,16 @@ function Header() {
             </div>
          </div>
          <div className="flex items-center gap-3 sm:gap-4 md:gap-5">
-            <BiSearch
-               size={20}
-               color="#ffffff"
-               className="sm:w-6 sm:h-6"
-            />
+            <BiSearch size={20} color="#ffffff" className="sm:w-6 sm:h-6" />
             <Link to="/projects">
                <Button
                   textSize="text-xs sm:text-sm"
                   variant="small"
-                  className={`px-3 py-2 ${location.pathname === '/projects' ? 'bg-white text-black' : ''}`}
-               >
+                  className={`px-3 py-2 ${
+                     location.pathname === "/projects"
+                        ? "bg-white text-black"
+                        : ""
+                  }`}>
                   Projects
                </Button>
             </Link>
