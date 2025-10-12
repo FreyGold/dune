@@ -16,7 +16,7 @@ function ProjectDetail() {
 
    if (!project) {
       return (
-         <div className="min-h-screen bg-black text-white flex items-center justify-center pt-40 animate-fade-in">
+         <div className="min-h-screen bg-black text-white flex items-center justify-center pt-20 sm:pt-32 md:pt-40 animate-fade-in">
             <div className="text-center">
                <h1 className="text-4xl font-bold mb-4">Project Not Found</h1>
                <Link
@@ -31,7 +31,7 @@ function ProjectDetail() {
    }
 
    return (
-      <div className="min-h-screen bg-black text-white pt-40 animate-fade-in">
+      <div className="min-h-screen bg-black text-white pt-20 sm:pt-32 md:pt-40 animate-fade-in">
          {/* Hero Section */}
          <div className="relative h-screen flex items-center justify-center">
             <div
@@ -41,27 +41,27 @@ function ProjectDetail() {
             <div className="absolute inset-0 bg-black/60" />
             <NoiseOverlay type="hero" />
 
-            <div className="relative z-10 text-center px-6 sm:px-8 md:px-10 lg:px-12 xl:px-16 max-w-4xl mx-auto">
+            <div className="relative z-10 text-center px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16 max-w-4xl mx-auto">
                <div className="mb-4">
                   <span className="inline-block text-sm text-[#A3A3A3] uppercase tracking-wider mb-2">
                      {project.category} • {project.year}
                   </span>
                </div>
-               <h1 className="font-grotesk text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold uppercase [word-spacing:-0.1rem] tracking-tight mb-6">
+               <h1 className="font-grotesk text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl 3xl:text-8xl font-bold uppercase [word-spacing:-0.1rem] tracking-tight mb-4 sm:mb-6">
                   {project.title}
                </h1>
-               <p className="text-lg sm:text-xl md:text-2xl text-[#A3A3A3] leading-relaxed max-w-3xl mx-auto">
+               <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-[#A3A3A3] leading-relaxed max-w-3xl mx-auto mb-6 sm:mb-8">
                   {project.longDescription}
                </p>
 
                {/* Action Buttons */}
-               <div className="flex flex-wrap gap-4 justify-center mt-8">
+               <div className="flex flex-wrap gap-3 sm:gap-4 justify-center mt-6 sm:mt-8">
                   {project.liveUrl && (
                      <a
                         href={project.liveUrl}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex items-center gap-2 bg-white text-black px-6 py-3 rounded-full font-medium hover:bg-gray-200 transition-colors">
+                        className="inline-flex items-center gap-2 bg-white text-black px-4 py-2 sm:px-6 sm:py-3 rounded-full font-medium hover:bg-gray-200 transition-colors text-sm sm:text-base">
                         <BiLinkExternal />
                         Live Demo
                      </a>
@@ -71,7 +71,7 @@ function ProjectDetail() {
                         href={project.githubUrl}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex items-center gap-2 border border-white text-white px-6 py-3 rounded-full font-medium hover:bg-white hover:text-black transition-colors">
+                        className="inline-flex items-center gap-2 border border-white text-white px-4 py-2 sm:px-6 sm:py-3 rounded-full font-medium hover:bg-white hover:text-black transition-colors text-sm sm:text-base">
                         <BiLogoGithub />
                         View Code
                      </a>
@@ -80,7 +80,7 @@ function ProjectDetail() {
             </div>
 
             {/* Back Button */}
-            <Link to="/projects" className="absolute top-8 left-8">
+            <Link to="/projects" className="absolute top-4 left-4 sm:top-6 sm:left-6 md:top-8 md:left-8">
                <Button
                   textSize="text-sm"
                   variant="small"
@@ -92,11 +92,11 @@ function ProjectDetail() {
          </div>
 
          {/* Project Details */}
-         <div className="px-6 sm:px-8 md:px-10 lg:px-12 xl:px-16 py-20">
+         <div className="px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16 py-12 sm:py-16 md:py-20">
             <div className="max-w-6xl mx-auto">
                {/* Technologies */}
-               <div className="mb-16">
-                  <h2 className="font-grotesk text-2xl sm:text-3xl md:text-4xl font-bold uppercase mb-8">
+               <div className="mb-8 sm:mb-12 md:mb-16">
+                  <h2 className="font-grotesk text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold uppercase mb-4 sm:mb-6 md:mb-8">
                      Technologies Used
                   </h2>
                   <div className="flex flex-wrap gap-3">
@@ -112,8 +112,8 @@ function ProjectDetail() {
 
                {/* Project Gallery */}
                {project.images && project.images.length > 1 && (
-                  <div className="mb-16">
-                     <h2 className="font-grotesk text-2xl sm:text-3xl md:text-4xl font-bold uppercase mb-8">
+                  <div className="mb-8 sm:mb-12 md:mb-16">
+                     <h2 className="font-grotesk text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold uppercase mb-4 sm:mb-6 md:mb-8">
                         Project Gallery
                      </h2>
                      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -140,7 +140,7 @@ function ProjectDetail() {
 
                {/* Project Description */}
                <div>
-                  <h2 className="font-grotesk text-2xl sm:text-3xl md:text-4xl font-bold uppercase mb-8">
+                  <h2 className="font-grotesk text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold uppercase mb-4 sm:mb-6 md:mb-8">
                      About This Project
                   </h2>
                   <p className="text-lg text-[#A3A3A3] leading-relaxed max-w-4xl">
