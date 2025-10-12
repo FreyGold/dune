@@ -1,5 +1,6 @@
 import type { Project } from "../../../../data/projects";
 import NoiseOverlay from "../../../ui/NoiseOverlay";
+import { useNavigate } from "react-router-dom";
 
 interface ProjectCardProps {
    project: Project;
@@ -7,6 +8,12 @@ interface ProjectCardProps {
 }
 
 function ProjectCard({ project, textColor = "text-white" }: ProjectCardProps) {
+   const navigate = useNavigate();
+
+   const handleClick = () => {
+      navigate(`/projects/${project.id}`);
+   };
+
    return (
       <div
          className="bg-red-400 h-full relative project-card w-full aspect-[16/9] sm:aspect-[16/10] overflow-hidden hover:scale-105 sm:hover:scale-103 transition-transform duration-300 ease-out cursor-pointer"
@@ -15,7 +22,8 @@ function ProjectCard({ project, textColor = "text-white" }: ProjectCardProps) {
                clipPath:
                   "polygon(0 0, calc(100% - 32px) 0, 100% 32px, 100% 100%, 32px 100%, 0 calc(100% - 32px))",
             } as React.CSSProperties
-         }>
+         }
+         onClick={handleClick}>
          <img
             src={project.imageSrc}
             alt={project.alt}

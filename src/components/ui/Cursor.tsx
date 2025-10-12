@@ -50,12 +50,23 @@ function CursorEffect() {
          }
       };
 
+      const onClick = (e: Event) => {
+         const target = e.target as Element;
+         if (target.closest(".project-card")) {
+            // Reset cursor state when clicking project cards
+            setProjectCardHovered(false);
+            setHovered(false);
+         }
+      };
+
       window.addEventListener("mouseover", onOver);
       window.addEventListener("mouseout", onOut);
+      window.addEventListener("click", onClick);
 
       return () => {
          window.removeEventListener("mouseover", onOver);
          window.removeEventListener("mouseout", onOut);
+         window.removeEventListener("click", onClick);
       };
    }, []);
 
