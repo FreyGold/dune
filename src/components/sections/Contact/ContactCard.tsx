@@ -31,7 +31,6 @@ export default function ContactCardGSAP(): JSX.Element {
          pinSpacing: false,
          scrub: true,
          anticipatePin: 1,
-         markers: true,
       });
 
       const refreshOnImageLoad = () => {
@@ -113,13 +112,12 @@ export default function ContactCardGSAP(): JSX.Element {
                         "polygon(0 0, calc(100% - 32px) 0, 100% 32px, 100% 100%, 32px 100%, 0 calc(100% - 32px))",
                   }}>
                   <img
-                     src="https://i.pinimg.com/1200x/eb/f7/2f/ebf72f8ec726b0eeb05c446c0d890cbe.jpg"
+                     src="https://i.pinimg.com/1200x/db/15/5b/db155b5f7d139588c492f316f632fcc6.jpg"
                      alt="Contact"
                      className="w-full max-h-[100dvh] object-cover"
                      loading="lazy"
                   />
                </div>
-               {/* <div className="min-h-[50vh]"></div> */}
             </div>
          </div>
       </div>
