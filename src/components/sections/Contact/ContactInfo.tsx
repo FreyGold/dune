@@ -80,9 +80,6 @@ function ContactInfo() {
                </div>
             </div>
          </div>
-
-         {/* Bottom Line */}
-         <div className="bg-[#A3A3A3]/20 h-[1px] mt-22.5 mb-25 rounded-full mx-auto"></div>
       </div>
    );
 }

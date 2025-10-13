@@ -9,8 +9,6 @@ function ContactSection() {
          <div className="mt-20">
             <ContactInfo />
          </div>
-
-         <div className="min-h-[100vh] bg-amber-200"></div>
       </div>
    );
 }

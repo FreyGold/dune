@@ -27,9 +27,11 @@ function Header() {
                LOCAL<span className="">/</span>
             </Link>
             <Time />
-            <div className="bg-[#141414] rounded-full size-7 sm:size-8 md:size-9 flex justify-center items-center ms-3 sm:ms-4 md:ms-5 hover:border border-[#B3B3B3]/20 cursor-pointer">
-               <BiPhone size={14} color="#ffffff" />
-            </div>
+            <Link to="/contact">
+               <div className="bg-[#141414] rounded-full size-7 sm:size-8 md:size-9 flex justify-center items-center ms-3 sm:ms-4 md:ms-5 hover:border border-[#B3B3B3]/20 cursor-pointer">
+                  <BiPhone size={14} color="#ffffff" />
+               </div>
+            </Link>
          </div>
          <div className="flex items-center gap-3 sm:gap-4 md:gap-5">
             <BiSearch size={20} color="#ffffff" className="sm:w-6 sm:h-6" />

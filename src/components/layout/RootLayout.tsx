@@ -1,4 +1,5 @@
 import Header from "./Header/Header";
+import Footer from "./Footer/Footer";
 import { Outlet } from "react-router-dom";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
@@ -61,6 +62,7 @@ export default function RootLayout() {
          <Header />
          <div id="smooth-content" className="relative box-border">
             <Outlet />
+            <Footer />
          </div>
          <Suspense fallback={null}>
             <CursorEffect />
