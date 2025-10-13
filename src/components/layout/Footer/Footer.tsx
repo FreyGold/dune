@@ -4,20 +4,23 @@ function Footer() {
    };
 
    return (
-      <div className="px-10 uppercase">
-         <div className="bg-[#A3A3A3]/20 h-[1px] mt-22.5 mb-25 mx-15 rounded-full"></div>
+      <div className="px-4 sm:px-6 md:px-8 lg:px-10 uppercase">
+         <div className="bg-[#A3A3A3]/20 h-[1px] mt-10 md:mt-16 lg:mt-22.5 mb-8 md:mb-16 lg:mb-25 mx-4 sm:mx-6 md:mx-8 lg:mx-15 rounded-full"></div>
 
-         <h1 className="font-grotesk font-bold text-[10.625rem] text-center leading-[100%]">
+         <h1 className="font-grotesk font-bold text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl 2xl:text-[10.625rem] text-center leading-[100%]">
             Ahmed Tawfik
          </h1>
-         <div className="px-8.5 flex justify-between">
+         <div className="px-4 sm:px-6 md:px-8 flex flex-col sm:flex-row justify-between items-center gap-4 sm:gap-0 py-6 md:py-8 font-roboto text-lg">
             <a
                href="https://www.framer.com/marketplace/templates/dune/"
                target="_blank"
-               rel="noopener noreferrer">
+               rel="noopener noreferrer"
+               className="text-sm md:text-base">
                ©2024 MANDRO DESIGNS
             </a>
-            <a onClick={scrollToTop} style={{ cursor: "pointer" }}>
+            <a
+               onClick={scrollToTop}
+               className="text-sm md:text-base cursor-pointer hover:text-gray-300 transition-colors">
                Go Back To Top
             </a>
          </div>
