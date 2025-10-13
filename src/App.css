@@ -246,3 +246,17 @@ body,
    animation: slideUp 0.6s ease-out forwards;
    opacity: 0;
 }
+
+@keyframes float-scroll {
+   from {
+      transform: translateY(0);
+   }
+   to {
+      transform: translateY(-10%);
+   }
+}
+
+.scroll-anim {
+   animation: float-scroll linear;
+   animation-timeline: scroll(y);
+}
