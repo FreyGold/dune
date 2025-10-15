@@ -5,31 +5,19 @@ import { lazy, Suspense, useRef } from "react";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { ScrollSmoother } from "gsap/ScrollSmoother";
+import { useGSAPContext } from "../../contexts/GSAPContext";
 
 // Lazy load below-the-fold components for better initial performance
 const Featured = lazy(() => import("./FeaturedCases/Featured"));
 const Process = lazy(() => import("./WorkProcess/Process"));
 const TechStack = lazy(() => import("./TechStack/TechStack"));
 
-gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
-
 export default function Home() {
    const main = useRef(null);
-   const smoother = useRef<ScrollSmoother | null>(null);
+   const { refreshScrollers } = useGSAPContext();
 
    useGSAP(
       () => {
-         // create the smooth scroller FIRST!
-         const smootherInstance = ScrollSmoother.create({
-            wrapper: "#smooth-wrapper",
-            content: "#smooth-content",
-            smooth: 2,
-            effects: true,
-         });
-
-         smoother.current = smootherInstance;
-
          // Pin the ImageSection while Biography scrolls over it
          ScrollTrigger.create({
             trigger: ".section-image", // The ImageSection itself
@@ -50,10 +38,10 @@ export default function Home() {
                scrub: true,
             },
          });
+
          // Refresh after DOM is ready
          setTimeout(() => {
-            ScrollSmoother.refresh();
-            ScrollTrigger.refresh();
+            refreshScrollers();
          }, 100);
       },
       { scope: main }
