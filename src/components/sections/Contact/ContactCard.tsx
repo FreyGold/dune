@@ -20,36 +20,43 @@ export default function ContactCardGSAP(): JSX.Element {
       const isMediumScreen = window.matchMedia("(min-width: 768px)").matches;
       if (!isMediumScreen) return;
 
-      const left = leftRef.current;
-      const right = rightRef.current;
-      if (!left || !right) return;
-      const triggerHeight = right.offsetHeight - left.offsetHeight - 50;
+      const setupContactAnimations = () => {
+         const left = leftRef.current;
+         const right = rightRef.current;
+         if (!left || !right) return;
+         const triggerHeight = right.offsetHeight - left.offsetHeight - 50;
 
-      ScrollTrigger.killAll();
-
-      const trigger = ScrollTrigger.create({
-         trigger: right,
-         start: "top top+=150",
-         end: `+=${triggerHeight}`,
-         pin: left,
-         pinSpacing: false,
-         scrub: true,
-         anticipatePin: 1,
-      });
-
-      const refreshOnImageLoad = () => {
-         trigger.refresh();
-      };
-
-      const img = right.querySelector("img");
-      if (img && !img.complete) {
-         img.addEventListener("load", refreshOnImageLoad);
-      }
-
-      return () => {
-         img?.removeEventListener("load", refreshOnImageLoad);
          ScrollTrigger.killAll();
+
+         const trigger = ScrollTrigger.create({
+            trigger: right,
+            start: "top top+=150",
+            end: `+=${triggerHeight}`,
+            pin: left,
+            pinSpacing: false,
+            scrub: true,
+            anticipatePin: 1,
+         });
+
+         const refreshOnImageLoad = () => {
+            trigger.refresh();
+         };
+
+         const img = right.querySelector("img");
+         if (img && !img.complete) {
+            img.addEventListener("load", refreshOnImageLoad);
+         }
+
+         return () => {
+            img?.removeEventListener("load", refreshOnImageLoad);
+            ScrollTrigger.killAll();
+         };
       };
+
+      // Delay to ensure ScrollSmoother is ready on first render
+      const timer = setTimeout(setupContactAnimations, 100);
+
+      return () => clearTimeout(timer);
    }, []);
 
    const socialLinks = [

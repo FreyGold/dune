@@ -41,10 +41,22 @@ export const GSAPProvider = ({ children }: GSAPProviderProps) => {
 
       smoother.current = smootherInstance;
 
-      // Refresh after DOM is ready
+      // Refresh after DOM is ready and handle scroll position
       const refreshTimer = setTimeout(() => {
         refreshScrollers();
-      }, 100);
+
+        // Always scroll to top immediately on initialization - override any saved position
+        // No smooth scrolling, just jump to top
+        smootherInstance.scrollTo(0, false);
+
+        // Ensure body stays hidden during the entire initialization process
+        // Use multiple animation frames to ensure smooth transition
+        requestAnimationFrame(() => {
+          requestAnimationFrame(() => {
+            document.body.classList.add('loaded');
+          });
+        });
+      }, 150); // Increased timeout to ensure proper initialization
 
       return () => {
         clearTimeout(refreshTimer);

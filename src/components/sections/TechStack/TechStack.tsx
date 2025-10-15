@@ -1,5 +1,4 @@
 import { useState, useEffect, useRef } from "react";
-import Button from "../../ui/Button";
 import TechGrid from "./TechGrid";
 import TechMarquee from "./TechMarquee";
 import { techCategories } from "../../../data/techStack";
@@ -22,6 +21,7 @@ function TechStack() {
 
    // Intersection Observer for performance optimization
    useEffect(() => {
+      const currentRef = sectionRef.current;
       const observer = new IntersectionObserver(
          ([entry]) => {
             setIsVisible(entry.isIntersecting);
@@ -32,12 +32,11 @@ function TechStack() {
          }
       );
 
-      if (sectionRef.current) {
-         observer.observe(sectionRef.current);
+      if (currentRef) {
+         observer.observe(currentRef);
       }
 
       return () => {
-         const currentRef = sectionRef.current;
          if (currentRef) {
             observer.unobserve(currentRef);
          }
@@ -68,11 +67,6 @@ function TechStack() {
                   className="hidden lg:block w-10 h-10 sm:w-12 sm:h-12 md:w-16 md:h-16 lg:w-20 lg:h-20 xl:w-25 xl:h-25"
                />
             </div>
-            <div className="pt-4 sm:pt-6 md:pt-8 lg:pt-10 xl:pt-12">
-               <Button textSize="text-xs sm:text-sm md:text-base lg:text-lg" variant="default">
-                  <span className="font-medium">View Projects</span>
-               </Button>
-            </div>
          </div>
 
          {/* Animated Marquee Section - Hidden on mobile for performance and only when visible */}
@@ -80,7 +74,8 @@ function TechStack() {
 
          {/* Category Filter */}
          <div className="px-3 sm:px-4 md:px-6 lg:px-8 xl:px-10 py-6 sm:py-8 md:py-12 lg:py-16">
-            <div className={`flex flex-wrap gap-2 sm:gap-3 md:gap-4 mb-6 sm:mb-8 md:mb-10 lg:mb-12 `}>
+            <div
+               className={`flex flex-wrap gap-2 sm:gap-3 md:gap-4 mb-6 sm:mb-8 md:mb-10 lg:mb-12 `}>
                {categories.map((category) => (
                   <button
                      key={category.id}

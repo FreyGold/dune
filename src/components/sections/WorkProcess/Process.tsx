@@ -3,12 +3,14 @@ import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useRef, useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import Button from "../../ui/Button";
 
 gsap.registerPlugin(ScrollTrigger);
 
 function Process() {
    const processRef = useRef(null);
+   const navigate = useNavigate();
    const [isMobile, setIsMobile] = useState(() => {
       // Initialize mobile state on first render
       if (typeof window !== 'undefined') {
@@ -32,95 +34,102 @@ function Process() {
       () => {
          if (isMobile) return; // Skip animations on mobile
 
-         // Animate section title on scroll
-         gsap.from(
-            ".process-title",
-            {
-               y: 100,
-               opacity: 0,
-               duration: 1.2,
-               ease: "power3.out",
-               scrollTrigger: {
-                  trigger: ".process-title",
-                  start: "top 80%",
-                  once: true,
-                  end: "bottom 20%",
-               },
-            }
-         );
+         const setupAnimations = () => {
+            // Animate section title on scroll
+            gsap.from(
+               ".process-title",
+               {
+                  y: 100,
+                  opacity: 0,
+                  duration: 1.2,
+                  ease: "power3.out",
+                  scrollTrigger: {
+                     trigger: ".process-title",
+                     start: "top 80%",
+                     once: true,
+                     end: "bottom 20%",
+                  },
+               }
+            );
 
-         // Animate section description
-         gsap.from(
-            ".process-description",
-            {
-               y: 50,
-               opacity: 0,
-               duration: 1,
-               delay: 0.3,
-               ease: "power3.out",
-               scrollTrigger: {
-                  trigger: ".process-description",
-                  start: "top 85%",
-                  end: "bottom 20%",
-                  once: true,
-               },
-            }
-         );
+            // Animate section description
+            gsap.from(
+               ".process-description",
+               {
+                  y: 50,
+                  opacity: 0,
+                  duration: 1,
+                  delay: 0.3,
+                  ease: "power3.out",
+                  scrollTrigger: {
+                     trigger: ".process-description",
+                     start: "top 85%",
+                     end: "bottom 20%",
+                     once: true,
+                  },
+               }
+            );
 
-         // Animate process steps with stagger effect
-         gsap.from(
-            ".process-step",
-            {
-               y: 80,
-               opacity: 0,
-               duration: 1,
-               ease: "power3.out",
-               stagger: 0.2,
-               scrollTrigger: {
-                  trigger: ".process-steps-container",
-                  start: "top 75%",
-                  end: "bottom 20%",
-                  once: true,
-               },
-            }
-         );
+            // Animate process steps with stagger effect
+            gsap.from(
+               ".process-step",
+               {
+                  y: 80,
+                  opacity: 0,
+                  duration: 1,
+                  ease: "power3.out",
+                  stagger: 0.2,
+                  scrollTrigger: {
+                     trigger: ".process-steps-container",
+                     start: "top 75%",
+                     end: "bottom 20%",
+                     once: true,
+                  },
+               }
+            );
 
-         // Animate step numbers
-         gsap.from(
-            ".step-number",
-            {
-               scale: 0.8,
-               rotation: -10,
-               opacity: 0,
-               duration: 0.8,
-               ease: "back.out(1.7)",
-               stagger: 0.2,
-               delay: 0.1,
-               scrollTrigger: {
-                  trigger: ".process-steps-container",
-                  start: "top 75%",
-                  end: "bottom 20%",
-                  once: true,
-               },
-            }
-         );
+            // Animate step numbers
+            gsap.from(
+               ".step-number",
+               {
+                  scale: 0.8,
+                  rotation: -10,
+                  opacity: 0,
+                  duration: 0.8,
+                  ease: "back.out(1.7)",
+                  stagger: 0.2,
+                  delay: 0.1,
+                  scrollTrigger: {
+                     trigger: ".process-steps-container",
+                     start: "top 75%",
+                     end: "bottom 20%",
+                     once: true,
+                  },
+               }
+            );
 
-         // Animate call to action section
-         gsap.from(
-            ".process-cta",
-            {
-               y: 30,
-               opacity: 0,
-               duration: 1,
-               ease: "power3.out",
-               scrollTrigger: {
-                  trigger: ".process-cta",
-                  start: "top 90%",
-                  end: "bottom 20%",
-                  once: true,
-               },
-            }
-         );
+            // Animate call to action section
+            gsap.from(
+               ".process-cta",
+               {
+                  y: 30,
+                  opacity: 0,
+                  duration: 1,
+                  ease: "power3.out",
+                  scrollTrigger: {
+                     trigger: ".process-cta",
+                     start: "top 90%",
+                     end: "bottom 20%",
+                     once: true,
+                  },
+               }
+            );
+         };
+
+         // Delay to ensure ScrollSmoother is ready on first render
+         const timer = setTimeout(setupAnimations, 100);
+
+         return () => clearTimeout(timer);
       },
       { scope: processRef, dependencies: [isMobile] }
    );
@@ -220,7 +229,8 @@ function Process() {
                <div className="flex justify-center lg:justify-start">
                   <Button
                      variant="default"
-                     className="font-semibold text-sm sm:text-lg">
+                     className="font-semibold text-sm sm:text-lg"
+                     onClick={() => navigate('/contact')}>
                      Contact
                   </Button>
                </div>

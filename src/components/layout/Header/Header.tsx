@@ -12,17 +12,20 @@ function Header() {
    const [isMenuOpen, setIsMenuOpen] = useState(false);
    const headerRef = useRef<HTMLDivElement>(null);
 
-   useGSAP(() => {
-      if (headerRef.current) {
-         gsap.from(headerRef.current, {
-            y: -100,
-            opacity: 0,
-            duration: 0.5,
-            delay: 0.1,
-            ease: "power2.out",
-         });
-      }
-   }, { scope: headerRef });
+   useGSAP(
+      () => {
+         if (headerRef.current) {
+            gsap.from(headerRef.current, {
+               y: -100,
+               opacity: 0,
+               duration: 0.5,
+               delay: 0.1,
+               ease: "power2.out",
+            });
+         }
+      },
+      { scope: headerRef }
+   );
 
    const toggleMenu = () => {
       setIsMenuOpen(!isMenuOpen);
@@ -30,7 +33,7 @@ function Header() {
 
    return (
       <>
-         <div 
+         <div
             ref={headerRef}
             className="flex px-4 sm:px-6 md:px-8 lg:px-10 fixed top-4 sm:top-6 md:top-8 lg:top-9 z-10 justify-between items-center w-screen py-1 mix-blend-difference font-roboto ">
             <div className="flex items-center">
@@ -63,7 +66,10 @@ function Header() {
          </div>
 
          {/* Futuristic Menu Component */}
-         <FuturisticMenu isOpen={isMenuOpen} onClose={() => setIsMenuOpen(false)} />
+         <FuturisticMenu
+            isOpen={isMenuOpen}
+            onClose={() => setIsMenuOpen(false)}
+         />
       </>
    );
 }

@@ -52,6 +52,14 @@ body {
    margin: 0;
    padding: 0;
    -webkit-font-smoothing: antialiased;
+   /* Hide body initially to prevent flash of incorrect scroll position */
+   opacity: 0;
+   transition: opacity 0.3s ease-in-out;
+}
+
+body.loaded {
+   /* Show body after ScrollSmoother is ready */
+   opacity: 1;
 }
 
 @media (max-width: 640px) {

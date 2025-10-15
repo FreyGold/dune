@@ -4,16 +4,21 @@ import { useGSAPContext } from '../contexts/GSAPContext';
 
 export const RouteChangeListener = () => {
   const location = useLocation();
-  const { refreshScrollers } = useGSAPContext();
+  const { refreshScrollers, smoother } = useGSAPContext();
 
   useEffect(() => {
     // Refresh GSAP scrollers whenever the route changes
     const refreshTimer = setTimeout(() => {
       refreshScrollers();
-    }, 50); // Small delay to ensure DOM is updated
+
+      // Just scroll to top immediately - normal navigation
+      if (smoother.current) {
+        smoother.current.scrollTo(0, false);
+      }
+    }, 50);
 
     return () => clearTimeout(refreshTimer);
-  }, [location.pathname, refreshScrollers]);
+  }, [location.pathname, refreshScrollers, smoother]);
 
   return null; // This component doesn't render anything
 };
