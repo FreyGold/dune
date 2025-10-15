@@ -11,7 +11,7 @@ const ImageSection = memo(function ImageSection() {
    // Preload the background image for better performance
    useGSAP(() => {
       const img = new Image();
-      img.src = '/city-sundown.jpg';
+      img.src = "/city-sundown.jpg";
    }, []);
 
    useGSAP(() => {
@@ -28,13 +28,13 @@ const ImageSection = memo(function ImageSection() {
       };
 
       // Delay to ensure ScrollSmoother is ready
-      const timer = setTimeout(setupAnimations, 200);
+      const timer = setTimeout(setupAnimations, 100);
 
       return () => clearTimeout(timer);
    });
 
    return (
-      <section className="section w-full h-[80dvh] sm:h-[90dvh] md:h-[100dvh] relative overflow-hidden z-10 section-image">
+      <section className="section w-full h-[100dvh] relative overflow-hidden z-10 section-image">
          <div
             className={`w-full h-full bg-cover bg-center zoom inset-0 grid place-content-center transition-opacity duration-500 `}
             style={{

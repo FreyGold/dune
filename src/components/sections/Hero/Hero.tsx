@@ -48,7 +48,7 @@ const Hero = memo(function Hero() {
    });
 
    return (
-      <div className="w-full h-[80dvh] sm:h-[85dvh] md:h-[90dvh] relative flex justify-center items-center shrink-height">
+      <div className="w-full h-[100dvh] relative flex justify-center items-center shrink-height">
          <div className="flex flex-col justify-center items-center px-4 sm:px-6 md:px-8 lg:px-12">
             <div className="flex items-center gap-2 sm:gap-3 tracking-wide to-left">
                <Dot />

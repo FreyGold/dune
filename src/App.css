@@ -247,16 +247,16 @@ body,
    opacity: 0;
 }
 
-@keyframes float-scroll {
-   from {
-      transform: translateY(0);
+@keyframes scroll-left {
+   0% {
+      transform: translateX(0%);
    }
-   to {
-      transform: translateY(-10%);
+   100% {
+      transform: translateX(-50%);
    }
 }
 
-.scroll-anim {
-   animation: float-scroll linear;
-   animation-timeline: scroll(y);
+.animate-scroll-left {
+   animation: scroll-left 30s linear infinite;
+   display: flex;
 }

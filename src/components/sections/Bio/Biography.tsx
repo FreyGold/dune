@@ -35,7 +35,6 @@ const Biography = memo(function Biography() {
             <Intro />
          </div>
          <TechStack />
-         <div className="h-3 w-full bg-black relative top-1.5 z-1000"></div>
       </div>
    );
 });

@@ -14,40 +14,17 @@ gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
 
 export default function RootLayout() {
    const main = useRef(null);
-   const smoother = useRef<ScrollSmoother | null>(null);
 
    useGSAP(
       () => {
          // create the smooth scroller FIRST!
-         const smootherInstance = ScrollSmoother.create({
+         ScrollSmoother.create({
             wrapper: "#smooth-wrapper",
             content: "#smooth-content",
             smooth: 2,
             effects: true,
          });
 
-         smoother.current = smootherInstance;
-
-         // Pin the ImageSection while Biography scrolls over it
-         ScrollTrigger.create({
-            trigger: ".section-image", // The ImageSection itself
-            start: "top top", // When ImageSection reaches top of viewport
-            end: () =>
-               "+=" + document.querySelector(".biography")?.clientHeight, // Pin for the height of Biography
-            pin: true, // Pin the trigger element
-            pinSpacing: false, // Don't add space, let Biography overlap
-            scrub: true,
-         });
-         gsap.to(".dark-overlay", {
-            opacity: 0.7, // Adjust darkness level (0 = transparent, 1 = fully black)
-            scrollTrigger: {
-               trigger: ".section",
-               start: "top top",
-               end: () =>
-                  "+=" + document.querySelector(".biography")?.clientHeight,
-               scrub: true,
-            },
-         });
          // Refresh after DOM is ready
          setTimeout(() => {
             ScrollSmoother.refresh();
