@@ -1,24 +1,32 @@
-import { useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
-import { useGSAPContext } from '../contexts/GSAPContext';
+import { useEffect, useLayoutEffect } from "react";
+import { useLocation } from "react-router-dom";
+import { useGSAPContext } from "../contexts/GSAPContext";
 
 export const RouteChangeListener = () => {
-  const location = useLocation();
-  const { refreshScrollers, smoother } = useGSAPContext();
+   const location = useLocation();
+   const { refreshScrollers, smoother } = useGSAPContext();
 
-  useEffect(() => {
-    // Refresh GSAP scrollers whenever the route changes
-    const refreshTimer = setTimeout(() => {
-      refreshScrollers();
+   useLayoutEffect(() => {
+      // Hide content immediately
+      document.body.classList.remove("loaded");
 
-      // Just scroll to top immediately - normal navigation
       if (smoother.current) {
-        smoother.current.scrollTo(0, false);
+         smoother.current.scrollTo(0, false);
+         window.scrollTo(0, 0);
       }
-    }, 50);
+   }, [location.pathname, smoother]);
 
-    return () => clearTimeout(refreshTimer);
-  }, [location.pathname, refreshScrollers, smoother]);
+   useEffect(() => {
+      const refreshTimer = setTimeout(() => {
+         refreshScrollers();
 
-  return null; // This component doesn't render anything
+         requestAnimationFrame(() => {
+            document.body.classList.add("loaded");
+         });
+      }, 100);
+
+      return () => clearTimeout(refreshTimer);
+   }, [location.pathname, refreshScrollers, smoother]);
+
+   return null;
 };

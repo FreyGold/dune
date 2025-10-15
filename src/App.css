@@ -268,3 +268,6 @@ body,
    animation: scroll-left 30s linear infinite;
    display: flex;
 }
+body:not(.loaded) #smooth-content {
+   opacity: 0;
+}
