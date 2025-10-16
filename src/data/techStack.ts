@@ -234,13 +234,6 @@ export const techCategories: TechCategory[] = [
             color: "#0170FE",
          },
          {
-            name: "React Context",
-            icon: "SiReact",
-            category: "frameworks",
-            proficiency: "expert",
-            color: "#61DAFB",
-         },
-         {
             name: "GSAP",
             icon: "SiGreensock",
             category: "frameworks",

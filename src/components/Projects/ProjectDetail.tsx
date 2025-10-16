@@ -1,7 +1,7 @@
 import { useParams, Link } from "react-router-dom";
 import { useEffect } from "react";
-import { projects } from "../../../data/projects";
-import Button from "../../ui/Button";
+import { projects } from "../../data/projects";
+import Button from "../ui/Button";
 import { BiArrowBack, BiLinkExternal, BiLogoGithub } from "react-icons/bi";
 
 function ProjectDetail() {

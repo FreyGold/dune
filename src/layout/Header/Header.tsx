@@ -1,9 +1,9 @@
 import { BiSearch, BiPhone } from "react-icons/bi";
 import { Link, useLocation } from "react-router-dom";
-import Time from "../Header/Time";
+import Time from "./Time";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
-import Button from "../../ui/Button";
+import Button from "../../components/ui/Button";
 import { useState, useRef } from "react";
 import FuturisticMenu from "./FuturisticMenu";
 
