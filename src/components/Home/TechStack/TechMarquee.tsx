@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useMemo } from "react";
 import { getAllTechnologies } from "../../../data/techStack";
 
 import {
@@ -111,25 +111,20 @@ export default function TechMarquee() {
       return shuffled;
    };
 
-   const shuffledTechnologies = shuffleArray(technologies);
+   const shuffledTechnologies = useMemo(() => shuffleArray(technologies), [technologies]);
+
    // Reduced duplication from 2x to 1.5x for better performance
-   const duplicatedTechnologies = [
-      ...shuffledTechnologies.slice(
-         0,
-         Math.ceil(shuffledTechnologies.length / 2)
-      ),
+   const duplicatedTechnologies = useMemo(() => [
+      ...shuffledTechnologies.slice(0, Math.ceil(shuffledTechnologies.length / 2)),
       ...shuffledTechnologies,
-   ];
+   ], [shuffledTechnologies]);
 
    return (
       <div
          ref={marqueeRef}
          className="w-full flex justify-center items-center my-12 md:my-16">
          <div className="w-full overflow-hidden h-[50px] xs:h-[55px] sm:h-[70px] md:h-[90px] lg:h-[100px] flex items-center relative">
-            <div
-               className={`flex whitespace-nowrap ${
-                  isVisible ? "animate-marquee-optimized" : ""
-               }`}>
+            <div className={`flex whitespace-nowrap ${isVisible ? 'animate-marquee-optimized' : ''}`}>
                {/* Render icons for seamless loop - optimized for performance */}
                {duplicatedTechnologies.map((tech, i) => {
                   const IconComponent = iconMap[tech.icon];
@@ -138,8 +133,8 @@ export default function TechMarquee() {
                   return (
                      <div
                         key={`${tech.name}-${i}`}
-                        className="mx-4 xs:mx-6 sm:mx-8 md:mx-12 lg:mx-14 flex-shrink-0 group"
-                        style={{ willChange: "transform" }}>
+                        className="mx-4 xs:mx-6 sm:mx-8 md:mx-12 lg:mx-14 flex-shrink-0"
+                        style={{ willChange: 'transform' }}>
                         <IconComponent
                            size={48}
                            color={
@@ -149,7 +144,7 @@ export default function TechMarquee() {
                                  ? "#ffffffaa"
                                  : tech.color
                            }
-                           className="w-8 h-8 xs:w-10 xs:h-10 sm:w-12 sm:h-12 md:w-16 md:h-16 lg:w-20 lg:h-20 opacity-70 group-hover:opacity-100 transition-opacity duration-300 transform-gpu"
+                           className="w-8 h-8 xs:w-10 xs:h-10 sm:w-12 sm:h-12 md:w-16 md:h-16 lg:w-20 lg:h-20 opacity-70"
                         />
                      </div>
                   );

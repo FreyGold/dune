@@ -1,7 +1,18 @@
+import { useState, useEffect } from "react";
 import TechGrid from "./TechGrid";
 import TechMarquee from "./TechMarquee";
 
 function TechStack() {
+   const [isMobile, setIsMobile] = useState(false);
+
+   useEffect(() => {
+      const checkMobile = () => {
+         setIsMobile(window.innerWidth < 768);
+      };
+
+      checkMobile();
+   }, []);
+
    return (
       <div className="w-full min-h-screen h-auto bg-black relative z-20 tech-stack font-roboto">
          {/* Hero Section */}
@@ -21,8 +32,8 @@ function TechStack() {
             </div>
          </div>
 
-         {/* Animated Marquee Section - Hidden on mobile for performance and only when visible */}
-         <TechMarquee />
+         {/* Animated Marquee Section - Only show on desktop for performance */}
+         {!isMobile && <TechMarquee />}
 
          {/* Category Filter - Enhanced Typography */}
          <div className="px-3 sm:px-4 md:px-6 lg:px-8 xl:px-10 py-6 sm:py-8 md:py-12 lg:py-16">
