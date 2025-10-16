@@ -14,11 +14,7 @@ function TechStack() {
       };
 
       checkMobile();
-      window.addEventListener("resize", checkMobile);
-      return () => window.removeEventListener("resize", checkMobile);
    }, []);
-
-   // Intersection Observer for performance optimization
 
    const categories = [
       { id: "all", name: "All Technologies" },

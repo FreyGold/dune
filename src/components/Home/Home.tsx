@@ -41,7 +41,6 @@ export default function Home() {
             pin: true, // Pin the trigger element
             pinSpacing: false, // Don't add space, let Biography overlap
             scrub: true,
-            markers: true,
          });
          gsap.to(".dark-overlay", {
             opacity: 0.8, // Adjust darkness level (0 = transparent, 1 = fully black)

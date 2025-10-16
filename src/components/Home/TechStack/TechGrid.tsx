@@ -88,12 +88,10 @@ function TechGrid({ activeCategory }: TechGridProps) {
 
    useEffect(() => {
       const checkMobile = () => {
-         setIsMobile(window.innerWidth < 768);
+         setIsMobile(window.innerWidth < 1024);
       };
 
       checkMobile();
-      window.addEventListener("resize", checkMobile);
-      return () => window.removeEventListener("resize", checkMobile);
    }, []);
 
    const getTechnologies = (): Technology[] => {
@@ -125,22 +123,24 @@ function TechGrid({ activeCategory }: TechGridProps) {
                      onMouseEnter={() => !isMobile && setHoveredTech(tech.name)}
                      onMouseLeave={() => !isMobile && setHoveredTech(null)}>
                      <div
-                        className={`relative p-2 sm:p-4 md:p-6 bg-white/5 backdrop-blur-sm border border-white/10 rounded-lg transition-all duration-300 ${
+                        className={`relative p-2 sm:p-4 md:p-6 bg-white/5 backdrop-blur-sm border border-white/10 rounded-lg ${
                            isMobile
                               ? "hover:border-white/20"
-                              : "hover:border-white/30 hover:shadow-lg"
+                              : "hover:border-white/30 hover:shadow-lg transition-colors duration-200"
                         }`}
                         style={{
-                           willChange: isMobile ? 'auto' : 'transform',
-                           transform: isMobile ? 'none' : 'translateZ(0)', // Enable hardware acceleration
+                           willChange: isMobile ? "auto" : "transform",
+                           transform: isMobile ? "none" : "translateZ(0)", // Enable hardware acceleration
                         }}>
                         <div className="flex flex-col items-center text-center space-y-2 sm:space-y-3">
                            <div className="relative">
                               <IconComponent
                                  size={32}
                                  color={tech.color}
-                                 className={`sm:w-10 sm:h-10 md:w-12 md:h-12 w-8 h-8 transition-all duration-300 ${
-                                    !isMobile ? 'hover:scale-110' : ''
+                                 className={`sm:w-10 sm:h-10 md:w-12 md:h-12 w-8 h-8 ${
+                                    !isMobile
+                                       ? "hover:scale-110 transition-transform duration-200"
+                                       : ""
                                  }`}
                               />
                            </div>
@@ -167,7 +167,7 @@ function TechGrid({ activeCategory }: TechGridProps) {
             <div className="flex justify-center mt-6">
                <button
                   onClick={() => setShowAll(true)}
-                  className="px-6 py-2 bg-white/10 hover:bg-white/20 border border-white/20 rounded-lg text-white font-grotesk font-semibold uppercase text-sm transition-all duration-300">
+                  className="px-6 py-2 bg-white/10 hover:bg-white/20 border border-white/20 rounded-lg text-white font-grotesk font-semibold uppercase text-sm transition-colors duration-200">
                   Show More Technologies ({technologies.length - 12} remaining)
                </button>
             </div>
@@ -178,7 +178,7 @@ function TechGrid({ activeCategory }: TechGridProps) {
             <div className="flex justify-center mt-6">
                <button
                   onClick={() => setShowAll(false)}
-                  className="px-6 py-2 bg-white/10 hover:bg-white/20 border border-white/20 rounded-lg text-white font-grotesk font-semibold uppercase text-sm transition-all duration-300">
+                  className="px-6 py-2 bg-white/10 hover:bg-white/20 border border-white/20 rounded-lg text-white font-grotesk font-semibold uppercase text-sm transition-colors duration-200">
                   Show Less
                </button>
             </div>
