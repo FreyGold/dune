@@ -1,9 +1,10 @@
 import React, { useEffect, useRef } from "react";
 import { createPortal } from "react-dom";
 import { Link, useLocation } from "react-router-dom";
-import { BiSearch } from "react-icons/bi";
-import { FaInstagram, FaDribbble, FaTwitter } from "react-icons/fa";
+import { FaGithub, FaLinkedin } from "react-icons/fa";
+import Button from "../../components/ui/Button";
 import gsap from "gsap";
+import { FaXTwitter } from "react-icons/fa6";
 
 interface FuturisticMenuProps {
    isOpen: boolean;
@@ -86,6 +87,10 @@ const FuturisticMenu: React.FC<FuturisticMenuProps> = ({ isOpen, onClose }) => {
                {/* Ticker */}
                <div className="border border-[#252525] rounded-lg overflow-hidden mb-4 py-2 px-3">
                   <div className="flex items-center gap-3 whitespace-nowrap">
+                     <div className="flex items-center relative w-4 h-4">
+                        <div className="absolute w-3 h-[2px] bg-[#1d1d1f] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"></div>
+                        <div className="absolute w-3 h-[2px] bg-[#1d1d1f] rotate-90 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"></div>
+                     </div>
                      <span className="text-[#1d1d1f] text-xs font-mono uppercase font-medium">
                         Light mode coming soon
                      </span>
@@ -93,24 +98,15 @@ const FuturisticMenu: React.FC<FuturisticMenuProps> = ({ isOpen, onClose }) => {
                         <div className="absolute w-3 h-[2px] bg-[#1d1d1f] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"></div>
                         <div className="absolute w-3 h-[2px] bg-[#1d1d1f] rotate-90 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"></div>
                      </div>
-                     <span className="text-[#616162] text-xs font-mono uppercase font-medium">
-                        Visit store
-                     </span>
                   </div>
                </div>
 
-               {/* Search & Close */}
-               <div className="flex items-center justify-between">
-                  <div className="flex items-center justify-center w-10 h-10 rounded-lg border border-[#252525] hover:bg-white/5 transition-colors cursor-pointer">
-                     <BiSearch className="text-[#1d1d1f] text-xl" />
-                  </div>
-                  <button
+               <div className="flex items-center justify-end">
+                  <Button
                      onClick={handleClose}
-                     className="relative bg-white text-black px-6 py-3 rounded-lg font-bold text-xs uppercase overflow-hidden hover:bg-[#09f] transition-colors">
-                     <span className="relative z-10">Close</span>
-                     <div className="absolute bottom-0 right-0 w-2 h-2 bg-black transform rotate-45 translate-x-1/2 translate-y-1/2"></div>
-                     <div className="absolute top-0 left-0 w-2 h-2 bg-black transform rotate-45 -translate-x-1/2 -translate-y-1/2"></div>
-                  </button>
+                     className="hover:bg-[#09f] transition-colors">
+                     Close
+                  </Button>
                </div>
             </div>
 
@@ -182,37 +178,37 @@ const FuturisticMenu: React.FC<FuturisticMenuProps> = ({ isOpen, onClose }) => {
             <div className="border-t border-[#222] border-dashed">
                <div className="grid grid-cols-3">
                   <a
-                     href="https://www.instagram.com/"
+                     href="https://www.linkedin.com/in/ahmed-tawfik-458353165/"
                      target="_blank"
                      rel="noopener noreferrer"
                      className="group relative border-r border-[#222] border-dashed p-6 hover:bg-white/5 transition-all duration-300">
                      <div className="flex flex-col items-center gap-2">
                         <span className="text-xs text-gray-400 group-hover:text-white transition-colors font-mono">
-                           Instagram
+                           LinkedIn
                         </span>
                         <div className="w-full h-[1px] bg-[#1d1d1f] group-hover:bg-white transition-colors"></div>
                         <div className="transform group-hover:rotate-45 transition-transform duration-300">
-                           <FaInstagram className="text-white text-lg" />
+                           <FaLinkedin className="text-white text-lg" />
                         </div>
                      </div>
                   </a>
                   <a
-                     href="https://dribbble.com/"
+                     href="https://github.com/FreyGold"
                      target="_blank"
                      rel="noopener noreferrer"
                      className="group relative border-r border-[#222] border-dashed p-6 hover:bg-white/5 transition-all duration-300">
                      <div className="flex flex-col items-center gap-2">
                         <span className="text-xs text-gray-400 group-hover:text-white transition-colors font-mono">
-                           Dribbble
+                           GitHub
                         </span>
                         <div className="w-full h-[1px] bg-[#1d1d1f] group-hover:bg-white transition-colors"></div>
                         <div className="transform group-hover:rotate-45 transition-transform duration-300">
-                           <FaDribbble className="text-white text-lg" />
+                           <FaGithub className="text-white text-lg" />
                         </div>
                      </div>
                   </a>
                   <a
-                     href="https://twitter.com/"
+                     href="https://x.com/TeslaLeftArm"
                      target="_blank"
                      rel="noopener noreferrer"
                      className="group relative p-6 hover:bg-white/5 transition-all duration-300">
@@ -222,7 +218,7 @@ const FuturisticMenu: React.FC<FuturisticMenuProps> = ({ isOpen, onClose }) => {
                         </span>
                         <div className="w-full h-[1px] bg-[#1d1d1f] group-hover:bg-white transition-colors"></div>
                         <div className="transform group-hover:rotate-45 transition-transform duration-300">
-                           <FaTwitter className="text-white text-lg" />
+                           <FaXTwitter className="text-white text-lg" />
                         </div>
                      </div>
                   </a>

@@ -21,15 +21,30 @@ export default function Home() {
          // Pin the ImageSection while Biography scrolls over it
          ScrollTrigger.create({
             trigger: ".section-image", // The ImageSection itself
-            start: "top top", // When ImageSection reaches top of viewport
+            start: () => {
+               // Calculate responsive offset based on Hero and Image height relationship
+               const windowWidth = window.innerWidth;
+               const windowHeight = window.innerHeight;
+
+               let offset;
+
+               if (windowWidth < 768) {
+                  offset = Math.max(60, windowHeight * 0.2);
+               } else {
+                  offset = Math.max(80, windowHeight * 0.1);
+               }
+
+               return `top-=${Math.round(offset)} top`;
+            }, // When ImageSection reaches top of viewport with responsive offset
             end: () =>
                "+=" + document.querySelector(".biography")?.clientHeight, // Pin for the height of Biography
             pin: true, // Pin the trigger element
             pinSpacing: false, // Don't add space, let Biography overlap
             scrub: true,
+            markers: true,
          });
          gsap.to(".dark-overlay", {
-            opacity: 0.7, // Adjust darkness level (0 = transparent, 1 = fully black)
+            opacity: 0.8, // Adjust darkness level (0 = transparent, 1 = fully black)
             scrollTrigger: {
                trigger: ".section",
                start: "top top",

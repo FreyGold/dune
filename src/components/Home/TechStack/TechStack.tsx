@@ -6,7 +6,6 @@ import { techCategories } from "../../../data/techStack";
 function TechStack() {
    const [activeCategory, setActiveCategory] = useState<string>("all");
    const [isMobile, setIsMobile] = useState(false);
-   const [isVisible, setIsVisible] = useState(true);
    const sectionRef = useRef<HTMLDivElement>(null);
 
    useEffect(() => {
@@ -20,28 +19,6 @@ function TechStack() {
    }, []);
 
    // Intersection Observer for performance optimization
-   useEffect(() => {
-      const currentRef = sectionRef.current;
-      const observer = new IntersectionObserver(
-         ([entry]) => {
-            setIsVisible(entry.isIntersecting);
-         },
-         {
-            threshold: 0.1,
-            rootMargin: "50px",
-         }
-      );
-
-      if (currentRef) {
-         observer.observe(currentRef);
-      }
-
-      return () => {
-         if (currentRef) {
-            observer.unobserve(currentRef);
-         }
-      };
-   }, []);
 
    const categories = [
       { id: "all", name: "All Technologies" },
@@ -70,7 +47,7 @@ function TechStack() {
          </div>
 
          {/* Animated Marquee Section - Hidden on mobile for performance and only when visible */}
-         {!isMobile && isVisible && <TechMarquee />}
+         {!isMobile && <TechMarquee />}
 
          {/* Category Filter */}
          <div className="px-3 sm:px-4 md:px-6 lg:px-8 xl:px-10 py-6 sm:py-8 md:py-12 lg:py-16">

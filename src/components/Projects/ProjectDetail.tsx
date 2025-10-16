@@ -1,5 +1,5 @@
 import { useParams, Link } from "react-router-dom";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { projects } from "../../data/projects";
 import Button from "../ui/Button";
 import { BiArrowBack, BiLinkExternal, BiLogoGithub } from "react-icons/bi";
@@ -7,6 +7,19 @@ import { BiArrowBack, BiLinkExternal, BiLogoGithub } from "react-icons/bi";
 function ProjectDetail() {
    const { projectId } = useParams<{ projectId: string }>();
    const project = projects.find((p) => p.id === projectId);
+   const [isMobile, setIsMobile] = useState(false);
+
+   // Handle responsive background attachment
+   useEffect(() => {
+      const checkMobile = () => {
+         setIsMobile(window.innerWidth <= 768);
+      };
+
+      checkMobile();
+      window.addEventListener('resize', checkMobile);
+
+      return () => window.removeEventListener('resize', checkMobile);
+   }, []);
 
    // Scroll to top when component mounts
    useEffect(() => {
@@ -32,23 +45,26 @@ function ProjectDetail() {
    return (
       <div className="min-h-screen bg-black text-white pt-20 sm:pt-32 md:pt-40 animate-fade-in">
          {/* Hero Section */}
-         <div className="relative h-screen flex items-center justify-center">
+         <div className="relative min-h-[70vh] sm:min-h-[80vh] md:min-h-screen lg:min-h-screen flex items-center justify-center">
             <div
-               className="absolute inset-0 bg-cover bg-center"
-               style={{ backgroundImage: `url(${project.imageSrc})` }}
+               className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+               style={{
+                  backgroundImage: `url(${project.imageSrc})`,
+                  backgroundAttachment: isMobile ? 'scroll' : 'fixed'
+               }}
             />
             <div className="absolute inset-0 bg-black/60" />
 
             <div className="relative z-10 text-center px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16 max-w-4xl mx-auto">
-               <div className="mb-4">
-                  <span className="inline-block text-sm text-[#A3A3A3] uppercase tracking-wider mb-2">
+               <div className="mb-3 sm:mb-4">
+                  <span className="inline-block text-xs sm:text-sm text-[#A3A3A3] uppercase tracking-wider mb-2">
                      {project.category} • {project.year}
                   </span>
                </div>
-               <h1 className="font-grotesk text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl 3xl:text-8xl font-bold uppercase [word-spacing:-0.1rem] tracking-tight mb-4 sm:mb-6">
+               <h1 className="font-grotesk text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl 2xl:text-6xl 3xl:text-7xl font-bold uppercase [word-spacing:-0.1rem] tracking-tight mb-3 sm:mb-4 md:mb-6 leading-tight">
                   {project.title}
                </h1>
-               <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-[#A3A3A3] leading-relaxed max-w-3xl mx-auto mb-6 sm:mb-8">
+               <p className="text-sm sm:text-base md:text-lg lg:text-xl text-[#A3A3A3] leading-relaxed max-w-3xl mx-auto mb-4 sm:mb-6 md:mb-8 px-2">
                   {project.longDescription}
                </p>
 
@@ -116,11 +132,11 @@ function ProjectDetail() {
                      <h2 className="font-grotesk text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold uppercase mb-4 sm:mb-6 md:mb-8">
                         Project Gallery
                      </h2>
-                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                     <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
                         {project.images.slice(1).map((image, index) => (
                            <div
                               key={index}
-                              className="relative aspect-video overflow-hidden rounded-lg"
+                              className="relative aspect-[16/10] sm:aspect-[16/9] md:aspect-video overflow-hidden rounded-lg"
                               style={{
                                  clipPath:
                                     "polygon(0 0, calc(100% - 16px) 0, 100% 16px, 100% 100%, 16px 100%, 0 calc(100% - 16px))",
@@ -130,7 +146,8 @@ function ProjectDetail() {
                                  alt={`${project.title} screenshot ${
                                     index + 1
                                  }`}
-                                 className="object-cover w-full h-full"
+                                 className="object-cover w-full h-full transition-transform duration-300 hover:scale-105"
+                                 loading="lazy"
                               />
                            </div>
                         ))}
