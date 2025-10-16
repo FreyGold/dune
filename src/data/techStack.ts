@@ -244,8 +244,14 @@ export const techCategories: TechCategory[] = [
    },
 ];
 
+let _cachedAllTechnologies: Technology[] | null = null;
+
 export const getAllTechnologies = (): Technology[] => {
-   return techCategories.flatMap((category) => category.technologies);
+   if (_cachedAllTechnologies) return _cachedAllTechnologies;
+   _cachedAllTechnologies = techCategories.flatMap(
+      (category) => category.technologies
+   );
+   return _cachedAllTechnologies;
 };
 
 export const getTechnologiesByCategory = (categoryId: string): Technology[] => {

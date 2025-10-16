@@ -1,76 +1,6 @@
 import { useState, useEffect, useRef, useMemo } from "react";
 import { getAllTechnologies } from "../../../data/techStack";
-
-import {
-   SiReact,
-   SiNextdotjs,
-   SiTypescript,
-   SiTailwindcss,
-   SiJavascript,
-   SiHtml5,
-   SiCss3,
-   SiVite,
-   SiNodedotjs,
-   SiExpress,
-   SiNestjs,
-   SiSwagger,
-   SiGraphql,
-   SiMongodb,
-   SiPostgresql,
-   SiSupabase,
-   SiRedis,
-   SiGit,
-   SiGithub,
-   SiFigma,
-   SiPostman,
-   SiDocker,
-   SiPython,
-   SiCplusplus,
-   SiReactquery,
-   SiFramer,
-   SiGreensock,
-   SiReacthookform,
-   SiOpenjdk,
-   SiRedux,
-   SiAntdesign,
-} from "react-icons/si";
-
-const iconMap: Record<
-   string,
-   React.ComponentType<{ size?: number; color?: string; className?: string }>
-> = {
-   SiReact,
-   SiNextdotjs,
-   SiTypescript,
-   SiTailwindcss,
-   SiJavascript,
-   SiHtml5,
-   SiCss3,
-   SiVite,
-   SiNodedotjs,
-   SiExpress,
-   SiNestjs,
-   SiSwagger,
-   SiGraphql,
-   SiMongodb,
-   SiPostgresql,
-   SiSupabase,
-   SiRedis,
-   SiGit,
-   SiGithub,
-   SiFigma,
-   SiPostman,
-   SiDocker,
-   SiPython,
-   SiCplusplus,
-   SiReactquery,
-   SiFramer,
-   SiGreensock,
-   SiReacthookform,
-   SiOpenjdk,
-   SiRedux,
-   SiAntdesign,
-};
+import iconMap from "../../Icons/iconMap";
 
 export default function TechMarquee() {
    const [isVisible, setIsVisible] = useState(false);
@@ -99,7 +29,8 @@ export default function TechMarquee() {
       };
    }, []);
 
-   const technologies = getAllTechnologies();
+   // memoize the technologies list so repeated renders don't recreate arrays
+   const technologies = useMemo(() => getAllTechnologies(), []);
 
    // Shuffle function to randomize icon order
    const shuffleArray = function <T>(array: T[]): T[] {
@@ -111,20 +42,32 @@ export default function TechMarquee() {
       return shuffled;
    };
 
-   const shuffledTechnologies = useMemo(() => shuffleArray(technologies), [technologies]);
+   const shuffledTechnologies = useMemo(
+      () => shuffleArray(technologies),
+      [technologies]
+   );
 
    // Reduced duplication from 2x to 1.5x for better performance
-   const duplicatedTechnologies = useMemo(() => [
-      ...shuffledTechnologies.slice(0, Math.ceil(shuffledTechnologies.length / 2)),
-      ...shuffledTechnologies,
-   ], [shuffledTechnologies]);
+   const duplicatedTechnologies = useMemo(
+      () => [
+         ...shuffledTechnologies.slice(
+            0,
+            Math.ceil(shuffledTechnologies.length / 2)
+         ),
+         ...shuffledTechnologies,
+      ],
+      [shuffledTechnologies]
+   );
 
    return (
       <div
          ref={marqueeRef}
          className="w-full flex justify-center items-center my-12 md:my-16">
          <div className="w-full overflow-hidden h-[50px] xs:h-[55px] sm:h-[70px] md:h-[90px] lg:h-[100px] flex items-center relative">
-            <div className={`flex whitespace-nowrap ${isVisible ? 'animate-marquee-optimized' : ''}`}>
+            <div
+               className={`flex whitespace-nowrap ${
+                  isVisible ? "animate-marquee-optimized" : ""
+               }`}>
                {/* Render icons for seamless loop - optimized for performance */}
                {duplicatedTechnologies.map((tech, i) => {
                   const IconComponent = iconMap[tech.icon];
@@ -134,7 +77,7 @@ export default function TechMarquee() {
                      <div
                         key={`${tech.name}-${i}`}
                         className="mx-4 xs:mx-6 sm:mx-8 md:mx-12 lg:mx-14 flex-shrink-0"
-                        style={{ willChange: 'transform' }}>
+                        style={{ willChange: "transform" }}>
                         <IconComponent
                            size={48}
                            color={
