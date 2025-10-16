@@ -39,10 +39,7 @@ function TechStack() {
          <div className="px-3 sm:px-4 md:px-6 lg:px-8 xl:px-10 py-6 sm:py-8 md:py-12 lg:py-16">
             <div className="mb-8 sm:mb-10 md:mb-12 lg:mb-16">
                <div className="space-y-4">
-                  <h2 className="font-grotesk font-bold text-white text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl uppercase tracking-widest">
-                     Technologies & Tools
-                  </h2>
-                  <p className="text-white/70 font-grotesk text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl leading-relaxed max-w-4xl">
+                  <p className="text-white/70 font-roboto text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl leading-relaxed max-w-4xl">
                      A comprehensive collection of technologies I work with
                      across
                      <span className="text-white font-semibold">

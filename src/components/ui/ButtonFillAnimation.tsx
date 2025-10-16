@@ -10,6 +10,7 @@ type HoverFillProps = {
   invertTextOnFill?: boolean;
   className?: string;
   clipPath?: string;
+  variant?: 'default' | 'small' | 'large' | 'selected';
 };
 
 export default function ButtonFillAnimation({
@@ -21,12 +22,13 @@ export default function ButtonFillAnimation({
   invertTextOnFill = false,
   className = "",
   clipPath,
+  variant = 'default',
 }: HoverFillProps) {
   const [hovered, setHovered] = useState(false);
   const fillRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    if (fillRef.current) {
+    if (fillRef.current && variant !== 'selected') {
       if (hovered) {
         gsap.to(fillRef.current, {
           width: '100%',
@@ -41,15 +43,34 @@ export default function ButtonFillAnimation({
         });
       }
     }
-  }, [hovered, duration]);
+  }, [hovered, duration, variant]);
+
+  const getTextColor = () => {
+    if (hovered && invertTextOnFill && variant !== 'selected') return "#ffffff";
+
+    // Handle selected variant - white text on dark background
+    if (variant === 'selected') {
+      return "#ffffff";
+    }
+
+    // Dark text for light backgrounds, light text for dark backgrounds
+    return baseColor === "#ffffff" || baseColor === "#f3f4f6" ? "#000000" : "#ffffff";
+  };
+
+  const getBackgroundColor = () => {
+    // Handle selected variant - use dark background
+    if (variant === 'selected') {
+      return "#1f2937";
+    }
+    return baseColor;
+  };
 
   const childElement = children as React.ReactElement<React.HTMLAttributes<HTMLElement>>;
   const cloned = cloneElement(childElement, {
     style: {
       ...childElement.props?.style,
       background: "transparent",
-      color:
-        hovered && invertTextOnFill ? "#ffffff" : childElement.props?.style?.color,
+      color: getTextColor(),
       clipPath: undefined, // Remove clipPath from button
     },
     className: `${childElement.props?.className ?? ""} relative z-20`,
@@ -63,7 +84,7 @@ export default function ButtonFillAnimation({
       onMouseLeave={() => setHovered(false)}>
       <div
         className="absolute inset-0"
-        style={{ background: baseColor, zIndex: 0 }}
+        style={{ background: getBackgroundColor(), zIndex: 0 }}
       />
       <div
         ref={fillRef}

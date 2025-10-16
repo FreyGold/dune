@@ -19,11 +19,11 @@ function TechItem({ tech }: Props) {
                   {/* rely on Tailwind for responsive sizing; avoid inline size prop so classes control layout */}
                   <IconComponent
                      color={tech.color}
-                     className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12"
+                     className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 mb-2"
                   />
                </div>
                <div className="w-full flex-1 flex items-center">
-                  <h3 className="font-grotesk font-semibold text-white text-sm sm:text-base md:text-sm uppercase tracking-wide truncate w-full leading-tight">
+                  <h3 className="font-roboto font-semibold text-white/80 text-sm sm:text-base md:text-lg uppercase tracking-wide truncate w-full leading-tight">
                      {tech.name}
                   </h3>
                </div>

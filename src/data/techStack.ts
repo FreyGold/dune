@@ -39,7 +39,7 @@ export const techCategories: TechCategory[] = [
             icon: "SiNextdotjs",
             category: "frontend",
             proficiency: "expert",
-            color: "#000000",
+            color: "#ffffff",
          },
          {
             name: "TypeScript",
@@ -103,7 +103,7 @@ export const techCategories: TechCategory[] = [
             icon: "SiExpress",
             category: "backend",
             proficiency: "advanced",
-            color: "#000000",
+            color: "#ffffff",
          },
          {
             name: "NestJS",
@@ -181,7 +181,7 @@ export const techCategories: TechCategory[] = [
             icon: "SiGithub",
             category: "tools",
             proficiency: "expert",
-            color: "#181717",
+            color: "#ffffff",
          },
          {
             name: "VS Code",
