@@ -1,5 +1,6 @@
 import type { Project } from "../../../data/projects";
 import { useNavigate } from "react-router-dom";
+import { useRef } from "react";
 
 interface ProjectCardProps {
    project: Project;
@@ -8,27 +9,69 @@ interface ProjectCardProps {
 
 function ProjectCard({ project, textColor = "text-white" }: ProjectCardProps) {
    const navigate = useNavigate();
+   const videoRef = useRef<HTMLVideoElement>(null);
 
    const handleClick = () => {
       navigate(`/projects/${project.id}`);
    };
 
+   // Use dedicated video source if available
+   const videoFile = project.videoSrc;
+
+   // Handle video hover interactions
+   const handleMouseEnter = () => {
+      const video = videoRef.current;
+      if (video && videoFile) {
+         video.playbackRate = 2;
+         video.play().catch(console.error);
+      }
+   };
+
+   const handleMouseLeave = () => {
+      const video = videoRef.current;
+      if (video && videoFile) {
+         video.pause();
+         video.currentTime = 0; // Reset to first frame
+      }
+   };
+
    return (
       <div
          className="h-full relative project-card w-full overflow-hidden hover:scale-105 sm:hover:scale-103 transition-transform duration-300 ease-out cursor-pointer"
-         style={
-            {
-               aspectRatio: "16 / 9",
-               clipPath:
-                  "polygon(0 0, calc(100% - 32px) 0, 100% 32px, 100% 100%, 32px 100%, 0 calc(100% - 32px))",
-            } as React.CSSProperties
-         }
-         onClick={handleClick}>
-         <img
-            src={project.imageSrc}
-            alt={project.alt}
-            className="absolute inset-0 object-cover object-center w-full h-full"
-         />
+         style={{
+            aspectRatio: "16 / 9",
+            clipPath:
+               "polygon(0 0, calc(100% - 32px) 0, 100% 32px, 100% 100%, 32px 100%, 0 calc(100% - 32px))",
+         } as React.CSSProperties}
+         onClick={handleClick}
+         onMouseEnter={handleMouseEnter}
+         onMouseLeave={handleMouseLeave}>
+         {videoFile ? (
+            <video
+               ref={videoRef}
+               src={videoFile}
+               autoPlay
+               loop
+               muted
+               playsInline
+               preload="metadata"
+               className="absolute inset-0 object-cover object-center w-full h-full"
+               onLoadedData={(e) => {
+                  const video = e.currentTarget;
+                  video.playbackRate = 2;
+                  video.play().catch(console.error);
+               }}
+               onError={(e) => {
+                  console.error('Video failed to load:', videoFile, e);
+               }}
+            />
+         ) : (
+            <img
+               src={project.imageSrc}
+               alt={project.alt}
+               className="absolute inset-0 object-cover object-center w-full h-full"
+            />
+         )}
          <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
          <h3
             className={`${textColor} absolute bottom-3 left-3 sm:bottom-4 sm:left-4 md:bottom-6 md:left-6 font-medium sm:font-semibold text-lg sm:text-xl md:text-2xl uppercase font-grotesk tracking-tight mix-blend-difference`}>

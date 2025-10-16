@@ -1,7 +1,6 @@
 import { useParams, Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { projects } from "../../data/projects";
-import Button from "../ui/Button";
 import { BiArrowBack, BiLinkExternal, BiLogoGithub } from "react-icons/bi";
 
 function ProjectDetail() {
@@ -9,16 +8,15 @@ function ProjectDetail() {
    const project = projects.find((p) => p.id === projectId);
    const [isMobile, setIsMobile] = useState(false);
 
-   // Handle responsive background attachment
    useEffect(() => {
       const checkMobile = () => {
          setIsMobile(window.innerWidth <= 768);
       };
 
       checkMobile();
-      window.addEventListener('resize', checkMobile);
+      window.addEventListener("resize", checkMobile);
 
-      return () => window.removeEventListener('resize', checkMobile);
+      return () => window.removeEventListener("resize", checkMobile);
    }, []);
 
    // Scroll to top when component mounts
@@ -46,19 +44,36 @@ function ProjectDetail() {
       <div className="min-h-screen bg-black text-white pt-20 sm:pt-32 md:pt-40 animate-fade-in">
          {/* Hero Section */}
          <div className="relative min-h-[70vh] sm:min-h-[80vh] md:min-h-screen lg:min-h-screen flex items-center justify-center">
-            <div
-               className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-               style={{
-                  backgroundImage: `url(${project.imageSrc})`,
-                  backgroundAttachment: isMobile ? 'scroll' : 'fixed'
-               }}
-            />
+            {project.videoSrc ? (
+               <video
+                  src={project.videoSrc}
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
+                  className="absolute inset-0 object-cover w-full h-full"
+                  style={{
+                     objectFit: "cover",
+                  }}
+                  onLoadedData={(e) => {
+                     e.currentTarget.playbackRate = 1;
+                  }}
+               />
+            ) : (
+               <div
+                  className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+                  style={{
+                     backgroundImage: `url(${project.imageSrc})`,
+                     backgroundAttachment: isMobile ? "scroll" : "fixed",
+                  }}
+               />
+            )}
             <div className="absolute inset-0 bg-black/60" />
 
             <div className="relative z-10 text-center px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16 max-w-4xl mx-auto">
                <div className="mb-3 sm:mb-4">
                   <span className="inline-block text-xs sm:text-sm text-[#A3A3A3] uppercase tracking-wider mb-2">
-                     {project.category} • {project.year}
+                     {project.year}
                   </span>
                </div>
                <h1 className="font-grotesk text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl 2xl:text-6xl 3xl:text-7xl font-bold uppercase [word-spacing:-0.1rem] tracking-tight mb-3 sm:mb-4 md:mb-6 leading-tight">
@@ -92,19 +107,6 @@ function ProjectDetail() {
                   )}
                </div>
             </div>
-
-            {/* Back Button */}
-            <Link
-               to="/projects"
-               className="absolute top-4 left-4 sm:top-6 sm:left-6 md:top-8 md:left-8">
-               <Button
-                  textSize="text-sm"
-                  variant="small"
-                  className="flex items-center gap-2 ">
-                  <BiArrowBack />
-                  Return
-               </Button>
-            </Link>
          </div>
 
          {/* Project Details */}
@@ -133,24 +135,37 @@ function ProjectDetail() {
                         Project Gallery
                      </h2>
                      <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
-                        {project.images.slice(1).map((image, index) => (
-                           <div
-                              key={index}
-                              className="relative aspect-[16/10] sm:aspect-[16/9] md:aspect-video overflow-hidden rounded-lg"
-                              style={{
-                                 clipPath:
-                                    "polygon(0 0, calc(100% - 16px) 0, 100% 16px, 100% 100%, 16px 100%, 0 calc(100% - 16px))",
-                              }}>
-                              <img
-                                 src={image}
-                                 alt={`${project.title} screenshot ${
-                                    index + 1
-                                 }`}
-                                 className="object-cover w-full h-full transition-transform duration-300 hover:scale-105"
-                                 loading="lazy"
-                              />
-                           </div>
-                        ))}
+                        {project.images.map((media, index) => {
+                           const isVideo = media.endsWith(".mp4");
+                           return (
+                              <div
+                                 key={index}
+                                 className="relative aspect-[16/10] sm:aspect-[16/9] md:aspect-video overflow-hidden rounded-lg"
+                                 style={{
+                                    clipPath:
+                                       "polygon(0 0, calc(100% - 16px) 0, 100% 16px, 100% 100%, 16px 100%, 0 calc(100% - 16px))",
+                                 }}>
+                                 {isVideo ? (
+                                    <video
+                                       src={media}
+                                       controls
+                                       className="object-cover w-full h-full transition-transform duration-300 hover:scale-105">
+                                       Your browser does not support the video
+                                       tag.
+                                    </video>
+                                 ) : (
+                                    <img
+                                       src={media}
+                                       alt={`${project.title} screenshot ${
+                                          index + 1
+                                       }`}
+                                       className="object-cover w-full h-full transition-transform duration-300 hover:scale-105"
+                                       loading="lazy"
+                                    />
+                                 )}
+                              </div>
+                           );
+                        })}
                      </div>
                   </div>
                )}

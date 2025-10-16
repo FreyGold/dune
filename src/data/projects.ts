@@ -10,8 +10,8 @@ export interface Project {
    githubUrl?: string;
    liveUrl?: string;
    featured: boolean;
-   category: string;
    year: string;
+   videoSrc?: string;
    images?: string[];
 }
 
@@ -21,45 +21,47 @@ export const projects: Project[] = [
       imageSrc: "/project-1.png",
       title: "Admin Dashboard",
       alt: "Project 1 showcase",
-      description: "A comprehensive admin dashboard for managing business operations",
-      longDescription: "This admin dashboard provides a complete solution for managing business operations with real-time analytics, user management, and data visualization. Built with modern web technologies, it offers a responsive design that works seamlessly across all devices.",
-      technologies: ["React", "TypeScript", "Tailwind CSS", "Chart.js", "Node.js"],
+      description:
+         "A comprehensive admin dashboard for managing business operations",
+      longDescription:
+         "This admin dashboard provides a complete solution for managing business operations with real-time analytics, user management, and data visualization. this was a project i built during my internship at Buguard LLC",
+      technologies: ["React", "TypeScript", "Tailwind", "Ant Design"],
       githubUrl: "https://github.com/username/admin-dashboard",
-      liveUrl: "https://admin-dashboard-demo.com",
+      liveUrl: "celebrated-madeleine-a0f4ce.netlify.app",
       featured: true,
-      category: "Web Application",
-      year: "2024",
-      images: ["/project-1.png", "/project-1-detail-1.png", "/project-1-detail-2.png"]
+      year: "2025",
+      images: ["/project-1.png"],
    },
    {
       id: "project-2",
       imageSrc: "/project-2.png",
       title: "Linktree",
       alt: "Project 2 showcase",
-      description: "A customizable link aggregation platform for social media",
-      longDescription: "A modern take on link-in-bio solutions, allowing users to create beautiful, customizable landing pages that aggregate all their important links in one place. Features drag-and-drop customization and analytics tracking.",
-      technologies: ["Next.js", "React", "Prisma", "PostgreSQL", "Vercel"],
-      githubUrl: "https://github.com/username/linktree-clone",
-      liveUrl: "https://my-linktree-demo.com",
+      description: "A clone of Linktree landing page",
+      longDescription:
+         "This was a collaboration with a friend, we tried to replicate the Linktree landing page from scratch, it was a fun project that didn't take much time but it was a good experience trying to make it look like the original, the hardest challenge of it was the 3D profile card, because i thought it was done using 3js and spent hours trying to do it, just to find out it can be done using css",
+      technologies: ["Next.js", "Tailwind", "TypeScript"],
+      githubUrl: "https://github.com/FreyGold/linktree-clone",
+      liveUrl: "https://moonlit-pothos-8a850c.netlify.app/",
       featured: true,
-      category: "Web Application",
-      year: "2023",
-      images: ["/project-2.png", "/project-2-detail-1.png"]
+      year: "2025",
+      videoSrc: "/project-2/vid.mp4",
+      images: ["/project-2/1.png", "/project-2/2.png", "/project-2/vid.mp4"],
    },
    {
       id: "project-3",
       imageSrc: "/project-3.png",
       title: "Dashstack",
       alt: "Project 3 showcase",
-      description: "A modular dashboard framework for rapid prototyping",
-      longDescription: "Dashstack is a flexible dashboard framework that enables rapid prototyping and development of data visualization interfaces. It includes pre-built components, theming system, and extensive customization options.",
-      technologies: ["Vue.js", "D3.js", "SCSS", "Webpack", "Express.js"],
-      githubUrl: "https://github.com/username/dashstack",
-      liveUrl: "https://dashstack-demo.com",
+      description: "A dashboard for short linking and managing pdf files",
+      longDescription:
+         "This dashboard provides an uploader for pdf files and a short linker for them, we used supabase to handle auth and file uploading, we provided both arabic and english languages using nextintl",
+      technologies: ["Next.js", "ReactPDF", "Tailwind", "NextIntl", "Supabase"],
+      githubUrl: "https://github.com/MohammedAmr04/dash-stack",
+      liveUrl: "https://animated-crumble-7e3d4f.netlify.app/en/login",
       featured: true,
-      category: "Framework",
-      year: "2023",
-      images: ["/project-3.png", "/project-3-detail-1.png", "/project-3-detail-2.png"]
+      year: "2025",
+      images: ["/project-3.png"],
    },
    {
       id: "project-4",
@@ -67,13 +69,27 @@ export const projects: Project[] = [
       title: "TODO",
       alt: "Project 4 showcase",
       description: "A collaborative task management application",
-      longDescription: "A modern task management application with real-time collaboration features, team workspaces, and advanced project tracking capabilities. Designed for remote teams to stay organized and productive.",
-      technologies: ["React", "Socket.io", "MongoDB", "Express.js", "JWT"],
-      githubUrl: "https://github.com/username/todo-app",
-      liveUrl: "https://todo-app-demo.com",
+      longDescription:
+         "This project was built during my internship at Buguard LLC, I had to implement a drag and drop functionality using dragndrop lib, and also use ant design for the first time, I reached a pretty good result at the end, unfortunately the json-server doesn't work on vercel so reading and writing are not available in the preview",
+      technologies: [
+         "React",
+         "Drag'n'Drop",
+         "Auth0",
+         "json-server",
+         "Ant Design",
+      ],
+      githubUrl: "https://github.com/FreyGold/AntD/",
+      liveUrl: "https://ant-d-weld.vercel.app/login",
       featured: true,
-      category: "Web Application",
-      year: "2024",
-      images: ["/project-4.png", "/project-4-detail-1.png"]
-   }
+      year: "2025",
+      videoSrc: "/project-4/vid1.mp4",
+      images: [
+         "/project-4/1.png",
+         "/project-4/2.png",
+         "/project-4/3.png",
+         "/project-4/4.png",
+         "/project-4/5.png",
+         "/project-4/vid.mp4",
+      ],
+   },
 ];
