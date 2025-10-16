@@ -1,7 +1,6 @@
 import { useParams, Link } from "react-router-dom";
 import { useEffect } from "react";
 import { projects } from "../../../data/projects";
-import NoiseOverlay from "../../ui/NoiseOverlay";
 import Button from "../../ui/Button";
 import { BiArrowBack, BiLinkExternal, BiLogoGithub } from "react-icons/bi";
 
@@ -39,7 +38,6 @@ function ProjectDetail() {
                style={{ backgroundImage: `url(${project.imageSrc})` }}
             />
             <div className="absolute inset-0 bg-black/60" />
-            <NoiseOverlay type="hero" />
 
             <div className="relative z-10 text-center px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16 max-w-4xl mx-auto">
                <div className="mb-4">

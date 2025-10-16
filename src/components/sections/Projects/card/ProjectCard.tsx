@@ -1,5 +1,4 @@
 import type { Project } from "../../../../data/projects";
-import NoiseOverlay from "../../../ui/NoiseOverlay";
 import { useNavigate } from "react-router-dom";
 
 interface ProjectCardProps {
@@ -34,7 +33,6 @@ function ProjectCard({ project, textColor = "text-white" }: ProjectCardProps) {
             className={`${textColor} absolute bottom-3 left-3 sm:bottom-4 sm:left-4 md:bottom-6 md:left-6 font-medium sm:font-semibold text-lg sm:text-xl md:text-2xl uppercase font-grotesk tracking-tight mix-blend-difference`}>
             {project.title}
          </h3>
-         <NoiseOverlay type="card" />
       </div>
    );
 }

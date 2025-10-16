@@ -49,7 +49,7 @@ export const techCategories: TechCategory[] = [
             color: "#3178C6",
          },
          {
-            name: "Tailwind CSS",
+            name: "Tailwind",
             icon: "SiTailwindcss",
             category: "frontend",
             proficiency: "expert",
@@ -213,7 +213,7 @@ export const techCategories: TechCategory[] = [
          "Additional frameworks and libraries that enhance development",
       technologies: [
          {
-            name: "Redux Toolkit",
+            name: "Redux",
             icon: "SiRedux",
             category: "frameworks",
             proficiency: "advanced",

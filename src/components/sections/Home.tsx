@@ -56,8 +56,8 @@ export default function Home() {
          </div>
          <Suspense fallback={<div className="h-screen bg-black" />}>
             <Featured />
-            <Process />
             <TechStack />
+            <Process />
          </Suspense>
       </>
    );

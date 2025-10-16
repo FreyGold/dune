@@ -1,7 +1,6 @@
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import NoiseOverlay from "../../ui/NoiseOverlay";
 import { memo } from "react";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -40,7 +39,6 @@ const ImageSection = memo(function ImageSection() {
             style={{
                backgroundImage: "url('/city-sundown.jpg')",
             }}></div>
-         <NoiseOverlay />
          <div className="dark-overlay absolute inset-0 bg-black opacity-0 z-10"></div>
       </section>
    );

@@ -1,3 +1,4 @@
+import { useState, useEffect, useRef } from "react";
 import { getAllTechnologies } from "../../../data/techStack";
 
 import {
@@ -72,6 +73,32 @@ const iconMap: Record<
 };
 
 export default function TechMarquee() {
+   const [isVisible, setIsVisible] = useState(false);
+   const marqueeRef = useRef<HTMLDivElement>(null);
+
+   useEffect(() => {
+      const currentRef = marqueeRef.current;
+      const observer = new IntersectionObserver(
+         ([entry]) => {
+            setIsVisible(entry.isIntersecting);
+         },
+         {
+            threshold: 0.1,
+            rootMargin: "50px",
+         }
+      );
+
+      if (currentRef) {
+         observer.observe(currentRef);
+      }
+
+      return () => {
+         if (currentRef) {
+            observer.unobserve(currentRef);
+         }
+      };
+   }, []);
+
    const technologies = getAllTechnologies();
 
    // Shuffle function to randomize icon order
@@ -85,17 +112,17 @@ export default function TechMarquee() {
    };
 
    const shuffledTechnologies = shuffleArray(technologies);
-   // Reduced duplication from 4x to 2x for better performance
+   // Reduced duplication from 2x to 1.5x for better performance
    const duplicatedTechnologies = [
-      ...shuffledTechnologies,
+      ...shuffledTechnologies.slice(0, Math.ceil(shuffledTechnologies.length / 2)),
       ...shuffledTechnologies,
    ];
 
    return (
-      <div className="w-full flex justify-center items-center my-12 md:my-16">
+      <div ref={marqueeRef} className="w-full flex justify-center items-center my-12 md:my-16">
          <div className="w-full overflow-hidden h-[50px] xs:h-[55px] sm:h-[70px] md:h-[90px] lg:h-[100px] flex items-center relative">
-            <div className={`flex animate-marquee-slow whitespace-nowrap`}>
-               {/* Render icons twice for seamless loop - reduced from 4x for performance */}
+            <div className={`flex whitespace-nowrap ${isVisible ? 'animate-marquee-optimized' : ''}`}>
+               {/* Render icons for seamless loop - optimized for performance */}
                {duplicatedTechnologies.map((tech, i) => {
                   const IconComponent = iconMap[tech.icon];
                   if (!IconComponent) return null;
@@ -103,7 +130,8 @@ export default function TechMarquee() {
                   return (
                      <div
                         key={`${tech.name}-${i}`}
-                        className="mx-4 xs:mx-6 sm:mx-8 md:mx-12 lg:mx-14 flex-shrink-0 group">
+                        className="mx-4 xs:mx-6 sm:mx-8 md:mx-12 lg:mx-14 flex-shrink-0 group"
+                        style={{ willChange: 'transform' }}>
                         <IconComponent
                            size={48}
                            color={
@@ -113,7 +141,7 @@ export default function TechMarquee() {
                                  ? "#ffffffaa"
                                  : tech.color
                            }
-                           className="w-8 h-8 xs:w-10 xs:h-10 sm:w-12 sm:h-12 md:w-16 md:h-16 lg:w-20 lg:h-20 opacity-70 group-hover:opacity-100 transition-opacity duration-300"
+                           className="w-8 h-8 xs:w-10 xs:h-10 sm:w-12 sm:h-12 md:w-16 md:h-16 lg:w-20 lg:h-20 opacity-70 group-hover:opacity-100 transition-opacity duration-300 transform-gpu"
                         />
                      </div>
                   );
