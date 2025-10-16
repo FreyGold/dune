@@ -7,8 +7,10 @@ import {
 import TechItem from "./TechItem";
 import Button from "../../ui/Button";
 function TechGrid() {
-   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
-   const [isAllSelected, setIsAllSelected] = useState(false);
+   const [selectedCategory, setSelectedCategory] = useState<string | null>(
+      null
+   );
+   const [isAllSelected, setIsAllSelected] = useState(true);
 
    // memoize technologies to keep stable reference between renders
    const technologies = useMemo(() => getAllTechnologies(), []);
@@ -29,7 +31,7 @@ function TechGrid() {
                   setSelectedCategory(null);
                   setIsAllSelected(true);
                }}
-               variant={isAllSelected ? 'selected' : 'small'}>
+               variant={isAllSelected ? "selected" : "small"}>
                All
             </Button>
             {techCategories.map((category) => (
@@ -39,7 +41,9 @@ function TechGrid() {
                      setSelectedCategory(category.id);
                      setIsAllSelected(false);
                   }}
-                  variant={selectedCategory === category.id ? 'selected' : 'small'}>
+                  variant={
+                     selectedCategory === category.id ? "selected" : "small"
+                  }>
                   {category.name}
                </Button>
             ))}
