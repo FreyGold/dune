@@ -11,6 +11,7 @@ export interface Project {
    liveUrl?: string;
    featured: boolean;
    year: string;
+   comingSoon?: boolean;
    videoSrc?: string;
    images?: string[];
 }
@@ -30,6 +31,7 @@ export const projects: Project[] = [
       liveUrl: "celebrated-madeleine-a0f4ce.netlify.app",
       featured: true,
       year: "2025",
+      comingSoon: true,
       images: ["/project-1.png"],
    },
    {
@@ -70,7 +72,7 @@ export const projects: Project[] = [
       alt: "Project 4 showcase",
       description: "A collaborative task management application",
       longDescription:
-         "This project was built during my internship at Buguard LLC, I had to implement a drag and drop functionality using dragndrop lib, and also use ant design for the first time, I reached a pretty good result at the end, unfortunately the json-server doesn't work on vercel so reading and writing are not available in the preview",
+         "This project was built during my internship at Buguard LLC, I had to implement a drag and drop functionality using dragndrop lib, And also use ant design for the first time, I reached a pretty good result at the end, Unfortunately the json-server doesn't work on vercel so reading and writing are not available in the live demo",
       technologies: [
          "React",
          "Drag'n'Drop",

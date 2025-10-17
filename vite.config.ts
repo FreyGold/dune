@@ -63,8 +63,8 @@ export default defineConfig({
     warmup: {
       clientFiles: [
         './src/App.tsx',
-        './src/components/sections/Hero/Hero.tsx',
-        './src/components/layout/Header/Header.tsx',
+        './src/components/Home/Hero/Hero.tsx',
+        './src/layout/Header/Header.tsx',
       ],
     },
   },

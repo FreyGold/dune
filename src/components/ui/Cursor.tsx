@@ -3,8 +3,9 @@ import { useState, useEffect, useRef, memo } from "react";
 function CursorEffect() {
    const [pos, setPos] = useState({ x: 0, y: 0 });
    const [hovered, setHovered] = useState(false);
-   const [clickmed, setClickmed] = useState(false);
    const [projectCardHovered, setProjectCardHovered] = useState(false);
+   const [comingSoonHovered, setComingSoonHovered] = useState(false);
+   const [clickmed, setClickmed] = useState(false);
    const rafRef = useRef<number | null>(null);
 
    // Use RAF for smooth, performant cursor tracking
@@ -39,6 +40,9 @@ function CursorEffect() {
          if (target.closest(".project-card")) {
             setProjectCardHovered(true);
          }
+         if (target.closest('[data-coming-soon="true"]')) {
+            setComingSoonHovered(true);
+         }
          if (target.closest(".click-me")) {
             setClickmed(true);
             console.log("here");
@@ -62,6 +66,14 @@ function CursorEffect() {
             setProjectCardHovered(false);
          }
 
+         // Only set comingSoonHovered to false if we're not moving to another coming soon element
+         if (
+            target.closest('[data-coming-soon="true"]') &&
+            !relatedTarget?.closest('[data-coming-soon="true"]')
+         ) {
+            setComingSoonHovered(false);
+         }
+
          // Only set clickmed to false if we're not moving to another click-me element
          if (
             target.closest(".click-me") &&
@@ -77,6 +89,7 @@ function CursorEffect() {
             // Reset cursor state when clicking project cards
             setProjectCardHovered(false);
             setHovered(false);
+            setComingSoonHovered(false);
          }
       };
 
@@ -92,7 +105,7 @@ function CursorEffect() {
    }, []);
 
    if (window.innerWidth < 768) return null;
-   const cursor = projectCardHovered || clickmed;
+   const cursor = projectCardHovered || clickmed || comingSoonHovered;
    return (
       <div
          className={`pointer-events-none fixed top-0 left-0 z-100 transition-all duration-300 ease-out hidden sm:block ${
@@ -114,7 +127,7 @@ function CursorEffect() {
                }) translate(-50%, -50%)`,
                transformOrigin: "center",
             }}>
-            {projectCardHovered && (
+            {projectCardHovered && !comingSoonHovered && (
                <span
                   className={`text-black text-2xl font-roboto font-bold uppercase transition-all duration-300 ease-out ${
                      projectCardHovered ? "opacity-100" : "opacity-0"
@@ -132,6 +145,15 @@ function CursorEffect() {
                      padding: clickmed ? "8px 16px" : "0px",
                   }}>
                   Click!
+               </span>
+            )}
+            {comingSoonHovered && (
+               <span
+                  className={`text-black text-2xl font-roboto font-bold uppercase transition-all duration-300 ease-out`}
+                  style={{
+                     padding: comingSoonHovered ? "8px 16px" : "0px",
+                  }}>
+                  Soon
                </span>
             )}
          </div>
