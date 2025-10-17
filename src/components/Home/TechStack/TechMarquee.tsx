@@ -62,7 +62,7 @@ export default function TechMarquee() {
    return (
       <div
          ref={marqueeRef}
-         className="w-full flex justify-center items-center my-12 md:my-16">
+         className="w-full flex justify-center items-center mt-12 md:mt-16 mb-10">
          <div className="w-full overflow-hidden h-[50px] xs:h-[55px] sm:h-[70px] md:h-[90px] lg:h-[100px] flex items-center relative">
             <div
                className={`flex whitespace-nowrap ${

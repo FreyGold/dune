@@ -37,40 +37,6 @@ function TechStack() {
 
          {/* Category Filter - Enhanced Typography */}
          <div className="px-3 sm:px-4 md:px-6 lg:px-8 xl:px-10 py-6 sm:py-8 md:py-12 lg:py-16">
-            <div className="mb-8 sm:mb-10 md:mb-12 lg:mb-16">
-               <div className="space-y-4">
-                  <p className="text-white/70 font-roboto text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl leading-relaxed max-w-4xl">
-                     A comprehensive collection of technologies I work with
-                     across
-                     <span className="text-white font-semibold">
-                        {" "}
-                        Frontend Development
-                     </span>
-                     ,
-                     <span className="text-white font-semibold">
-                        {" "}
-                        Backend Systems
-                     </span>
-                     ,
-                     <span className="text-white font-semibold">
-                        {" "}
-                        Database Management
-                     </span>
-                     ,
-                     <span className="text-white font-semibold">
-                        {" "}
-                        Development Tools
-                     </span>
-                     , and
-                     <span className="text-white font-semibold">
-                        {" "}
-                        Modern Frameworks
-                     </span>
-                     .
-                  </p>
-               </div>
-            </div>
-
             {/* Tech Grid - Now simplified */}
             <TechGrid />
          </div>

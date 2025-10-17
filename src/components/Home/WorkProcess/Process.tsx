@@ -10,10 +10,14 @@ gsap.registerPlugin(ScrollTrigger);
 
 function Process() {
    const processRef = useRef(null);
+   const titleRef = useRef(null);
+   const descriptionRef = useRef(null);
+   const stepsContainerRef = useRef(null);
+   const ctaRef = useRef(null);
    const navigate = useNavigate();
    const [isMobile, setIsMobile] = useState(() => {
       // Initialize mobile state on first render
-      if (typeof window !== 'undefined') {
+      if (typeof window !== "undefined") {
          return window.innerWidth < 768;
       }
       return false;
@@ -25,9 +29,9 @@ function Process() {
       };
 
       checkIsMobile();
-      window.addEventListener('resize', checkIsMobile);
+      window.addEventListener("resize", checkIsMobile);
 
-      return () => window.removeEventListener('resize', checkIsMobile);
+      return () => window.removeEventListener("resize", checkIsMobile);
    }, []);
 
    useGSAP(
@@ -36,72 +40,68 @@ function Process() {
 
          const setupAnimations = () => {
             // Animate section title on scroll
-            gsap.from(
-               ".process-title",
-               {
-                  y: 100,
-                  opacity: 0,
-                  duration: 1.2,
-                  ease: "power3.out",
-                  scrollTrigger: {
-                     trigger: ".process-title",
-                     start: "top 80%",
-                     once: true,
-                     end: "bottom 20%",
-                  },
-               }
-            );
+            gsap.from(titleRef.current, {
+               y: 100,
+               opacity: 0,
+               duration: 1.2,
+               ease: "power3.out",
+               scrollTrigger: {
+                  trigger: titleRef.current,
+                  start: "top bottom",
+                  once: true,
+                  end: "bottom 20%",
+               },
+            });
 
             // Animate section description
-            gsap.from(
-               ".process-description",
-               {
-                  y: 50,
-                  opacity: 0,
-                  duration: 1,
-                  delay: 0.3,
-                  ease: "power3.out",
-                  scrollTrigger: {
-                     trigger: ".process-description",
-                     start: "top 85%",
-                     end: "bottom 20%",
-                     once: true,
-                  },
-               }
-            );
+            gsap.from(descriptionRef.current, {
+               y: 50,
+               opacity: 0,
+               duration: 1,
+               delay: 0.3,
+               ease: "power3.out",
+               scrollTrigger: {
+                  trigger: descriptionRef.current,
+                  start: "top bottom",
+                  end: "bottom 20%",
+                  once: true,
+               },
+            });
 
             // Animate process steps with stagger effect
-            gsap.from(
-               ".process-step",
-               {
-                  y: 80,
-                  opacity: 0,
-                  duration: 1,
-                  ease: "power3.out",
-                  stagger: 0.2,
-                  scrollTrigger: {
-                     trigger: ".process-steps-container",
-                     start: "top 75%",
-                     end: "bottom 20%",
-                     once: true,
-                  },
-               }
-            );
+            gsap.from(".process-step", {
+               y: 80,
+               opacity: 0,
+               duration: 1,
+               ease: "power3.out",
+               stagger: 0.2,
+               scrollTrigger: {
+                  trigger: stepsContainerRef.current,
+                  start: "top bottom",
+                  end: "bottom 20%",
+                  once: true,
+               },
+            });
 
-            // Animate step numbers
-            gsap.from(
+            // Animate step numbers with improved visibility
+            gsap.fromTo(
                ".step-number",
                {
                   scale: 0.8,
                   rotation: -10,
                   opacity: 0,
+               },
+               {
+                  scale: 1,
+                  rotation: 0,
+                  opacity: 1,
                   duration: 0.8,
                   ease: "back.out(1.7)",
                   stagger: 0.2,
                   delay: 0.1,
                   scrollTrigger: {
-                     trigger: ".process-steps-container",
-                     start: "top 75%",
+                     trigger: stepsContainerRef.current,
+                     start: "top bottom",
                      end: "bottom 20%",
                      once: true,
                   },
@@ -109,21 +109,18 @@ function Process() {
             );
 
             // Animate call to action section
-            gsap.from(
-               ".process-cta",
-               {
-                  y: 30,
-                  opacity: 0,
-                  duration: 1,
-                  ease: "power3.out",
-                  scrollTrigger: {
-                     trigger: ".process-cta",
-                     start: "top 90%",
-                     end: "bottom 20%",
-                     once: true,
-                  },
-               }
-            );
+            gsap.from(ctaRef.current, {
+               y: 30,
+               opacity: 0,
+               duration: 1,
+               ease: "power3.out",
+               scrollTrigger: {
+                  trigger: ctaRef.current,
+                  start: "top bottom",
+                  end: "bottom 20%",
+                  once: true,
+               },
+            });
          };
 
          // Delay to ensure ScrollSmoother is ready on first render
@@ -142,12 +139,12 @@ function Process() {
             {/* Section Header */}
             <div className="mb-10 sm:mb-12 lg:mb-16">
                <div className="flex justify-center lg:justify-start">
-                  <h1 className="process-title font-grotesk text-3xl sm:text-4xl md:text-5xl lg:text-5xl xl:text-6xl font-bold uppercase [word-spacing:-0.1rem] tracking-tight text-center lg:text-left">
+                  <h1 ref={titleRef} className="process-title font-grotesk text-3xl sm:text-4xl md:text-5xl lg:text-5xl xl:text-6xl font-bold uppercase [word-spacing:-0.1rem] tracking-tight text-center lg:text-left">
                      My Process
                   </h1>
                </div>
                <div className="mt-4 sm:mt-6 lg:mt-8 max-w-3xl">
-                  <p className="process-description text-base sm:text-lg md:text-xl font-roboto text-[#A3A3A3] leading-normal md:leading-relaxed">
+                  <p ref={descriptionRef} className="process-description text-base sm:text-lg md:text-xl font-roboto text-[#A3A3A3] leading-normal md:leading-relaxed">
                      Every great digital experience starts with a thoughtful
                      approach. Here's how I transform ideas into exceptional
                      digital solutions.
@@ -156,7 +153,7 @@ function Process() {
             </div>
 
             {/* Process Steps */}
-            <div className="process-steps-container space-y-8 sm:space-y-10 lg:space-y-12">
+            <div ref={stepsContainerRef} className="process-steps-container space-y-8 sm:space-y-10 lg:space-y-12">
                {processSteps.map((step, index) => (
                   <div key={step.id}>
                      {/* Process Step */}
@@ -177,9 +174,9 @@ function Process() {
 
                         {/* Step Number */}
                         <div className="flex-shrink-0 relative z-10">
-                           <div className="step-number w-14 h-14 sm:w-16 sm:h-16 lg:w-20 lg:h-20 rounded-full bg-white/10 flex items-center justify-center transition-all duration-300 group-hover:bg-white/20 group-hover:scale-110">
-                              <span className="font-grotesk text-base sm:text-lg lg:text-2xl font-bold text-white">
-                                 {step.step}
+                           <div className="step-number w-14 h-14 sm:w-16 sm:h-16 lg:w-20 lg:h-20 rounded-full bg-white/10 flex items-center justify-center transition-all duration-300 group-hover:bg-white/20 group-hover:scale-110 border border-white/5">
+                              <span className="font-grotesk text-base sm:text-lg lg:text-2xl font-bold text-white drop-shadow-sm">
+                                 {step.step || `0${index + 1}`}
                               </span>
                            </div>
                         </div>
@@ -219,7 +216,7 @@ function Process() {
             </div>
 
             {/* Call to Action */}
-            <div className="process-cta mt-10 sm:mt-12 lg:mt-16 text-center lg:text-left">
+            <div ref={ctaRef} className="process-cta mt-10 sm:mt-12 lg:mt-16 text-center lg:text-left">
                <p className="font-grotesk text-lg sm:text-xl lg:text-2xl font-medium text-white mb-2">
                   Ready to start your project?
                </p>
@@ -230,7 +227,7 @@ function Process() {
                   <Button
                      variant="default"
                      className="font-semibold text-sm sm:text-lg"
-                     onClick={() => navigate('/contact')}>
+                     onClick={() => navigate("/contact")}>
                      Contact
                   </Button>
                </div>

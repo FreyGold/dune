@@ -5,7 +5,7 @@ import {
    getTechnologiesByCategory,
 } from "../../../data/techStack";
 import TechItem from "./TechItem";
-import Button from "../../ui/Button";
+
 function TechGrid() {
    const [selectedCategory, setSelectedCategory] = useState<string | null>(
       null
@@ -26,31 +26,37 @@ function TechGrid() {
       <div className="space-y-6">
          {/* Category Filter Buttons */}
          <div className="flex flex-wrap gap-2 justify-start">
-            <Button
+            <button
                onClick={() => {
                   setSelectedCategory(null);
                   setIsAllSelected(true);
                }}
-               variant={isAllSelected ? "selected" : "small"}>
+               className={`px-2 py-1 sm:px-3 sm:py-2 md:px-4 md:py-2 lg:px-6 lg:py-3 font-grotesk font-semibold uppercase text-xs sm:text-xs md:text-sm lg:text-sm xl:text-base transition-all duration-300 ${
+                  isAllSelected
+                     ? "text-black bg-white"
+                     : "text-white bg-transparent border border-white/20 hover:border-white/60"
+               }`}>
                All
-            </Button>
+            </button>
             {techCategories.map((category) => (
-               <Button
+               <button
                   key={category.id}
                   onClick={() => {
                      setSelectedCategory(category.id);
                      setIsAllSelected(false);
                   }}
-                  variant={
-                     selectedCategory === category.id ? "selected" : "small"
-                  }>
+                  className={`px-2 py-1 sm:px-3 sm:py-2 md:px-4 md:py-2 lg:px-6 lg:py-3 font-grotesk font-semibold uppercase text-xs sm:text-xs md:text-sm lg:text-sm xl:text-base transition-all duration-300 ${
+                     selectedCategory === category.id
+                        ? "text-black bg-white"
+                        : "text-white bg-transparent border border-white/20 hover:border-white/60"
+                  }`}>
                   {category.name}
-               </Button>
+               </button>
             ))}
          </div>
 
          {/* Tech Grid */}
-         <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 xl:grid-cols-7 gap-3 sm:gap-4 items-stretch justify-items-center auto-rows-[9rem] sm:auto-rows-[10rem] md:auto-rows-[11rem] lg:auto-rows-[12rem]">
+         <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 xl:grid-cols-7 gap-3 sm:gap-4">
             {filteredTechnologies.map((tech) => (
                <TechItem key={tech.name} tech={tech} />
             ))}
