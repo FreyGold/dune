@@ -6,13 +6,17 @@ function Intro() {
          <div className="relative flex flex-col xl:flex-row items-center justify-center gap-4 xl:gap-8">
             <div className="hidden xl:block font-mono">
                <CircularText
-                  text="FRONTEND*DEVELOPER*"
+                  text="I*Love*Building*Things*"
                   onHover="speedUp"
                   spinDuration={20}
                   className="font-grotesk"
                />
             </div>
-            <img src="/bio2.png" alt="" className="hidden lg:block absolute left-0 bottom-0 lg:left-0 lg:bottom-0" />
+            <img
+               src="/bio2.png"
+               alt=""
+               className="hidden lg:block absolute left-0 bottom-0 lg:left-0 lg:bottom-0"
+            />
          </div>
          <div>
             <div className="mb-15">
@@ -20,11 +24,11 @@ function Intro() {
                   ABOUT ME
                </h2>
                <p className="font-roboto text-[#A3A3A3] text-base md:text-lg lg:text-xl">
-                  I'm a passionate software developer focused on creating
-                  beautiful, functional user experiences through clean,
-                  efficient web development. I study Computer Science and
-                  Engineering, building a strong foundation in core concepts and
-                  software engineering principles.
+                  I'm a passionate web developer focused on creating beautiful,
+                  functional web applications through clean, efficient web
+                  development. I study Computer Science and Engineering,
+                  building a strong foundation in core concepts and software
+                  engineering principles.
                </p>
             </div>
             <div>
@@ -32,14 +36,14 @@ function Intro() {
                   SKILLS & EXPERIENCE
                </h2>
                <p className="font-roboto text-[#A3A3A3] text-base md:text-lg lg:text-xl">
-                  I thrive on tackling complex problems with a structured,
-                  user-centered approach—breaking them into manageable steps,
-                  prioritizing efficiency, and iterating based on feedback. My
-                  experience includes project-based courses where I honed
-                  analytical thinking and a three-month internship at{" "}
-                  <span className="font-semibold">@Buguard</span>, collaborating
-                  on real-world challenges under senior guidance to deliver
-                  innovative solutions.
+                  I love diving into challenging problems and figuring out the
+                  best way to solve them, always learning from feedback along
+                  the way. I've gained experience through hands-on projects in
+                  my courses that sharpened my analytical skills, plus a
+                  three-month internship at{" "}
+                  <span className="font-semibold">@Buguard LLC</span> where I
+                  worked on real client projects alongside experienced
+                  developers and delivered creative solutions.
                </p>
             </div>
          </div>

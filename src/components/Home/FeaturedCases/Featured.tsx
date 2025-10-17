@@ -12,9 +12,11 @@ const Featured = memo(function Featured() {
          </div>
          <div className="mt-4 sm:mt-6 lg:mt-8">
             <p className="text-lg sm:text-xl font-roboto text-[#A3A3A3] uppercase max-w-[90%] sm:max-w-[570px] sm:leading-[1.75]">
-               My creative spirit comes alive in the digital realm. With nimble
-               fingers flying across the keyboard, I craft clear experiences out
-               of nothing but ones and zeroes.
+               I'm passionate about coding and facing new challenges, working on
+               new projects and learning new things, I always find myself in a
+               flow state when I code where I don't notice the time passing by,
+               I strive to perfect my craft and be knowledgable about the deep
+               layers of the technology i work with.
             </p>
          </div>
          <WorkCollection />
