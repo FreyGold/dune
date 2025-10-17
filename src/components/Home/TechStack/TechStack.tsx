@@ -16,19 +16,13 @@ function TechStack() {
    return (
       <div className="w-full h-auto bg-black relative tech-stack font-roboto">
          {/* Hero Section */}
+
          <div className="px-3 sm:px-4 md:px-6 lg:px-8 xl:px-10 pt-6 sm:pt-8 md:pt-12 lg:pt-16 xl:pt-18 [word-spacing:0.5rem] font-grotesk">
+            <div className="w-full px-6 sm:px-8 md:px-10 lg:px-12 xl:px-16 h-[0.5px] bg-[#A3A3A3]/50 mt-5 mb-10 md:mb-15 lg:mb-20 xl:mb-25 mx-auto lg:hidden"></div>
             <div className="lg:flex flex-col md:flex-row relative items-center lg:justify-between gap-3 sm:gap-4 md:gap-6 lg:gap-8">
                <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-[5.5rem] font-bold uppercase [word-spacing:-0.1rem]">
                   TECH STACK
                </h1>
-               <img
-                  src="/bio1.png"
-                  alt=""
-                  width="200"
-                  height="60"
-                  loading="eager"
-                  className="hidden lg:block w-10 h-10 sm:w-12 sm:h-12 md:w-16 md:h-16 lg:w-20 lg:h-20 xl:w-25 xl:h-25"
-               />
             </div>
          </div>
 

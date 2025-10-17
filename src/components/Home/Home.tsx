@@ -15,27 +15,14 @@ const TechStack = lazy(() => import("./TechStack/TechStack"));
 export default function Home() {
    const main = useRef(null);
    const { refreshScrollers } = useGSAPContext();
+   const isMobile = window.innerWidth < 768;
 
    useGSAP(
       () => {
          // Pin the ImageSection while Biography scrolls over it
          ScrollTrigger.create({
             trigger: ".section-image", // The ImageSection itself
-            start: () => {
-               // Calculate responsive offset based on Hero and Image height relationship
-               const windowWidth = window.innerWidth;
-               const windowHeight = window.innerHeight;
-
-               let offset;
-
-               if (windowWidth < 768) {
-                  offset = Math.max(60, windowHeight * 0.2);
-               } else {
-                  offset = Math.max(80, windowHeight * 0.1);
-               }
-
-               return `top-=${Math.round(offset)} top`;
-            }, // When ImageSection reaches top of viewport with responsive offset
+            start: "top top",
             end: () =>
                "+=" + document.querySelector(".biography")?.clientHeight, // Pin for the height of Biography
             pin: true, // Pin the trigger element
@@ -64,10 +51,12 @@ export default function Home() {
    return (
       <>
          <Hero />
-         <div className="parallax bg-black" ref={main}>
-            <ImageSection />
-            <Biography />
-         </div>
+         {!isMobile && (
+            <div className="parallax bg-black" ref={main}>
+               <ImageSection />
+               <Biography />
+            </div>
+         )}
          <Suspense fallback={<div className="h-screen bg-black" />}>
             <Featured />
             <TechStack />

@@ -134,7 +134,8 @@ function Process() {
    return (
       <div
          ref={processRef}
-         className="min-h-screen px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-20 bg-black text-white">
+         className="min-h-screen px-4 sm:px-6 lg:px-8 sm:py-8 bg-black text-white">
+         <div className="w-full px-6 sm:px-8 md:px-10 lg:px-12 xl:px-16 h-[0.5px] bg-[#A3A3A3]/50 mt-5 mb-10 sm:mb-22 lg:mb-28 mx-auto"></div>
          <div className="max-w-7xl mx-auto">
             {/* Section Header */}
             <div className="mb-10 sm:mb-12 lg:mb-16">

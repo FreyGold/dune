@@ -19,7 +19,7 @@ function Intro() {
             />
          </div>
          <div>
-            <div className="mb-15">
+            <div className="mb-10">
                <h2 className="mb-6 font-grotesk text-xl md:text-2xl font-bold">
                   ABOUT ME
                </h2>
