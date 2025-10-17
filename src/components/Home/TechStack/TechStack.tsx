@@ -1,9 +1,12 @@
 import { useState, useEffect } from "react";
 import TechGrid from "./TechGrid";
 import TechMarquee from "./TechMarquee";
+import { techCategories } from "../../../data/techStack";
 
 function TechStack() {
    const [isMobile, setIsMobile] = useState(false);
+   const [hoveredTech, setHoveredTech] = useState<string | null>(null);
+   const [activeCategory, setActiveCategory] = useState<string | null>(null);
 
    useEffect(() => {
       const checkMobile = () => {
@@ -35,44 +38,40 @@ function TechStack() {
          {/* Animated Marquee Section - Only show on desktop for performance */}
          {!isMobile && <TechMarquee />}
 
-         {/* Category Filter - Enhanced Typography */}
+         {/* Category Filter */}
          <div className="px-3 sm:px-4 md:px-6 lg:px-8 xl:px-10 py-6 sm:py-8 md:py-12 lg:py-16">
-            <div className="mb-8 sm:mb-10 md:mb-12 lg:mb-16">
-               <div className="space-y-4">
-                  <p className="text-white/70 font-roboto text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl leading-relaxed max-w-4xl">
-                     A comprehensive collection of technologies I work with
-                     across
-                     <span className="text-white font-semibold">
-                        {" "}
-                        Frontend Development
-                     </span>
-                     ,
-                     <span className="text-white font-semibold">
-                        {" "}
-                        Backend Systems
-                     </span>
-                     ,
-                     <span className="text-white font-semibold">
-                        {" "}
-                        Database Management
-                     </span>
-                     ,
-                     <span className="text-white font-semibold">
-                        {" "}
-                        Development Tools
-                     </span>
-                     , and
-                     <span className="text-white font-semibold">
-                        {" "}
-                        Modern Frameworks
-                     </span>
-                     .
-                  </p>
-               </div>
+            <div
+               className={`flex flex-wrap gap-2 sm:gap-3 md:gap-4 mb-6 sm:mb-8 md:mb-10 lg:mb-12 `}>
+               <button
+                  onClick={() => setActiveCategory(null)}
+                  className={`px-2 py-1 sm:px-3 sm:py-2 md:px-4 md:py-2 lg:px-6 lg:py-3 font-grotesk font-semibold uppercase text-xs sm:text-xs md:text-sm lg:text-sm xl:text-base transition-all duration-300 ${
+                     activeCategory === null
+                        ? "text-black bg-white"
+                        : "text-white bg-transparent border border-white/20 hover:border-white/60"
+                  }`}>
+                  ALL
+               </button>
+               {techCategories.map((category) => (
+                  <button
+                     key={category.id}
+                     onClick={() => setActiveCategory(category.id)}
+                     className={`px-2 py-1 sm:px-3 sm:py-2 md:px-4 md:py-2 lg:px-6 lg:py-3 font-grotesk font-semibold uppercase text-xs sm:text-xs md:text-sm lg:text-sm xl:text-base transition-all duration-300 ${
+                        activeCategory === category.id
+                           ? "text-black bg-white"
+                           : "text-white bg-transparent border border-white/20 hover:border-white/60"
+                     }`}>
+                     {category.name}
+                  </button>
+               ))}
             </div>
 
-            {/* Tech Grid - Now simplified */}
-            <TechGrid />
+            {/* Tech Grid */}
+            <TechGrid
+               activeCategory={activeCategory}
+               isMobile={isMobile}
+               hoveredTech={hoveredTech}
+               setHoveredTech={setHoveredTech}
+            />
          </div>
 
          <div className="h-1 sm:h-2 w-full bg-black relative top-1 z-1000"></div>
