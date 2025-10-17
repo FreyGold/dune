@@ -14,7 +14,7 @@ function TechStack() {
    }, []);
 
    return (
-      <div className="w-full min-h-screen h-auto bg-black relative z-20 tech-stack font-roboto">
+      <div className="w-full h-auto bg-black relative tech-stack font-roboto">
          {/* Hero Section */}
          <div className="px-3 sm:px-4 md:px-6 lg:px-8 xl:px-10 pt-6 sm:pt-8 md:pt-12 lg:pt-16 xl:pt-18 [word-spacing:0.5rem] font-grotesk">
             <div className="lg:flex flex-col md:flex-row relative items-center lg:justify-between gap-3 sm:gap-4 md:gap-6 lg:gap-8">
@@ -41,7 +41,7 @@ function TechStack() {
             <TechGrid />
          </div>
 
-         <div className="h-1 sm:h-2 w-full bg-black relative top-1 z-1000"></div>
+         <div className="h-1 sm:h-2 w-full bg-black relative top-1 z-100"></div>
       </div>
    );
 }

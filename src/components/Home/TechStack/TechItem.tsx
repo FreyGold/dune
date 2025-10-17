@@ -11,7 +11,7 @@ function TechItem({ tech }: Props) {
    if (!IconComponent) return null;
 
    return (
-      <div className="relative p-2 sm:p-4 md:p-6 bg-white/5 backdrop-blur-sm border border-white/10 rounded-lg hover:bg-white/10 transition-colors duration-300 hover:border-white/5">
+      <div className="relative p-2 sm:p-4 md:p-6 bg-white/5 backdrop-blur-sm border border-white/10 rounded-lg hover:border-white/50">
          <div className="flex flex-col items-center text-center space-y-2 sm:space-y-3">
             <div className="relative">
                <IconComponent

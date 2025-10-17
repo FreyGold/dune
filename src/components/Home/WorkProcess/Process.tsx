@@ -139,12 +139,16 @@ function Process() {
             {/* Section Header */}
             <div className="mb-10 sm:mb-12 lg:mb-16">
                <div className="flex justify-center lg:justify-start">
-                  <h1 ref={titleRef} className="process-title font-grotesk text-3xl sm:text-4xl md:text-5xl lg:text-5xl xl:text-6xl font-bold uppercase [word-spacing:-0.1rem] tracking-tight text-center lg:text-left">
+                  <h1
+                     ref={titleRef}
+                     className="process-title font-grotesk text-3xl sm:text-4xl md:text-5xl lg:text-5xl xl:text-6xl font-bold uppercase [word-spacing:-0.1rem] tracking-tight text-center lg:text-left">
                      My Process
                   </h1>
                </div>
                <div className="mt-4 sm:mt-6 lg:mt-8 max-w-3xl">
-                  <p ref={descriptionRef} className="process-description text-base sm:text-lg md:text-xl font-roboto text-[#A3A3A3] leading-normal md:leading-relaxed">
+                  <p
+                     ref={descriptionRef}
+                     className="process-description text-base sm:text-lg md:text-xl font-roboto text-[#A3A3A3] leading-normal md:leading-relaxed">
                      Every great digital experience starts with a thoughtful
                      approach. Here's how I transform ideas into exceptional
                      digital solutions.
@@ -153,7 +157,9 @@ function Process() {
             </div>
 
             {/* Process Steps */}
-            <div ref={stepsContainerRef} className="process-steps-container space-y-8 sm:space-y-10 lg:space-y-12">
+            <div
+               ref={stepsContainerRef}
+               className="process-steps-container space-y-8 sm:space-y-10 lg:space-y-12">
                {processSteps.map((step, index) => (
                   <div key={step.id}>
                      {/* Process Step */}
@@ -216,7 +222,9 @@ function Process() {
             </div>
 
             {/* Call to Action */}
-            <div ref={ctaRef} className="process-cta mt-10 sm:mt-12 lg:mt-16 text-center lg:text-left">
+            <div
+               ref={ctaRef}
+               className="process-cta mt-10 sm:mt-12 lg:mt-16 text-center lg:text-left">
                <p className="font-grotesk text-lg sm:text-xl lg:text-2xl font-medium text-white mb-2">
                   Ready to start your project?
                </p>

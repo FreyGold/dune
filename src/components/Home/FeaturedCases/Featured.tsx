@@ -7,7 +7,7 @@ const Featured = memo(function Featured() {
          <div className="h-3 w-screen bg-black absolute -top-1.5 z-50 p-0 m-0 left-0"></div>
          <div className="flex lg:justify-end">
             <h1 className="font-grotesk text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-[6.25rem] font-bold uppercase [word-spacing:-0.1rem] tracking-tight">
-               Featured Cases
+               Projects
             </h1>
          </div>
          <div className="mt-4 sm:mt-6 lg:mt-8">

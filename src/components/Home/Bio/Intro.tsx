@@ -15,7 +15,7 @@ function Intro() {
             <img
                src="/bio2.png"
                alt=""
-               className="hidden lg:block absolute left-0 bottom-0 lg:left-0 lg:bottom-0"
+               className="hidden xl:block absolute left-0 bottom-0 lg:left-0 lg:bottom-0"
             />
          </div>
          <div>
