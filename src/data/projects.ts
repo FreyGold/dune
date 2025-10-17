@@ -63,7 +63,15 @@ export const projects: Project[] = [
       liveUrl: "https://animated-crumble-7e3d4f.netlify.app/en/login",
       featured: true,
       year: "2025",
-      images: ["/project-3.png"],
+      videoSrc: "/project-3/vidsrc.mp4",
+      images: [
+         "/project-3.png",
+         "/project-3/1.png",
+         "/project-3/2.png",
+         "/project-3/3.png",
+         "/project-3/4.png",
+         "/project-3/vid.mp4",
+      ],
    },
    {
       id: "project-4",
