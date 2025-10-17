@@ -1,6 +1,6 @@
-import type { Project } from "../../../../data/projects";
 import { useNavigate } from "react-router-dom";
 import { useRef } from "react";
+import type { Project } from "../../../../data/projects";
 
 interface ProjectCardProps {
    project: Project;
@@ -12,6 +12,9 @@ function ProjectCard({ project, textColor = "text-white" }: ProjectCardProps) {
    const videoRef = useRef<HTMLVideoElement>(null);
 
    const handleClick = () => {
+      if (project.comingSoon) {
+         return; // Don't navigate for coming soon projects
+      }
       navigate(`/projects/${project.id}`);
    };
 
@@ -37,7 +40,11 @@ function ProjectCard({ project, textColor = "text-white" }: ProjectCardProps) {
 
    return (
       <div
-         className="h-full relative project-card w-full overflow-hidden hover:scale-105 sm:hover:scale-103 transition-transform duration-300 ease-out cursor-pointer"
+         className={`h-full relative project-card w-full overflow-hidden transition-transform duration-300 ease-out ${
+            project.comingSoon
+               ? "cursor-default opacity-75 blur-sm"
+               : "hover:scale-105 sm:hover:scale-103 cursor-pointer"
+         }`}
          style={
             {
                aspectRatio: "16 / 9",
@@ -47,7 +54,8 @@ function ProjectCard({ project, textColor = "text-white" }: ProjectCardProps) {
          }
          onClick={handleClick}
          onMouseEnter={handleMouseEnter}
-         onMouseLeave={handleMouseLeave}>
+         onMouseLeave={handleMouseLeave}
+         data-coming-soon={project.comingSoon}>
          {videoFile ? (
             <video
                ref={videoRef}
@@ -65,9 +73,10 @@ function ProjectCard({ project, textColor = "text-white" }: ProjectCardProps) {
                className="absolute inset-0 object-cover object-center w-full h-full"
             />
          )}
+         <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
          <h3
             className={`${textColor} absolute bottom-3 left-3 sm:bottom-4 sm:left-4 md:bottom-6 md:left-6 font-medium sm:font-semibold text-lg sm:text-xl md:text-2xl uppercase font-grotesk tracking-tight mix-blend-difference`}>
-            {project.title}
+            {project.comingSoon ? "Soon To Come" : project.title}
          </h3>
       </div>
    );
