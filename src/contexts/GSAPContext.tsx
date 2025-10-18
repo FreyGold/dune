@@ -37,7 +37,7 @@ export const GSAPProvider = ({ children }: GSAPProviderProps) => {
             content: "#smooth-content",
             smooth: 2,
             effects: true,
-            smoothTouch: 0.1, // Enable smooth scrolling on mobile with reduced sensitivity
+            smoothTouch: 2, // Enable smooth scrolling on mobile with reduced sensitivity
             normalizeScroll: true, // Normalize scroll behavior across devices
             ignoreMobileResize: true, // Handle mobile viewport changes properly
          });
