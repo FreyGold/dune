@@ -138,7 +138,7 @@ export default function ContactCardGSAP(): JSX.Element {
                               href={social.url}
                               target="_blank"
                               rel="noopener noreferrer"
-                              className="inline-flex items-center gap-2 md:gap-3 bg-white text-black px-4 md:px-5 lg:px-6 py-2 md:py-3 rounded-full font-medium hover:bg-gray-200 transition-colors text-sm md:text-base lg:text-lg">
+                              className="inline-flex items-center gap-2 md:gap-3 bg-white text-black px-4 md:px-5 lg:px-6 py-2 md:py-3 rounded-full font-medium hover:bg-black hover:text-white transition-colors text-sm md:text-base lg:text-lg duration-500 ease-in-out">
                               <span className="text-lg md:text-xl">
                                  {social.icon}
                               </span>
