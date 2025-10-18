@@ -277,19 +277,15 @@ body,
    opacity: 0;
 }
 
-@keyframes scroll-left {
+@keyframes textRevealFromBottom {
    0% {
-      transform: translateX(0%);
+      clip-path: inset(100% 0 0 0);
    }
    100% {
-      transform: translateX(-50%);
+      clip-path: inset(0 0 0 0);
    }
 }
 
-.animate-scroll-left {
-   animation: scroll-left 30s linear infinite;
-   display: flex;
-}
-body:not(.loaded) #smooth-content {
-   opacity: 0;
+.animate-text-reveal-bottom {
+   animation: textRevealFromBottom 0.6s ease-out 0.3s both;
 }
