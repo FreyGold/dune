@@ -51,12 +51,12 @@ export default function Home() {
    return (
       <>
          <Hero />
-         {!isMobile && (
-            <div className="parallax bg-black" ref={main}>
-               <ImageSection />
-               <Biography />
-            </div>
-         )}
+
+         <div className="parallax bg-black" ref={main}>
+            <ImageSection />
+            <Biography />
+         </div>
+
          <Suspense fallback={<div className="h-screen bg-black" />}>
             <Featured />
             <TechStack />

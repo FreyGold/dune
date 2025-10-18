@@ -67,9 +67,17 @@ body.loaded {
       padding-bottom: 2rem;
    }
 
-   /* Ensure smooth scrolling works on mobile */
+   /* Ensure smooth scrolling works properly on mobile */
    #smooth-content {
       overflow-x: hidden;
+      /* Enable native smooth scrolling as fallback */
+      scroll-behavior: smooth;
+   }
+
+   /* Optimize ScrollSmoother for mobile performance */
+   #smooth-wrapper {
+      -webkit-transform: translateZ(0);
+      transform: translateZ(0);
    }
 }
 
@@ -135,13 +143,16 @@ body,
    font-family: "Space Grotesk", "Helvetica Neue", Arial, sans-serif;
 }
 
-/* ScrollSmoother specific styles */
 #smooth-wrapper {
    overflow: hidden;
+   /* Enable touch scrolling on mobile devices */
+   touch-action: pan-y;
 }
 
 #smooth-content {
    overflow: visible;
+   /* Ensure smooth scrolling works properly on mobile */
+   -webkit-overflow-scrolling: touch;
 }
 
 @keyframes marquee {
