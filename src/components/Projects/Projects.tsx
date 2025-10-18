@@ -15,6 +15,7 @@ const Projects = memo(function Projects() {
             if (headingRef.current) {
                gsap.from(headingRef.current, {
                   clipPath: "inset(100% 0 0 0)",
+                  duration: 0.7,
                });
             }
 
@@ -22,6 +23,8 @@ const Projects = memo(function Projects() {
             if (paragraphRef.current) {
                gsap.from(paragraphRef.current, {
                   clipPath: "inset(100% 0 0 0)",
+
+                  duration: 0.7,
                });
             }
          }

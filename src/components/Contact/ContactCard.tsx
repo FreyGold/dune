@@ -14,12 +14,38 @@ gsap.registerPlugin(ScrollTrigger, useGSAP);
 export default function ContactCardGSAP(): JSX.Element {
    const leftRef = useRef<HTMLDivElement | null>(null);
    const rightRef = useRef<HTMLDivElement | null>(null);
-
+   const header = useRef<HTMLDivElement | null>(null);
+   const text = useRef<HTMLDivElement | null>(null);
+   const icons = useRef<HTMLDivElement | null>(null);
    useGSAP(() => {
-      // Only run animation on medium screens and up (when we have 2-column layout)
       const isMediumScreen = window.matchMedia("(min-width: 768px)").matches;
-      if (!isMediumScreen) return;
 
+      if (header.current) {
+         gsap.from(header.current, {
+            clipPath: "inset(100% 0 0 0)",
+            delay: 0.1,
+         });
+      }
+      if (text.current) {
+         gsap.from(text.current, {
+            clipPath: "inset(100% 0 0 0)",
+            delay: 0.1,
+         });
+      }
+      if (icons.current) {
+         gsap.from(icons.current, {
+            clipPath: "inset(100% 0 0 0)",
+            delay: 0.1,
+         });
+      }
+
+      if (rightRef.current) {
+         gsap.from(rightRef.current, {
+            y: 200,
+            opacity: 0,
+         });
+      }
+      if (!isMediumScreen) return;
       const setupContactAnimations = () => {
          const left = leftRef.current;
          const right = rightRef.current;
@@ -90,16 +116,22 @@ export default function ContactCardGSAP(): JSX.Element {
                <div
                   ref={leftRef}
                   className="will-change-transform pt-4 md:pt-6 lg:pt-8">
-                  <h1 className="font-grotesk text-3xl md:text-4xl lg:text-[3.125rem] font-bold leading-tight">
+                  <h1
+                     className="font-grotesk text-3xl md:text-4xl lg:text-[3.125rem] font-bold leading-tight"
+                     ref={header}>
                      Ring A Bell!
                   </h1>
-                  <p className="text-[#A3A3A3] text-lg md:text-xl mt-3 md:mt-4 lg:mt-5 font-roboto leading-relaxed">
+                  <p
+                     className="text-[#A3A3A3] text-lg md:text-xl mt-3 md:mt-4 lg:mt-5 font-roboto leading-relaxed"
+                     ref={text}>
                      Reach out and let's create something amazing together.
                      Let's achieve greatness.
                   </p>
 
                   <div className="mt-6 md:mt-8">
-                     <div className="flex flex-wrap gap-2 md:gap-3 lg:gap-4">
+                     <div
+                        className="flex flex-wrap gap-2 md:gap-3 lg:gap-4 "
+                        ref={icons}>
                         {socialLinks.map((social, i) => (
                            <a
                               key={i}

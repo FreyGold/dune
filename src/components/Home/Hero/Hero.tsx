@@ -65,7 +65,7 @@ const Hero = memo(function Hero() {
          </div>
          <div className="footer absolute bottom-0">
             <div className="flex flex-col sm:flex-row justify-between px-4 sm:px-6 md:px-8 lg:px-10 items-center sm:items-center w-screen py-4 sm:py-6 md:py-8 uppercase text-sm sm:text-base md:text-lg font-light to-up-footer gap-2 sm:gap-0">
-               <p className="hidden sm:block">BASED IN CA, Egypt</p>
+               <p className="hidden sm:block">BASED IN Cairo, Egypt</p>
                <div className="flex flex-col sm:flex-row items-center gap-1 sm:gap-0">
                   <span
                      className="crossed cursor-pointer relative inline-block"

@@ -1,4 +1,4 @@
-import { BiSearch, BiPhone, BiArrowBack } from "react-icons/bi";
+import { BiPhone, BiArrowBack } from "react-icons/bi";
 import { Link, useLocation } from "react-router-dom";
 import Time from "./Time";
 import Button from "../../components/ui/Button";
@@ -100,7 +100,6 @@ function Header() {
                )}
             </div>
             <div className="flex items-center gap-3 sm:gap-4 md:gap-5">
-               <BiSearch size={20} color="#ffffff" className="sm:w-6 sm:h-6" />
                <Button
                   textSize="text-xs sm:text-sm"
                   variant="small"
