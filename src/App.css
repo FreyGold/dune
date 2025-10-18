@@ -62,71 +62,52 @@ body.loaded {
    opacity: 1;
 }
 
-@media (max-width: 640px) {
-   .biography {
-      padding-bottom: 2rem;
-   }
-
-   /* Ensure smooth scrolling works properly on mobile */
-   #smooth-content {
-      overflow-x: hidden;
-      /* Enable native smooth scrolling as fallback */
-      scroll-behavior: smooth;
-   }
-
-   /* Optimize ScrollSmoother for mobile performance */
-   #smooth-wrapper {
-      -webkit-transform: translateZ(0);
-      transform: translateZ(0);
-   }
-}
-
 .animate-grain {
    animation: grain 0.25s steps(6) infinite;
 }
 
 :root {
-  --scrollbar-width: 8px;
-  --scrollbar-radius: 4px;
-  --scrollbar-bg: rgba(255, 255, 255, 0.1);
-  --scrollbar-thumb: rgba(255, 255, 255, 0.3);
-  --scrollbar-thumb-hover: rgba(255, 255, 255, 0.5);
+   --scrollbar-width: 8px;
+   --scrollbar-radius: 4px;
+   --scrollbar-bg: rgba(255, 255, 255, 0.1);
+   --scrollbar-thumb: rgba(255, 255, 255, 0.3);
+   --scrollbar-thumb-hover: rgba(255, 255, 255, 0.5);
 }
 
 ::-webkit-scrollbar {
-  width: var(--scrollbar-width);
-  height: var(--scrollbar-width);
+   width: var(--scrollbar-width);
+   height: var(--scrollbar-width);
 }
 
 ::-webkit-scrollbar-track {
-  background: transparent;
+   background: transparent;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: var(--scrollbar-thumb);
-  border-radius: var(--scrollbar-radius);
-  transition: background-color 0.2s ease;
+   background: var(--scrollbar-thumb);
+   border-radius: var(--scrollbar-radius);
+   transition: background-color 0.2s ease;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--scrollbar-thumb-hover);
+   background: var(--scrollbar-thumb-hover);
 }
 
 ::-webkit-scrollbar-corner {
-  background: transparent;
+   background: transparent;
 }
 
 /* Firefox scrollbar styling */
 html {
-  scrollbar-width: thin;
-  scrollbar-color: var(--scrollbar-thumb) transparent;
+   scrollbar-width: thin;
+   scrollbar-color: var(--scrollbar-thumb) transparent;
 }
 
 /* Enhanced scrollbar for better visibility */
 @media (prefers-reduced-motion: no-preference) {
-  ::-webkit-scrollbar-thumb {
-    transition: all 0.2s ease;
-  }
+   ::-webkit-scrollbar-thumb {
+      transition: all 0.2s ease;
+   }
 }
 
 html,
@@ -160,9 +141,7 @@ body,
       transform: translateX(0%);
    }
    100% {
-      transform: translateX(
-         -33.333%
-      ); /* Optimized for 1.5x duplication */
+      transform: translateX(-33.333%); /* Optimized for 1.5x duplication */
    }
 }
 
