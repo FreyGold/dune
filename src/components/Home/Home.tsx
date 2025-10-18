@@ -15,7 +15,6 @@ const TechStack = lazy(() => import("./TechStack/TechStack"));
 export default function Home() {
    const main = useRef(null);
    const { refreshScrollers } = useGSAPContext();
-   const isMobile = window.innerWidth < 768;
 
    useGSAP(
       () => {
