@@ -3,10 +3,14 @@ import Dot from "../../ui/Dot";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { useRef, memo } from "react";
+import LightRays from "../../LightRays";
+import SwipeDownIndicator from "../../ui/SwipeDownIndicator";
 
 const Hero = memo(function Hero() {
    const crossedRef = useRef<HTMLSpanElement | null>(null);
    const lineRef = useRef<HTMLSpanElement | null>(null);
+
+   const isMobile = window.innerWidth < 1028;
 
    useGSAP(() => {
       if (!lineRef.current) return;
@@ -49,6 +53,52 @@ const Hero = memo(function Hero() {
 
    return (
       <div className="w-full h-[100dvh] relative flex justify-center items-center shrink-height">
+         {!isMobile && (
+            <LightRays
+               raysOrigin="top-center"
+               raysColor="#c7c7c7"
+               raysSpeed={1.2}
+               lightSpread={0.8}
+               saturation={1.2}
+               rayLength={1.2}
+               followMouse={true}
+               mouseInfluence={0.2}
+               noiseAmount={0.1}
+               distortion={0.05}
+               className="custom-rays"
+            />
+         )}
+
+         {isMobile && (
+            <LightRays
+               raysOrigin="left"
+               raysColor="#c7c7c7"
+               raysSpeed={1.2}
+               lightSpread={1.5}
+               saturation={1.2}
+               rayLength={1.2}
+               followMouse={true}
+               mouseInfluence={0.2}
+               noiseAmount={0.1}
+               distortion={0.05}
+               className="custom-rays"
+            />
+         )}
+         {isMobile && (
+            <LightRays
+               raysOrigin="right"
+               raysColor="#c7c7c7"
+               raysSpeed={1.2}
+               lightSpread={1.5}
+               saturation={1.2}
+               rayLength={1.2}
+               followMouse={true}
+               mouseInfluence={0.2}
+               noiseAmount={0.1}
+               distortion={0.05}
+               className="custom-rays"
+            />
+         )}
          <div className="flex flex-col justify-center items-center px-4 sm:px-6 md:px-8 lg:px-12">
             <div className="flex items-center gap-2 sm:gap-3 tracking-wide to-left">
                <Dot />
@@ -81,6 +131,7 @@ const Hero = memo(function Hero() {
                </div>
             </div>
          </div>
+         <SwipeDownIndicator />
       </div>
    );
 });
