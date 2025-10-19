@@ -131,7 +131,7 @@ const Hero = memo(function Hero() {
                </div>
             </div>
          </div>
-         <SwipeDownIndicator />
+         {/* <SwipeDownIndicator /> */}
       </div>
    );
 });
