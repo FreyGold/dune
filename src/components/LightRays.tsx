@@ -91,6 +91,7 @@ const LightRays: React.FC<LightRaysProps> = ({
    const cleanupFunctionRef = useRef<(() => void) | null>(null);
    const [isVisible, setIsVisible] = useState(false);
    const observerRef = useRef<IntersectionObserver | null>(null);
+   const visibilityTimeoutRef = useRef<number | null>(null);
 
    useEffect(() => {
       if (!containerRef.current) return;
@@ -98,7 +99,23 @@ const LightRays: React.FC<LightRaysProps> = ({
       observerRef.current = new IntersectionObserver(
          (entries) => {
             const entry = entries[0];
-            setIsVisible(entry.isIntersecting);
+
+            // REPLACE THE SIMPLE setIsVisible CALL WITH THIS:
+            // Clear any pending timeout
+            if (visibilityTimeoutRef.current) {
+               clearTimeout(visibilityTimeoutRef.current);
+               visibilityTimeoutRef.current = null;
+            }
+
+            if (entry.isIntersecting) {
+               // Show immediately
+               setIsVisible(true);
+            } else {
+               // Delay hiding to prevent flash during quick scrolls
+               visibilityTimeoutRef.current = setTimeout(() => {
+                  setIsVisible(false);
+               }, 500); // 500ms delay before cleanup
+            }
          },
          { threshold: 0.1 }
       );
@@ -106,6 +123,11 @@ const LightRays: React.FC<LightRaysProps> = ({
       observerRef.current.observe(containerRef.current);
 
       return () => {
+         // ADD THIS:
+         if (visibilityTimeoutRef.current) {
+            clearTimeout(visibilityTimeoutRef.current);
+         }
+         // EXISTING CODE:
          if (observerRef.current) {
             observerRef.current.disconnect();
             observerRef.current = null;
