@@ -62,15 +62,6 @@ body.loaded {
    opacity: 1;
 }
 
-@media (max-width: 640px) {
-   /* Ensure smooth scrolling works properly on mobile */
-   #smooth-content {
-      overflow-x: hidden;
-      /* Enable native smooth scrolling as fallback */
-      scroll-behavior: smooth;
-   }
-}
-
 .animate-grain {
    animation: grain 0.25s steps(6) infinite;
 }
