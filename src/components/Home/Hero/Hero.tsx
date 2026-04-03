@@ -113,7 +113,20 @@ const Hero = memo(function Hero() {
             </div>
             <Name />
          </div>
-         <div className="footer absolute bottom-0">
+         <div className="footer absolute bottom-0 w-screen">
+            {/* Source code badge — centered */}
+            <div className="flex justify-center to-up-footer relative top-13.5 z-20">
+               <a
+                  href="https://github.com/FreyGold/dune"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-2 sm:gap-3 font-roboto text-sm sm:text-base uppercase tracking-wide hover:text-[#999999] transition-colors duration-300 border-2 border-white/15 px-4 py-1 rounded-full"
+               >
+                  <Dot color="#B3B3B3" size={8} pulseSize={24} />
+                  <span>Not Framer — Built with React · View Source</span>
+               </a>
+            </div>
+
             <div className="flex flex-col sm:flex-row justify-between px-4 sm:px-6 md:px-8 lg:px-10 items-center sm:items-center w-screen py-4 sm:py-6 md:py-8 uppercase text-sm sm:text-base md:text-lg font-light to-up-footer gap-2 sm:gap-0">
                <p className="hidden sm:block">BASED IN Cairo, Egypt</p>
                <div className="flex flex-col sm:flex-row items-center gap-1 sm:gap-0">
@@ -126,8 +139,6 @@ const Hero = memo(function Hero() {
                         className="absolute top-1/2 left-0 h-[2px] bg-current w-0 -translate-y-1/2"></span>
                   </span>
                   <span className="line absolute bottom-0 left-0 h-[2px] bg-current w-0"></span>
-                  <span className="hidden sm:inline"> + </span>All Around
-                  Software Engineer
                </div>
             </div>
          </div>
