@@ -92,7 +92,7 @@ export const projects: Project[] = [
       liveUrl: "https://nimble-buttercream-897ec0.netlify.app/jobs",
       featured: true,
       year: "2026",
-      videoSrc: "/project-4/vid.mp4",
+      videoSrc: "/project-4/vidSrc.mp4",
       images: [
          "/project-4/1.png",
          "/project-4/2.png",
