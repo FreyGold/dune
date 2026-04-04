@@ -19,7 +19,7 @@ function Footer() {
                rel="noopener noreferrer"
                className="font-roboto text-sm sm:text-base hover:text-[#999999] transition-colors duration-300 uppercase tracking-wide border-2 border-white/15 px-4 py-1.5 rounded-full relative"
             >
-               &lt;/&gt; Not Framer — Built from scratch with React · View Source
+               &lt;/&gt; Built from scratch with React · View Source
             </a>
          </div>
 

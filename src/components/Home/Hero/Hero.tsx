@@ -123,7 +123,7 @@ const Hero = memo(function Hero() {
                   className="flex items-center gap-2 sm:gap-3 font-roboto text-sm sm:text-base uppercase tracking-wide hover:text-[#999999] transition-colors duration-300 border-2 border-white/15 px-4 py-1 rounded-full"
                >
                   <Dot color="#B3B3B3" size={8} pulseSize={24} />
-                  <span>Not Framer — Built with React · View Source</span>
+                  <span>Built with React · View Source</span>
                </a>
             </div>
 
