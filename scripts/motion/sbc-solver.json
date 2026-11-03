@@ -1,0 +1,45 @@
+{
+  "project": "SBC SOLVER",
+  "kicker": "SQUAD CHALLENGES",
+  "opening": [
+    "CHALLENGE.",
+    "SOLVE."
+  ],
+  "subhead": "A browser extension connects a challenge to a local solver.",
+  "feature_headline": [
+    "FROM CHALLENGE",
+    "TO SQUAD."
+  ],
+  "feature_note": "SOURCE-BASED SOLVER FLOW",
+  "layout": "solver",
+  "features": [
+    [
+      "01",
+      "EXTENSION",
+      "Capture requirements"
+    ],
+    [
+      "02",
+      "LOCAL API",
+      "Prepare data"
+    ],
+    [
+      "03",
+      "SOLVER",
+      "Propose a squad"
+    ]
+  ],
+  "screen_title": "Source-based solver flow",
+  "screen_note": "SOURCE DIAGRAM • NO GAME RECORDING",
+  "closing": [
+    "READ.",
+    "SOLVE.",
+    "REVIEW."
+  ],
+  "closing_note": "SOURCE FLOW DIAGRAM",
+  "accent": "#9be5a5",
+  "screen": "public/projects/sbc-solver/motion-overview.mp4",
+  "output": "public/projects/sbc-solver/motion-overview-v2.mp4",
+  "identity": "field",
+  "transition": "split"
+}

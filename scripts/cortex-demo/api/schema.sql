@@ -1,0 +1,11 @@
+CREATE TABLE IF NOT EXISTS notes (id TEXT PRIMARY KEY, title TEXT NOT NULL, content TEXT NOT NULL, content_text TEXT NOT NULL DEFAULT '', summary TEXT, folder_id TEXT, is_pinned INTEGER NOT NULL DEFAULT 0, is_published INTEGER NOT NULL DEFAULT 0, archived_at TEXT, expires_at INTEGER, created_at TEXT NOT NULL, updated_at TEXT NOT NULL);
+INSERT OR IGNORE INTO notes(id,title,content,content_text,created_at,updated_at) VALUES ('intro','Welcome to the Cortex demo','[{"type":"h1","children":[{"text":"Welcome to Cortex"}]},{"type":"p","children":[{"text":"This sample workspace lets you create and edit notes. It is shared by visitors and contains no private data."}]}]','Welcome to Cortex. This sample workspace lets you create and edit notes.',datetime('now'),datetime('now'));
+CREATE TABLE IF NOT EXISTS catalog_items (id TEXT PRIMARY KEY, kind TEXT NOT NULL, payload TEXT NOT NULL);
+INSERT OR IGNORE INTO catalog_items VALUES ('sample-u','universities','{"id":"sample-u","name_en":"Example University","slug":"example-university"}');
+INSERT OR IGNORE INTO catalog_items VALUES ('sample-c','colleges','{"id":"sample-c","university_id":"sample-u","name_en":"Computer Science","slug":"computer-science"}');
+INSERT OR IGNORE INTO catalog_items VALUES ('sample-m','majors','{"id":"sample-m","college_id":"sample-c","name_en":"Computer Science","slug":"computer-science","color":null,"icon":null}');
+INSERT OR IGNORE INTO catalog_items VALUES ('sample-y','yearLevels','{"id":"sample-y","level":1,"name_en":"First Year"}');
+INSERT OR IGNORE INTO catalog_items VALUES ('sample-course','courses','{"id":"sample-course","major_id":"sample-m","year_level_id":"sample-y","name_en":"Introduction to Algorithms","code":"CS101","description":"Example course data for the demo.","credits":3}');
+INSERT OR IGNORE INTO catalog_items VALUES ('sample-resource','resources','{"id":"sample-resource","course_id":"sample-course","title_en":"Algorithm study guide","description":"Example resource for the demo","type":"note","exam_type":null,"doctor_id":null,"google_drive_id":null,"google_drive_url":null,"note_id":"intro","file_type":null,"file_size":null,"download_count":null,"view_count":null,"average_rating":null,"rating_count":null}');
+
+CREATE TABLE IF NOT EXISTS write_limits (bucket TEXT PRIMARY KEY, minute INTEGER NOT NULL, count INTEGER NOT NULL);

@@ -1,0 +1,45 @@
+{
+  "project": "INVENTORY",
+  "kicker": "STOCK AND SALES",
+  "opening": [
+    "KNOW YOUR",
+    "STOCK."
+  ],
+  "subhead": "Products, invoices and reports in one workspace.",
+  "feature_headline": [
+    "FROM STOCK",
+    "TO INSIGHT."
+  ],
+  "feature_note": "ILLUSTRATED WORKFLOW • SAMPLE DATA",
+  "layout": "stock",
+  "features": [
+    [
+      "01",
+      "STOCK",
+      "Track products"
+    ],
+    [
+      "02",
+      "INVOICES",
+      "Review sales"
+    ],
+    [
+      "03",
+      "REPORTS",
+      "See low stock"
+    ]
+  ],
+  "screen_title": "Inventory browser preview",
+  "screen_note": "READ-ONLY PREVIEW • MOCK DATA",
+  "closing": [
+    "PRODUCTS.",
+    "INVOICES.",
+    "REPORTS."
+  ],
+  "closing_note": "READ-ONLY BROWSER PREVIEW",
+  "accent": "#a7212c",
+  "screen": "public/projects/inventory/screen-preview-2026.mp4",
+  "output": "public/projects/inventory/motion-overview-v2.mp4",
+  "identity": "ledger",
+  "transition": "vertical"
+}

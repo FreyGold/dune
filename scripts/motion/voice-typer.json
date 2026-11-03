@@ -1,0 +1,45 @@
+{
+  "project": "VOICE TYPER",
+  "kicker": "SPEECH TO TEXT",
+  "opening": [
+    "SPEAK.",
+    "TYPE LESS."
+  ],
+  "subhead": "Turn speech into text in the active application.",
+  "feature_headline": [
+    "YOUR VOICE.",
+    "YOUR WORDS."
+  ],
+  "feature_note": "ILLUSTRATED SPEECH-TO-TEXT FLOW",
+  "layout": "voice",
+  "features": [
+    [
+      "01",
+      "SPEAK",
+      "Record speech"
+    ],
+    [
+      "02",
+      "TRANSCRIBE",
+      "Convert to text"
+    ],
+    [
+      "03",
+      "TYPE",
+      "Insert into an app"
+    ]
+  ],
+  "screen_title": "Voice Typer in use",
+  "screen_note": "OWNER-PROVIDED RECORDING",
+  "closing": [
+    "SPEAK.",
+    "TRANSCRIBE.",
+    "TYPE."
+  ],
+  "closing_note": "OWNER-PROVIDED RECORDING",
+  "accent": "#94b5ff",
+  "screen": "public/projects/voice-typer/screen-closeup.mp4",
+  "output": "public/projects/voice-typer/motion-overview-v2.mp4",
+  "identity": "sound",
+  "transition": "circle"
+}

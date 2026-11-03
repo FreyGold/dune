@@ -1,0 +1,45 @@
+{
+  "project": "AUTONATIC",
+  "kicker": "OBSIDIAN PLUGIN",
+  "opening": [
+    "FROM INPUT",
+    "TO NOTES."
+  ],
+  "subhead": "Turn source material into structured Markdown notes.",
+  "feature_headline": [
+    "FROM SOURCE",
+    "TO STRUCTURE."
+  ],
+  "feature_note": "CONCEPT ILLUSTRATION • GENERATION NOT TESTED",
+  "layout": "transform",
+  "features": [
+    [
+      "01",
+      "SOURCE",
+      "Text and images"
+    ],
+    [
+      "02",
+      "CREATE",
+      "Choose options"
+    ],
+    [
+      "03",
+      "NOTE",
+      "Markdown output"
+    ]
+  ],
+  "screen_title": "The local plugin in Obsidian",
+  "screen_note": "LOCAL 1.7.36 • NO AI PROVIDER",
+  "closing": [
+    "CAPTURE.",
+    "ORGANIZE.",
+    "REVISIT."
+  ],
+  "closing_note": "SAMPLE VAULT • GENERATION NOT TESTED",
+  "accent": "#8a93ff",
+  "screen": "public/projects/autonatic/screen-tour-2026.mp4",
+  "output": "public/projects/autonatic/motion-overview-v2.mp4",
+  "identity": "studio",
+  "transition": "split"
+}

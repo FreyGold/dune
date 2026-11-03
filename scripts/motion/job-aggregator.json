@@ -1,0 +1,60 @@
+{
+  "project": "JOB AGGREGATOR",
+  "kicker": "JOB SEARCH",
+  "opening": [
+    "SEARCH.",
+    "DISCOVER."
+  ],
+  "subhead": "Listings and filters brought into one search workspace.",
+  "feature_headline": [
+    "FIND YOUR",
+    "NEXT ROLE."
+  ],
+  "feature_note": "ILLUSTRATED SEARCH FLOW",
+  "layout": "jobs",
+  "features": [
+    [
+      "01",
+      "SEARCH",
+      "Choose keywords"
+    ],
+    [
+      "02",
+      "FILTER",
+      "Narrow results"
+    ],
+    [
+      "03",
+      "EXPLORE",
+      "Open listings"
+    ]
+  ],
+  "screen_title": "Browse real stored listings",
+  "screen_note": "REAL LISTINGS • SEPTEMBER 2026",
+  "closing": [
+    "SEARCH.",
+    "FILTER.",
+    "DISCOVER."
+  ],
+  "closing_note": "REAL STORED LISTINGS",
+  "accent": "#85442f",
+  "screen": "public/projects/job-aggregator/live-tour.mp4",
+  "output": "public/projects/job-aggregator/motion-overview-v2.mp4",
+  "identity": "paper",
+  "transition": "vertical",
+  "screen_segments": [
+    [
+      0,
+      2.5
+    ],
+    [
+      4.5,
+      6.8
+    ],
+    [
+      15.8,
+      18.4
+    ]
+  ],
+  "screen_mode": "job_montage"
+}

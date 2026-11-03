@@ -1,0 +1,353 @@
+import { createAnthropic } from "@ai-sdk/anthropic";
+import { createGoogleGenerativeAI } from "@ai-sdk/google";
+import { createGroq } from "@ai-sdk/groq";
+import { createOpenAI } from "@ai-sdk/openai";
+import {
+  createUIMessageStream,
+  createUIMessageStreamResponse,
+  generateObject,
+  generateText,
+  type LanguageModel,
+  Output,
+  streamText,
+  tool,
+  type UIMessageStreamWriter,
+} from "ai";
+import type { NextRequest } from "next/server";
+import { NextResponse } from "next/server";
+import { createSlateEditor, nanoid, type SlateEditor } from "platejs";
+import { z } from "zod";
+import { BaseEditorKit } from "@/components/editor/editor-base-kit";
+import type { ChatMessage, ToolName } from "@/components/editor/use-chat";
+import { markdownJoinerTransform } from "@/lib/markdown-joiner-transform";
+
+import {
+  buildEditTableMultiCellPrompt,
+  getChooseToolPrompt,
+  getCommentPrompt,
+  getEditPrompt,
+  getGeneratePrompt,
+} from "./prompt";
+
+export async function POST(req: NextRequest) {
+  const { apiKey: key, ctx, messages: messagesRaw, model } = await req.json();
+
+  const { children, selection, toolName: toolNameParam } = ctx;
+
+  const editor = createSlateEditor({
+    plugins: BaseEditorKit,
+    selection,
+    value: children,
+  });
+
+  const apiKey = key || process.env.AI_GATEWAY_API_KEY;
+
+  if (!apiKey) {
+    return NextResponse.json(
+      { error: "Missing AI API key. Please provide one in Settings." },
+      { status: 401 },
+    );
+  }
+
+  const isSelecting = editor.api.isExpanded();
+
+  // Helper to get the correct model instance
+  const getModel = (modelId: string): LanguageModel => {
+    const [providerPrefix, ...modelNameParts] = modelId.split("/");
+    const modelName = modelNameParts.join("/");
+
+    // Auto-detect provider if prefix is missing or generic
+    let provider = providerPrefix;
+    if (provider === "openai" && apiKey.startsWith("gsk_")) provider = "groq";
+    if (provider === "openai" && apiKey.startsWith("sk-ant-"))
+      provider = "anthropic";
+
+    switch (provider) {
+      case "groq": {
+        const groq = createGroq({ apiKey });
+        return groq(modelName || "openai/gpt-oss-20b");
+      }
+      case "google": {
+        const google = createGoogleGenerativeAI({ apiKey });
+        return google(modelName || "gemini-1.5-flash");
+      }
+      case "anthropic": {
+        const anthropic = createAnthropic({ apiKey });
+        return anthropic(modelName || "claude-3-5-sonnet-latest");
+      }
+      case "openai":
+      default: {
+        const openai = createOpenAI({ apiKey });
+        return openai(modelName || "gpt-4o-mini");
+      }
+    }
+  };
+
+  try {
+    const stream = createUIMessageStream<ChatMessage>({
+      execute: async ({ writer }) => {
+        let toolName = toolNameParam;
+
+        if (!toolName) {
+          const prompt = getChooseToolPrompt({
+            isSelecting,
+            messages: messagesRaw,
+          });
+
+          const enumOptions = isSelecting
+            ? ["generate", "edit", "comment"]
+            : ["generate", "comment"];
+
+          const modelId = model || "openai/gpt-4o-mini";
+
+          try {
+            const { object } = await generateObject({
+              model: getModel(modelId),
+              schema: z.object({
+                toolName: z.enum(enumOptions as any),
+              }),
+              // @ts-expect-error - mode might not be typed in this ai sdk version
+              mode: "json",
+              prompt:
+                prompt +
+                `\n\nRespond with a JSON object containing a single key "toolName" with one of the following values: ${enumOptions.join(", ")}.`,
+            });
+
+            writer.write({
+              data: object.toolName as ToolName,
+              type: "data-toolName",
+            });
+
+            toolName = object.toolName;
+          } catch (classifyError) {
+            console.warn(
+              "[AI Command Route] Classification failed, defaulting to generate:",
+              classifyError,
+            );
+            toolName = "generate";
+            writer.write({
+              data: "generate",
+              type: "data-toolName",
+            });
+          }
+        }
+
+        const stream = streamText({
+          model: getModel(model || "openai/gpt-4o-mini"),
+          // Not used
+          prompt: "",
+          tools: {
+            comment: getCommentTool(editor, {
+              messagesRaw,
+              model: getModel(model || "openai/gpt-4o-mini"),
+              writer,
+            }),
+            table: getTableTool(editor, {
+              messagesRaw,
+              model: getModel(model || "openai/gpt-4o-mini"),
+              writer,
+            }),
+          },
+          prepareStep: async (step) => {
+            if (toolName === "comment") {
+              return {
+                ...step,
+                toolChoice: { toolName: "comment", type: "tool" },
+              };
+            }
+
+            if (toolName === "edit") {
+              const [editPrompt, editType] = getEditPrompt(editor, {
+                isSelecting,
+                messages: messagesRaw,
+              });
+
+              // Table editing uses the table tool
+              if (editType === "table") {
+                return {
+                  ...step,
+                  toolChoice: { toolName: "table", type: "tool" },
+                };
+              }
+
+              return {
+                ...step,
+                activeTools: [],
+                model: getModel(model || "openai/gpt-4o-mini"),
+                messages: [
+                  {
+                    content: editPrompt,
+                    role: "user",
+                  },
+                ],
+              };
+            }
+
+            if (toolName === "generate") {
+              const generatePrompt = getGeneratePrompt(editor, {
+                isSelecting,
+                messages: messagesRaw,
+              });
+
+              return {
+                ...step,
+                activeTools: [],
+                messages: [
+                  {
+                    content: generatePrompt,
+                    role: "user",
+                  },
+                ],
+                model: getModel(model || "openai/gpt-4o-mini"),
+              };
+            }
+          },
+        });
+
+        writer.merge(stream.toUIMessageStream({ sendFinish: false }));
+      },
+    });
+
+    return createUIMessageStreamResponse({ stream });
+  } catch (error: any) {
+    console.error("[AI Command Route] Error:", error);
+    return NextResponse.json(
+      { error: error.message || "Failed to process AI request" },
+      { status: 500 },
+    );
+  }
+}
+
+const getCommentTool = (
+  editor: SlateEditor,
+  {
+    messagesRaw,
+    model,
+    writer,
+  }: {
+    messagesRaw: ChatMessage[];
+    model: LanguageModel;
+    writer: UIMessageStreamWriter<ChatMessage>;
+  },
+) =>
+  tool({
+    description: "Comment on the content",
+    inputSchema: z.object({}),
+    strict: true,
+    execute: async () => {
+      const commentSchema = z.object({
+        blockId: z
+          .string()
+          .describe(
+            "The id of the starting block. If the comment spans multiple blocks, use the id of the first block.",
+          ),
+        comment: z
+          .string()
+          .describe("A brief comment or explanation for this fragment."),
+        content: z
+          .string()
+          .describe(
+            String.raw`The original document fragment to be commented on.It can be the entire block, a small part within a block, or span multiple blocks. If spanning multiple blocks, separate them with two \n\n.`,
+          ),
+      });
+
+      const { partialOutputStream } = streamText({
+        model,
+        output: Output.array({ element: commentSchema }),
+        prompt: getCommentPrompt(editor, {
+          messages: messagesRaw,
+        }),
+      });
+
+      let lastLength = 0;
+
+      for await (const partialArray of partialOutputStream) {
+        for (let i = lastLength; i < partialArray.length; i++) {
+          const comment = partialArray[i];
+          const commentDataId = nanoid();
+
+          writer.write({
+            id: commentDataId,
+            data: {
+              comment,
+              status: "streaming",
+            },
+            type: "data-comment",
+          });
+        }
+
+        lastLength = partialArray.length;
+      }
+
+      writer.write({
+        id: nanoid(),
+        data: {
+          comment: null,
+          status: "finished",
+        },
+        type: "data-comment",
+      });
+    },
+  });
+
+const getTableTool = (
+  editor: SlateEditor,
+  {
+    messagesRaw,
+    model,
+    writer,
+  }: {
+    messagesRaw: ChatMessage[];
+    model: LanguageModel;
+    writer: UIMessageStreamWriter<ChatMessage>;
+  },
+) =>
+  tool({
+    description: "Edit table cells",
+    inputSchema: z.object({}),
+    strict: true,
+    execute: async () => {
+      const cellUpdateSchema = z.object({
+        content: z
+          .string()
+          .describe(
+            String.raw`The new content for the cell. Can contain multiple paragraphs separated by \n\n.`,
+          ),
+        id: z.string().describe("The id of the table cell to update."),
+      });
+
+      const { partialOutputStream } = streamText({
+        model,
+        output: Output.array({ element: cellUpdateSchema }),
+        prompt: buildEditTableMultiCellPrompt(editor, messagesRaw),
+      });
+
+      let lastLength = 0;
+
+      for await (const partialArray of partialOutputStream) {
+        for (let i = lastLength; i < partialArray.length; i++) {
+          const cellUpdate = partialArray[i];
+
+          writer.write({
+            id: nanoid(),
+            data: {
+              cellUpdate,
+              status: "streaming",
+            },
+            type: "data-table",
+          });
+        }
+
+        lastLength = partialArray.length;
+      }
+
+      writer.write({
+        id: nanoid(),
+        data: {
+          cellUpdate: null,
+          status: "finished",
+        },
+        type: "data-table",
+      });
+    },
+  });

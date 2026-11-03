@@ -1,0 +1,59 @@
+{
+  "project": "CORTEX",
+  "kicker": "ACADEMIC WORKSPACE",
+  "opening": [
+    "A PLACE",
+    "TO STUDY."
+  ],
+  "subhead": "Write notes and browse a sample course in a shared demo.",
+  "feature_headline": [
+    "NOTES AND",
+    "COURSE MATERIAL."
+  ],
+  "features": [
+    [
+      "01",
+      "WRITE",
+      "Create and edit notes."
+    ],
+    [
+      "02",
+      "BROWSE",
+      "Explore a sample course."
+    ],
+    [
+      "03",
+      "EXPIRY",
+      "Notes expire after one hour."
+    ]
+  ],
+  "feature_note": "LIMITED DEMO • SHARED NOTES EXPIRE AFTER ONE HOUR",
+  "screen_title": "Explore the Cortex demo",
+  "screen_note": "SHARED DEMO • AI AND COLLABORATION OFF",
+  "closing": [
+    "WRITE.",
+    "LEARN.",
+    "EXPLORE."
+  ],
+  "closing_note": "SHARED DEMO • AI AND COLLABORATION OFF",
+  "accent": "#19a7ed",
+  "screen": "public/projects/cortex/demo-live-tour.mp4",
+  "output": "public/projects/cortex/motion-overview-v2.mp4",
+  "identity": "orbit",
+  "transition": "diagonal",
+  "screen_segments": [
+    [
+      0,
+      1.5
+    ],
+    [
+      13.4,
+      16.4
+    ],
+    [
+      36.0,
+      38.15
+    ]
+  ],
+  "feature_footer": "SHARED DEMO • NOTES EXPIRE AFTER ONE HOUR"
+}

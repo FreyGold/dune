@@ -25,23 +25,27 @@ These updates supersede the older media and next-step notes below.
   Obsidian. The latest public release checked was 1.7.17. The screenshots,
   screen tour, and motion video show navigation and sample input. No provider
   was connected; generation and search results were not verified.
-- Job Aggregator: The hosted interface opened, but its jobs API did not
-  respond during capture. The new screenshots and videos show that interface
-  with a simulated API response and clearly marked sample listings. They do
-  not verify live job search or filtering.
+- Job Aggregator: Restored the live jobs API after a failed Redis host caused
+  long delays. Captured real stored listings, a remote filter, and a job detail.
+  The newest stored listing was dated September 2026 when checked. The fix is
+  on the `fix/jobagg-redis-fail-open` branch of the backend repository.
 - Amer: Captured the live dashboard, member list, sample member profile,
   requests page, and sample chat. The requests list and chat were empty. The
   screen recording is `public/projects/amer/walkthrough-2026.mp4`. The edited
   video is `public/projects/amer/motion-overview.mp4`. The portfolio uses the
   edited video and the new screenshots. No message was sent during the check.
-- Cortex: Captured the current public homepage and made a motion video. The
-  notes page requires sign-in, the resources page was blank, and sign-up
-  returned a fetch error. The configured database was not accessible from the
-  connected account. Signed-in workflows remain unverified.
-- Tamatem: A separate test account signed in and saved sample tasks, a subject,
-  and a journal note. The new video shows the dashboard, logbook, and focus
-  timer. Credentials are not public: this account uses the production backend,
-  which includes community actions. An isolated demo backend is needed first.
+- Cortex: The separate shared demo at
+  `https://cortex-portfolio-demo.vercel.app/auth/login` uses Cloudflare D1.
+  Its sign-in page has public demo credentials. Notes and a sample course were
+  tested. Notes are public and expire after one hour. AI, collaboration, and
+  daily tools are unavailable. The original deployment remains separate.
+  `scripts/cortex-demo/` contains the Worker and frontend overlay.
+- Tamatem: The live sign-in page has a shared demo account and a fill button.
+  It uses the existing production backend and Supabase project. The demo is a
+  normal user account; its data can change and the app has community features.
+  The video shows a separate sample account with tasks and a focus timer.
+  The sign-in change is on `codex/tamatem-demo-login-20261103` in the Tamatem
+  repository.
 - Desktop capture: `agent-desktop` could not capture a window or display in
   this Wayland session. The new Autonatic media was captured through the
   isolated Obsidian browser session.

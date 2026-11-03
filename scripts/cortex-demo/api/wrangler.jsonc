@@ -1,0 +1,9 @@
+{
+  "$schema": "https://unpkg.com/wrangler@4/config-schema.json",
+  "name": "cortex-demo-api",
+  "main": "src/index.js",
+  "compatibility_date": "2026-11-03",
+  "ratelimits": [ { "name": "WRITE_LIMITER", "namespace_id": "240391823", "simple": { "limit": 20, "period": 60 } }, { "name": "READ_LIMITER", "namespace_id": "240391824", "simple": { "limit": 120, "period": 60 } } ],
+  "observability": { "enabled": true },
+  "d1_databases": [{ "binding": "DB", "database_name": "cortex-demo", "database_id": "5f70da69-9516-4f6a-a4bb-369473b3c42c" }]
+}

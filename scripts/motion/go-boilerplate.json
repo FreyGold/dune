@@ -1,0 +1,45 @@
+{
+  "project": "GO BOILERPLATE",
+  "kicker": "FULL-STACK STARTER",
+  "opening": [
+    "START WITH",
+    "STRUCTURE."
+  ],
+  "subhead": "A Go service, a frontend workspace and local infrastructure.",
+  "feature_headline": [
+    "A FOUNDATION",
+    "TO BUILD ON."
+  ],
+  "feature_note": "SOURCE-BASED ARCHITECTURE",
+  "layout": "architecture",
+  "features": [
+    [
+      "01",
+      "FRONTEND",
+      "Separate workspace"
+    ],
+    [
+      "02",
+      "GO",
+      "Application service"
+    ],
+    [
+      "03",
+      "DATA",
+      "PostgreSQL and Redis"
+    ]
+  ],
+  "screen_title": "Source architecture",
+  "screen_note": "SOURCE DIAGRAM • NOT A LIVE DEMO",
+  "closing": [
+    "FRONTEND.",
+    "BACKEND.",
+    "DATA."
+  ],
+  "closing_note": "SOURCE ARCHITECTURE DIAGRAM",
+  "accent": "#82d6bc",
+  "screen": "public/projects/go-boilerplate/architecture-motion-2026.mp4",
+  "output": "public/projects/go-boilerplate/motion-overview-v2.mp4",
+  "identity": "blueprint",
+  "transition": "vertical"
+}

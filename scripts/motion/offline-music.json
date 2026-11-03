@@ -1,0 +1,46 @@
+{
+  "project": "OFFLINE MUSIC",
+  "kicker": "MUSIC LIBRARY",
+  "opening": [
+    "YOUR MUSIC.",
+    "OFFLINE."
+  ],
+  "subhead": "A music library designed to keep tracks on your iPhone.",
+  "feature_headline": [
+    "FROM LINK",
+    "TO LIBRARY."
+  ],
+  "feature_note": "SOURCE-BASED CONCEPT • NATIVE APP NOT SHOWN",
+  "layout": "music",
+  "features": [
+    [
+      "01",
+      "LINK",
+      "Choose music"
+    ],
+    [
+      "02",
+      "SERVER",
+      "Prepare audio"
+    ],
+    [
+      "03",
+      "IPHONE",
+      "Store tracks"
+    ]
+  ],
+  "screen_title": "Earlier browser version",
+  "screen_note": "OLDER BROWSER • NATIVE APP NOT SHOWN",
+  "closing": [
+    "FIND.",
+    "SAVE.",
+    "LISTEN."
+  ],
+  "closing_note": "OLDER BROWSER RECORDING",
+  "accent": "#70aeff",
+  "screen": "public/projects/offline-music/browser-screen-recording.mp4",
+  "output": "public/projects/offline-music/motion-overview-v2.mp4",
+  "identity": "music",
+  "transition": "circle",
+  "screen_mode": "portrait_closeup"
+}

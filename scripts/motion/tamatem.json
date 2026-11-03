@@ -1,0 +1,45 @@
+{
+  "project": "TAMATEM",
+  "kicker": "STUDENT PLANNER",
+  "opening": [
+    "PLAN IT.",
+    "FOCUS ON IT."
+  ],
+  "subhead": "A study workspace for tasks, habits and focused time.",
+  "feature_headline": [
+    "MAKE A PLAN.",
+    "MAKE TIME."
+  ],
+  "feature_note": "ILLUSTRATED STUDY WORKFLOW",
+  "layout": "planner",
+  "features": [
+    [
+      "01",
+      "PLAN",
+      "Choose a task"
+    ],
+    [
+      "02",
+      "FOCUS",
+      "Set time aside"
+    ],
+    [
+      "03",
+      "REFLECT",
+      "Review progress"
+    ]
+  ],
+  "screen_title": "A look inside Tamatem",
+  "screen_note": "LIVE WEB APP • SAMPLE DATA",
+  "closing": [
+    "PLAN.",
+    "FOCUS.",
+    "PROGRESS."
+  ],
+  "closing_note": "LIVE WEB APP WITH SAMPLE DATA",
+  "accent": "#a7470c",
+  "screen": "public/projects/tamatem/walkthrough-2026.mp4",
+  "output": "public/projects/tamatem/motion-overview-v2.mp4",
+  "identity": "sunrise",
+  "transition": "circle"
+}

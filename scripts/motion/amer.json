@@ -1,0 +1,45 @@
+{
+  "project": "AMER",
+  "kicker": "EMPLOYEE MANAGEMENT",
+  "opening": [
+    "PEOPLE.",
+    "ONE PLACE."
+  ],
+  "subhead": "Employee operations brought into one workspace.",
+  "feature_headline": [
+    "THE WORKSPACE",
+    "IN MOTION."
+  ],
+  "feature_note": "A SOURCE-BASED VIEW OF THE WORKSPACE",
+  "layout": "flow",
+  "features": [
+    [
+      "01",
+      "MEMBERS",
+      "Profiles and records"
+    ],
+    [
+      "02",
+      "REQUESTS",
+      "Attendance and time off"
+    ],
+    [
+      "03",
+      "MESSAGES",
+      "Team conversations"
+    ]
+  ],
+  "screen_title": "Inside the live demo",
+  "screen_note": "HOSTED DEMO • SAMPLE DATA",
+  "closing": [
+    "PEOPLE.",
+    "OPERATIONS.",
+    "TOGETHER."
+  ],
+  "closing_note": "HOSTED DEMO WITH SAMPLE DATA",
+  "accent": "#087958",
+  "screen": "public/projects/amer/walkthrough-2026.mp4",
+  "output": "public/projects/amer/motion-overview-v2.mp4",
+  "identity": "humanist",
+  "transition": "split"
+}
