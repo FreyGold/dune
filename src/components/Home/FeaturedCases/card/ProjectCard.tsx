@@ -66,12 +66,17 @@ function ProjectCard({ project, textColor = "text-white" }: ProjectCardProps) {
                preload="metadata"
                className="absolute inset-0 object-cover object-center w-full h-full"
             />
-         ) : (
+         ) : project.imageSrc ? (
             <img
                src={project.imageSrc}
                alt={project.alt}
-               className="absolute inset-0 object-cover object-center w-full h-full"
+               className={`absolute inset-0 object-center w-full h-full ${project.imageFit === "contain" ? "object-contain bg-neutral-900" : "object-cover"}`}
             />
+         ) : (
+            <div className="absolute inset-0 flex flex-col justify-center gap-4 bg-neutral-800 px-6 sm:px-10">
+               <p className="text-xs uppercase tracking-widest text-neutral-400">{project.technologies.slice(0, 3).join(" / ")}</p>
+               <p className="max-w-md text-base text-neutral-300 sm:text-xl">{project.description}</p>
+            </div>
          )}
          <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
          <h3

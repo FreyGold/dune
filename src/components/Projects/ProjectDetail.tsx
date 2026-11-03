@@ -1,7 +1,7 @@
 import { useParams, Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { projects } from "../../data/projects";
-import { BiArrowBack, BiLinkExternal, BiLogoGithub } from "react-icons/bi";
+import { BiArrowBack, BiDownload, BiLinkExternal, BiLogoGithub } from "react-icons/bi";
 
 function ProjectDetail() {
    const { projectId } = useParams<{ projectId: string }>();
@@ -59,23 +59,27 @@ function ProjectDetail() {
                      e.currentTarget.playbackRate = 1;
                   }}
                />
-            ) : (
+            ) : project.imageSrc ? (
                <div
                   className="absolute inset-0 bg-cover bg-center bg-no-repeat"
                   style={{
                      backgroundImage: `url(${project.imageSrc})`,
                      backgroundAttachment: isMobile ? "scroll" : "fixed",
+                     backgroundSize: project.imageFit === "contain" ? "contain" : "cover",
+                     backgroundColor: "#171717",
                   }}
                />
+            ) : (
+               <div className="absolute inset-0 bg-neutral-900" />
             )}
             <div className="absolute inset-0 bg-black/60" />
 
             <div className="relative z-10 text-center px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16 max-w-4xl mx-auto">
-               <div className="mb-3 sm:mb-4">
+               {project.year && <div className="mb-3 sm:mb-4">
                   <span className="inline-block text-xs sm:text-sm text-[#A3A3A3] uppercase tracking-wider mb-2">
                      {project.year}
                   </span>
-               </div>
+               </div>}
                <h1 className="font-grotesk text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl 2xl:text-6xl 3xl:text-7xl font-bold uppercase [word-spacing:-0.1rem] tracking-tight mb-3 sm:mb-4 md:mb-6 leading-tight">
                   {project.title}
                </h1>
@@ -90,9 +94,19 @@ function ProjectDetail() {
                         href={project.liveUrl}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className=" items-center gap-2 bg-white text-black px-4 py-2 sm:px-6 sm:py-3 rounded-full font-medium hover:bg-gray-200 transition-colors text-sm sm:text-base hidden lg:inline-flex">
+                        className="inline-flex items-center gap-2 bg-white text-black px-4 py-2 sm:px-6 sm:py-3 rounded-full font-medium hover:bg-gray-200 transition-colors text-sm sm:text-base">
                         <BiLinkExternal />
-                        Live Demo
+                        {project.liveLabel ?? "Live Demo"}
+                     </a>
+                  )}
+                  {project.downloadUrl && (
+                     <a
+                        href={project.downloadUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-2 bg-white text-black px-4 py-2 sm:px-6 sm:py-3 rounded-full font-medium hover:bg-gray-200 transition-colors text-sm sm:text-base">
+                        <BiDownload />
+                        Download
                      </a>
                   )}
                   {project.githubUrl && (
@@ -106,6 +120,9 @@ function ProjectDetail() {
                      </a>
                   )}
                </div>
+               {project.liveNote && (
+                  <p className="mt-3 text-sm text-neutral-300">{project.liveNote}</p>
+               )}
             </div>
          </div>
 
@@ -128,12 +145,26 @@ function ProjectDetail() {
                   </div>
                </div>
 
+               {project.highlights && (
+                  <div className="mb-8 sm:mb-12 md:mb-16">
+                     <h2 className="font-grotesk text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold uppercase mb-4 sm:mb-6">
+                        What it does
+                     </h2>
+                     <ul className="flex flex-col gap-3 text-lg text-neutral-400 max-w-4xl list-disc pl-5">
+                        {project.highlights.map((highlight) => <li key={highlight}>{highlight}</li>)}
+                     </ul>
+                  </div>
+               )}
+
                {/* Project Gallery */}
-               {project.images && project.images.length > 1 && (
+               {project.images && project.images.length > 0 && (
                   <div className="mb-8 sm:mb-12 md:mb-16">
                      <h2 className="font-grotesk text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold uppercase mb-4 sm:mb-6 md:mb-8">
                         Project Gallery
                      </h2>
+                     {project.mediaNote && (
+                        <p className="mb-4 text-sm text-neutral-400">{project.mediaNote}</p>
+                     )}
                      <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
                         {project.images.map((media, index) => {
                            const isVideo = media.endsWith(".mp4");
@@ -149,7 +180,7 @@ function ProjectDetail() {
                                     <video
                                        src={media}
                                        controls
-                                       className="object-cover w-full h-full transition-transform duration-300 hover:scale-105">
+                                       className="object-contain bg-neutral-900 w-full h-full">
                                        Your browser does not support the video
                                        tag.
                                     </video>
@@ -159,7 +190,7 @@ function ProjectDetail() {
                                        alt={`${project.title} screenshot ${
                                           index + 1
                                        }`}
-                                       className="object-cover w-full h-full transition-transform duration-300 hover:scale-105"
+                                       className={`${project.imageFit === "contain" ? "object-contain bg-neutral-900" : "object-cover"} w-full h-full transition-transform duration-300 hover:scale-105`}
                                        loading="lazy"
                                     />
                                  )}
