@@ -24,7 +24,7 @@ export interface Project {
 export const projects: Project[] = [
    {
       id: "amer",
-      imageSrc: "/projects/amer/dashboard-live.png",
+      imageSrc: "/projects/amer/dashboard-2026.png",
       alt: "Amer dashboard with sample data",
       title: "Amer",
       description: "A workspace for employee management and business operations.",
@@ -35,12 +35,12 @@ export const projects: Project[] = [
       liveLabel: "Open application",
       liveNote: "Use the demo sign-in details on the login page.",
       featured: true,
-      mediaNote: "The images and recording show the hosted app with sample data.",
-      images: ["/projects/amer/dashboard-live.png", "/projects/amer/members-live.png", "/projects/amer/full-app-tour.mp4"],
+      mediaNote: "The images and video show the hosted app with sample data. The requests list and sample chat were empty during capture.",
+      images: ["/projects/amer/motion-overview.mp4", "/projects/amer/dashboard-2026.png", "/projects/amer/members-2026.png", "/projects/amer/member-profile-2026.png", "/projects/amer/requests-2026.png", "/projects/amer/messages-2026.png"],
    },
    {
       id: "cortex",
-      imageSrc: "/projects/cortex/home.png",
+      imageSrc: "/projects/cortex/home-2026.png",
       alt: "Cortex homepage",
       title: "Cortex",
       description: "A bilingual workspace for collaborative study.",
@@ -50,7 +50,7 @@ export const projects: Project[] = [
       githubUrl: "https://github.com/FreyGold/Cortex",
       liveUrl: "https://cortex-eta-black.vercel.app/",
       featured: true,
-      images: ["/projects/cortex/home.png", "/projects/cortex/home-tour.mp4"],
+      images: ["/projects/cortex/home-2026.png", "/projects/cortex/home-tour.mp4"],
       mediaNote: "The image and recording show the public homepage. Signed-in features have not been checked.",
    },
    {

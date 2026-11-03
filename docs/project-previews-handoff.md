@@ -2,6 +2,20 @@
 
 Date: 3 November 2026
 
+## Capture update
+
+- Amer: Captured the live dashboard, member list, sample member profile,
+  requests page, and sample chat. The requests list and chat were empty. The
+  screen recording is `public/projects/amer/walkthrough-2026.mp4`. The edited
+  video is `public/projects/amer/motion-overview.mp4`. The portfolio uses the
+  edited video and the new screenshots. No message was sent during the check.
+- Cortex: Captured the current public homepage. The notes page requires sign-in.
+  The resources page was blank during this check. Signed-in workflows remain
+  unverified.
+- Tamatem: The sign-in page opened. Signed-in workflows remain unverified.
+- Desktop capture: `agent-desktop` could not capture a window or display in
+  this Wayland session. Autonatic still uses the earlier sample-vault media.
+
 ## Goal
 
 Improve the project pages, videos, and screenshots in the `dune` portfolio.
