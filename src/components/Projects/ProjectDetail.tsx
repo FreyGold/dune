@@ -190,7 +190,7 @@ function ProjectDetail() {
                                        alt={`${project.title} screenshot ${
                                           index + 1
                                        }`}
-                                       className={`${project.imageFit === "contain" ? "object-contain bg-neutral-900" : "object-cover"} w-full h-full transition-transform duration-300 hover:scale-105`}
+                                       className="object-contain bg-neutral-900 w-full h-full"
                                        loading="lazy"
                                     />
                                  )}

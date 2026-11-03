@@ -4,17 +4,47 @@ Date: 3 November 2026
 
 ## Capture update
 
+These updates supersede the older media and next-step notes below.
+
+- SBC Solver: Added a source-based flow diagram and motion video. They show
+  the extension, local API, and solver. No live game account was used.
+- Go Boilerplate: Added a source-based architecture image and motion video.
+  The frontend runs separately from Compose. The welcome task handler exists,
+  but its enqueue path is not implemented. No live demo was added.
+- Offline Music: Edited the owner's older browser recording into labeled
+  screenshots and videos. No native iPhone recording was found. The current
+  native app and backend remain unverified.
+- Inventory: Captured the read-only browser preview with mock data, including
+  products, an invoice preview, and a stock report. The invoice has no item
+  rows. The Arabic font loaded. This source copy lacks the Electron entry files,
+  so the desktop app was not tested.
+- Voice Typer: Made close-up screenshots and videos from the owner's supplied
+  recording. The local checkout matches the public repository, but its Python
+  environment could not run the app during this check.
+- Autonatic: Captured local plugin 1.7.36 in an isolated sample vault through
+  Obsidian. The latest public release checked was 1.7.17. The screenshots,
+  screen tour, and motion video show navigation and sample input. No provider
+  was connected; generation and search results were not verified.
+- Job Aggregator: The hosted interface opened, but its jobs API did not
+  respond during capture. The new screenshots and videos show that interface
+  with a simulated API response and clearly marked sample listings. They do
+  not verify live job search or filtering.
 - Amer: Captured the live dashboard, member list, sample member profile,
   requests page, and sample chat. The requests list and chat were empty. The
   screen recording is `public/projects/amer/walkthrough-2026.mp4`. The edited
   video is `public/projects/amer/motion-overview.mp4`. The portfolio uses the
   edited video and the new screenshots. No message was sent during the check.
-- Cortex: Captured the current public homepage. The notes page requires sign-in.
-  The resources page was blank during this check. Signed-in workflows remain
-  unverified.
-- Tamatem: The sign-in page opened. Signed-in workflows remain unverified.
+- Cortex: Captured the current public homepage and made a motion video. The
+  notes page requires sign-in, the resources page was blank, and sign-up
+  returned a fetch error. The configured database was not accessible from the
+  connected account. Signed-in workflows remain unverified.
+- Tamatem: A separate test account signed in and saved sample tasks, a subject,
+  and a journal note. The new video shows the dashboard, logbook, and focus
+  timer. Credentials are not public: this account uses the production backend,
+  which includes community actions. An isolated demo backend is needed first.
 - Desktop capture: `agent-desktop` could not capture a window or display in
-  this Wayland session. Autonatic still uses the earlier sample-vault media.
+  this Wayland session. The new Autonatic media was captured through the
+  isolated Obsidian browser session.
 
 ## Goal
 
@@ -65,14 +95,13 @@ Paths under `Important` below are relative to
   upload, and an authenticated socket connection. Added `Sample Cairo Office`
   as office location 1 after an office location request returned 404; the
   request then returned 200. The storage region is configured.
-- **Current media:** `public/projects/amer/dashboard-live.png`,
-  `members-live.png`, and `full-app-tour.mp4`. They show the hosted app with
-  sample data. Older Amer media is also in that folder; check before using it.
-- **Next:** Capture a polished walkthrough of the live app. Show the dashboard,
-  a member profile, attendance or requests, and messaging where those flows
-  work. Use sample records and show the real interface. Test each flow before
-  claiming it works. Improve the screenshots and replace or supplement the
-  current tour.
+- **Current media:** `public/projects/amer/dashboard-2026.png`,
+  `members-2026.png`, `member-profile-2026.png`, `requests-2026.png`,
+  `messages-2026.png`, `walkthrough-2026.mp4`, and `motion-overview.mp4`.
+  They show the hosted app with sample data.
+- **Next:** If useful, add sample requests and messages in the isolated demo,
+  then record submission and delivery. The current tour shows navigation,
+  not those actions. The dashboard request-chart legend was clipped.
 - **Limits:** Invitation and password-reset emails and push notifications are
   not configured. The frontend production build passed, but its typecheck had
   existing errors. See `Important/amer-showcase/README.md` for infrastructure
